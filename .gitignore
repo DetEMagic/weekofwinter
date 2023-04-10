@@ -1,0 +1,7 @@
+.vscode
+node_modules
+package-lock.json
+.next
+.expo
+.env
+.DS_Store

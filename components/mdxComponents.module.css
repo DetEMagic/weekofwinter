@@ -1,0 +1,25 @@
+.imgContainer {
+    display: flex;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9; /*Prisa Gud här kommer skatteåterbäringen*/
+}
+
+.enlargeImage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+.img {
+    object-fit: contain;
+}
+
+/*Desktop, Tablet*/
+@media only screen and (min-width: 640px) {
+    .imgContainer {
+        max-height: 50vh;
+    }
+}
