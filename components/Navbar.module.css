@@ -1,28 +1,174 @@
-.container {
-    position: relative;
+.navContainer {
+    position: absolute;
+    top: 0;
     z-index: 9999;
+    width: 100%;
+}
+
+.innerNavContainer {
+    padding: 1em;
     display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    padding: 20px;
 }
 
-.logoContainer {
+.sticky {
+    position: fixed;
+    background: var(--menu-background-color);
+    backdrop-filter: blur(10px);
+    background-blend-mode: overlay;
+    box-shadow: 0px -25px 37px 0px rgba(255,255,255,1);
+}
+
+.logoContainer, .burger {
     display: flex;
+    align-items: center;
+    z-index: 9999;
 }
 
-.img {
-    background: rgba(31, 41, 55, 0.02);
-    align-self: center;
-    margin-right: 20px;
+.logo {
+    margin-right: 1em;
 }
 
-.copyright {
-    margin-bottom: 20px;
+.plus {
+    margin-left: 0.5em;
 }
 
-.playing {
-    font-weight: bold;
-    align-self: center;
-    margin-left: 10px;
+.invisible {
+    display: none;
 }
+
+.container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    background: var(--menu-mobile-background-color);
+    height: 100vh;
+    overflow: auto;
+}
+
+.container a {
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+.container a:hover {
+    text-decoration: underline;
+}
+
+.innerContainer {
+    z-index: 999;
+    padding: 5em 1.5em 0em 1.5em; 
+}
+
+.children div {
+    font-size:calc(8px + 0.4em);
+    margin-left:1em;
+}
+
+.linkContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    margin-top: 1em;
+}
+
+.socialMedia {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+.removeOverflow {
+    overflow-x: hidden;
+}
+
+.topLevelChildren {
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+
+/*Desktop*/
+@media only screen and (min-width: 1024px) {
+    .innerNavContainer {
+        padding: 0em 1em 0em 1em;
+    }
+
+    .container {
+        display: flex;
+        position: relative;
+        max-width: none;
+        height: inherit;
+        background: transparent;
+        /*Need to override inline react srping style*/
+        opacity: 1 !important;
+        width: 100% !important;
+        overflow: unset;
+    }
+
+    .container a {
+        font-size: 1.25em;
+    }
+
+    .children div {
+        display: flex;
+        align-items: baseline;
+    }
+
+    .innerContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        width: 100%;
+    }
+
+    .topLevelChildren {
+        position: absolute;
+        background-color: var(--menu-hover-color);
+        border-bottom-left-radius: 0.3em;
+        border-bottom-right-radius: 0.3em;
+        padding: 0em 1em 1em 0em;
+    }
+
+    .linkContainer {
+        height: auto;
+    }
+
+    .topLevelLinkContainer {
+        margin-top: 0;
+    }
+
+    .topLevelLink {
+        padding: 1.3em 1.5em 1.3em 1.5em;
+    }
+
+    .topLevelLinkHover:hover {
+        background-color: var(--menu-hover-color);
+    }
+
+    .socialMedia {
+        width: 25%;
+        justify-content: end;
+        padding: 0;
+    }
+
+    .logoContainer {
+        width: 25%;
+    }
+
+    .plus {
+        display: none;
+    }
+
+    .burger {
+        display: none;
+    }
+}
+

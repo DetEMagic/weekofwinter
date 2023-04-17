@@ -2,12 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(to bottom, #081b31 0%, black 100%);
+    background: var(--footer-background-color); 
     padding:  0px 1em 2.5em; 
 }
 
 .title {
     font-size: 1.2em;
+    margin-top: 60px;
 }
 .email {
     text-decoration: none;

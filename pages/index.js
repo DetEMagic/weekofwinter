@@ -1,39 +1,37 @@
 import Link from 'next/link';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 import Image from "next/image";
-import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax'
-import Welcome from '../components/Welcome';
 import Section from '../components/Section';
 import About from '../components/About.mdx';
 import Youtube from '../components/Youtube';
 import Stanton from '../components/Stanton.mdx';
 import Snow from '../components/Snow';
-import Map from '../components/Map';
 import TripDetailsStanton from '../components/TripDetailsStanton';
 import TripDetailsAspen from '../components/TripDetailsAspen';
 import Button from '../components/Button'
 import Aspen from '../components/Aspen.mdx'
-import Sponsors from '../components/Sponsors.js'
 import { useRouter } from 'next/router';
-import { ResponsiveImage } from '../components/mdxComponents';
+import Postbeskrivningar from '../components/Postbeskrivningar'
+import { TypeAnimation } from 'react-type-animation';
 
 import { animated, useScroll, useSpring, config } from "react-spring";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import s from "../styles/Index.module.css"
 
-export default function HomePage() {
+//TODO Maybe add react memo
+const ParallaxEffect = () => {
 
-  //#######Parallax############
-  const [{ offset }, setOffset] = useSpring(
+  const [{ offset }, animation] = useSpring(
       () => ({ 
         from: {offset:0},
         config: config.gentle
-      }));
+  }));
   
   const handleScroll = () => {
       const offset = window.scrollY;
       if (offset < window.innerHeight) {
-        setOffset({ offset });
+        animation.start({offset: offset });
       }
   };
 
@@ -59,7 +57,72 @@ export default function HomePage() {
       "speed": 0.1
     },
   ]
-  //#######Parallax############
+
+  return (
+    <div className={s.parallaxContainer}>
+      {layers.map(({speed}, i) =>  
+          <animated.div
+              key={i}
+              className={s.parallaxMountain}
+              style={{
+                transform: offset.to((o) => `translate3d(0px, ${o * speed}px, 0px)`)
+              }}
+          >
+          <Image 
+            src={`/parallax/layer${i}.svg`}
+            className={s.mountainImage}
+            alt="Mountain landscape"
+            fill
+            priority
+          />
+          </animated.div>
+      )}
+
+      <animated.div 
+        className={s.welcomeContainer}
+        style={{
+          transform: offset.to((o) => `translate3d(0px, ${o * 1.2}px, 0px)`)
+        }}
+      >
+        <h1 className={s.welcomeHeading}>
+          Week of Winter
+        </h1>
+        <TypeAnimation
+          sequence={[
+            "Uppsalas största skidförening",
+            1000, 
+            "Vi ses i Valtho!", 
+            1000, 
+            "#WeekofWinter2024", 
+            1000, 
+            "För studenter av studenter.", 
+            1000, 
+          ]}
+          speed={60}
+          wrapper="h3"
+          cursor={true}
+          repeat={Infinity}
+          className={s.welcomeSubheading}
+        />
+      </animated.div>
+
+
+      <div className={s.coverMountain}>
+        <Snow/>
+        <Navbar innerHeightOffset/>
+        <Image 
+          src={`/parallax/layer4.svg`}
+          className={s.mountainImage}
+          alt="Mountain landscape"
+          fill
+          priority
+        />
+      </div>
+    </div>
+  )
+}
+
+export default function HomePage() {
 
   const { locale, locales, asPath } = useRouter();
 
@@ -69,68 +132,13 @@ export default function HomePage() {
   const t = 240 * 24 * 60 * 60 * 1000
   const TimeDiff = CurrentTime + t    
 
- 
-
   //useLoadScript({googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY})
 
   return (
     <>
     <main>
-      <div
-        style={{
-            background: "var(--sky-color)",
-            height: "114vh",
-        }}
-      >
-
-
-        {layers.map(({speed}, i) =>  
-          <animated.div
-              key={i}
-              style={{
-                  position: "absolute",
-                  width: "100%",
-                  height: "115vh",
-                  willChange:"transform",
-                  transform: offset.to((o) => `translate3d(0px, ${o * speed}px, 0px)`)
-              }}
-          >
-
-            <Image 
-              src={`/parallax/layer${i}.svg`}
-              style={{objectFit: "cover", pointerEvents:"none"}}
-              alt="Mountain landscape"
-              fill
-              priority
-            />
-          </animated.div>
-        )}
-
-        <animated.div 
-          style={{
-            position:"absolute", 
-            width:"100%",
-            willChange:"transform",
-            transform: offset.to((o) => `translate3d(0px, ${o * 1.2}px, 0px)`)
-          }}>
-          <Welcome/>
-        </animated.div>
-
-
-        <div style={{position:"absolute", width:"100%", height:"115vh"}}>
-          <Snow/>
-          <Navbar/>
-          <Image 
-            src={`/parallax/layer4.svg`}
-            style={{objectFit: "cover", }}
-            alt="Mountain landscape"
-            fill
-            priority
-          />
-
-        </div>
-      </div>
-      <article style={{background:'var(--background-color)', position:"relative", zIndex:999, paddingTop:"1px"}}>
+      <ParallaxEffect/>
+      <article className={s.content}>
         <div style={{textAlign:"center"}}>
           <h1>
             Vill du uppleva det ultimata vinteräventyret?
@@ -138,9 +146,6 @@ export default function HomePage() {
           <h3>
             Följ med oss på en oförglömlig skidresa!
           </h3>
-          <Link href="/om/postbeskrivningar">
-            postbeskrivningar
-          </Link>
         </div>
         <Section
           leftContent={
@@ -155,6 +160,8 @@ export default function HomePage() {
             />
           }
         />
+      
+        
         <Section
           leftContent={
             <div style={{aspectRatio:"16/9"}}>
@@ -207,8 +214,13 @@ export default function HomePage() {
         }
         />
 
-
-        <Sponsors/>
+        <Postbeskrivningar/>
+        <Button title={
+          <a style={{color:"#003366", textDecoration: 'none'}} href='/om/postbeskrivningar'>
+            Ansök Nu
+          </a>
+        }
+        />    
        
       </article>
     </main>

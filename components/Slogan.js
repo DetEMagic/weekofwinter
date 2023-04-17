@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react'
 import { useSpring, animated } from '@react-spring/web'
-import s from "./Slogan.module.css"
 
 export default function Slogan({firstWord, phrases}) {
     const [index, setIndex] = useState(0); 
@@ -19,13 +18,12 @@ export default function Slogan({firstWord, phrases}) {
     });
 
     return (
-        <div className={s.container}>
-            <h1>{firstWord}</h1>
-            <animated.div style={{...style, color: colors[index % colors.length]}}>
-                <h1>{phrases[index % phrases.length]}</h1> 
-            </animated.div>
-        </div>
+        <span>
+            {firstWord}
+            <animated.span style={{...style, color: colors[index % colors.length]}}>
+                {" " +phrases[index % phrases.length]}
+            </animated.span>
+        </span>
     )
-
-
 }
+

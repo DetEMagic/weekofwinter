@@ -38,7 +38,7 @@ const icons = [
   */
 ]
 
-const Icon = ({width, height, black, index}) => {
+const Icon = ({width, height, black, index, once}) => {
   const [ref, springs] = useInView(
     () => ({
       from: {
@@ -49,29 +49,44 @@ const Icon = ({width, height, black, index}) => {
         x: 0,
         y: 0,
       },
-      config: config.wobbly
+      config: config.wobbly,
     }),
+    {
+      once:once
+    }
   )
 
   return (
-    <animated.div ref={ref} style={springs}>
-      <a 
-        style={index !== icons.length-1 ? {marginRight:"20px"}: null}
+    <animated.a 
+        ref={ref} 
+        style={{
+          marginRight:index === icons.length-1 ? "0px" : null, 
+          ...springs
+        }}
+        className={s.iconContainer}
         href={icons[index].href} 
         target="_blank"
       >
         <Image src={`/icons/${icons[index].src}${black ? "" : "_w"}.svg`} width={width} height={height} alt={icons[index].src}/>
-      </a>
-    </animated.div>
+    </animated.a>
   )
 }
 
 
-export default function Socialmedia({width, height, black}) {
+export default function Socialmedia({width, height, black, once = false}) {
 
   return (
     <div className={s.container}>
-      {icons.map((_, i) => <Icon key={i} width={width} height={height} black={black} index={i}/>)}
+      {icons.map((_, i) => 
+        <Icon 
+          key={i} 
+          width={width} 
+          height={height} 
+          black={black} 
+          index={i} 
+          once={once}
+        />
+      )}
     </div>
   )
 }

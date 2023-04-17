@@ -4,6 +4,7 @@ import React from 'react'
 import s from "./Footer.module.css"
 import Socialmedia from './Socialmedia'
 import Image from 'next/image';
+import Sponsors from './Sponsors'
 
 export default function Footer() {
     const {locale: activeLocal, locales, asPath} = useRouter();
@@ -32,6 +33,7 @@ export default function Footer() {
                     src="/icons/arrow-up_w.svg"
                 />
             </button>
+            <Sponsors/>
         </footer>
     )
 }
