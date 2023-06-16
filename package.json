@@ -3,23 +3,20 @@
     "dev": "next dev"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
-    "@mui/material": "^5.11.15",
     "@next/mdx": "^13.2.4",
-    "@react-spring/parallax": "^9.7.1",
     "@react-spring/web": "^9.7.1",
-    "@use-gesture/react": "^10.2.25",
     "lottie-web": "^5.10.2",
     "next": "^13.2.4",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-snowfall": "^1.2.1",
-    "react-spotify-web-playback": "^0.13.4",
-    "react-spring": "^9.7.1",
     "react-type-animation": "^3.0.1",
-    "styled-components": "^5.3.9"
+    "remark-emoji": "^3.1.1"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^7.0.0"
   }
 }

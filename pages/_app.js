@@ -1,12 +1,14 @@
-import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/react'
 import { Heading, Text, ResponsiveImage, NextLink, ListItem } from '../components/mdxComponents';
-import Footer from '../components/Footer';
 import '../styles/global.css'
-import Navbar from '../components/Navbar';
 import Youtube from '../components/Youtube';
 import Lottie from '../components/Lottie';
+import Layout from '../components/Layout';
+//import {Kumbh_Sans} from "next/font/google";
+import { Globals, useReducedMotion } from '@react-spring/web';
+import { useEffect } from 'react';
 
+//override mdx components
 const components = {
   h1: Heading.H1,
   h2: Heading.H2,
@@ -20,40 +22,41 @@ const components = {
   li: ListItem,
   Youtube,
   Lottie,
-  /*
-  p: Text,
-  pre: Pre,
-  code: InlineCode,
-  */
-}
-
-function defaultLayout(page) {
-  return (
-    <>
-      <Navbar/>
-      <main>
-        <article className='mainContent'>
-          {page}
-        </article>
-      </main>
-      <Footer/>
-    </>
-  )
+  Layout,
 }
 
 
+/*
+const inter = Kumbh_Sans({ subsets: ['latin'] })
+      <style jsx global>{`
+        html {
+          font-family: ${inter.style.fontFamily};
+        }
+      `}</style>
+      */
+
+
+//The root of the website
 export default function MyApp({ Component, pageProps }) {
-  const getLayout = Component.getLayout ?? defaultLayout 
+  //If the user has turned on reduce motion on their computer, 
+  //the animations will skip to the end. No animation will be shown 
+  const reduceMotion = useReducedMotion()
+
+  useEffect(()=> {
+    Globals.assign({
+      skipAnimation:reduceMotion
+    })
+
+    return () => {
+      Globals.assign({
+        skipAnimation:reduceMotion
+      })
+    }
+  }, [reduceMotion])
 
   return (
     <MDXProvider components={components}>
-      <Head>
-        <title>Week of Winter</title>
-        <link rel="shortcut icon" href="/favicon.ico"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta charset="utf-8"/>
-      </Head>
-      {getLayout(<Component {...pageProps} />)}
+      <Component {...pageProps}/>
     </MDXProvider>
   )
 }   

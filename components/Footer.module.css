@@ -4,18 +4,26 @@
     align-items: center;
     background: var(--footer-background-color); 
     padding:  0px 1em 2.5em; 
+    margin-top: 2rem;
+}
+
+.container span {
+    margin-block: 1.5rem;
 }
 
 .title {
     font-size: 1.2em;
-    margin-top: 60px;
 }
+
 .email {
     text-decoration: none;
     color: inherit;
 }
 
 .arrowup {
-    margin-top: 0.5em;
+    margin-top: 1.5rem;
 }
 
+.arrowup svg {
+    fill: var(--text-color)
+}

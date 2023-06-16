@@ -1,60 +1,96 @@
-.container{
-  display: grid;
-  justify-content: center;
-  grid-template-columns: auto auto auto auto;
-  padding: 10px;
-  width: 50%;
-  flex-direction: column;
+.container {
+  background-color: var(--background-opacity);
+  border-radius: var(--border-radius);
+  text-align: center;
+  max-width: 55em;
   margin: auto;
+  padding: 2em 0;
 }
 
-.displayWindow {
-  margin: auto;
+.container h2 {
+  margin-top: 0;
+}
+
+.countDownContainer {
   display: flex;
-  position: relative;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  height: 25vh;
-  background-color: white;
+  flex-wrap: wrap;
 }
 
-.text {
-  color: white;
-  margin: 15px;
+.title {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
-.cardFront {
+.cardContainer {
+  font-size: 3em;
+  display: flex;
+  flex-direction: column;
+  width: 2em;
+  perspective-origin: 50% 50%;
+  perspective: 300px;
+  background-color: var(--text-color);
+  color:var(--background-color);
+}
+
+.cardTop, .cardBottom {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cardContainer, .cardTop, .cardBottom {
+  height: 1.2em;
+}
+
+.cardTop span, .cardTopAnimated span {
+  transform: translateY(60%);
+}
+
+.cardBottom span, .cardBottomAnimated span {
+  transform: translateY(-40%);
+}
+
+.cardTop, .cardBottom, .cardBottomAnimated, .cardTopAnimated {
+  border-bottom: 2px solid var(--background-color);
+}
+
+.cardTopAnimated, .cardBottomAnimated {
   display: flex;
   position: absolute;
   justify-content: center;
-  top: 0;
-  left: 0;
-  background-color: white;
   width: 100%;
-  height: 80px;
+  height: 0.6em;
   overflow: hidden;
-  transform-origin: center bottom;
   backface-visibility: hidden;
+  background-color: var(--text-color);
+}
+
+.cardTopAnimated {
+  top: 0;
+  transform-origin: center bottom;
   transform-style: preserve-3d;
   transform: rotateX(0deg);
-  border: 1px solid gray;
-  background-color: white;
 }
 
-.cardBack {
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  top: 80px;
-  left: 0;
-  background-color: white;
-  width: 100%;
-  height: 80px;
-  overflow: hidden;
+.cardBottomAnimated {
+  top: 0.6em;
   transform: rotateX(180deg);
   transform-origin: center top;
-  backface-visibility: hidden;
-  border: 1px solid gray;
-  background-color: white;
+}
+
+/*Desktop*/
+@media only screen and (min-width: 640px) {
+  .cardContainer {
+    font-size: 5em;
+  }
+
+  .cardTop span, .cardTopAnimated span {
+    transform: translateY(75%);
+  }
+
+  .cardBottom span, .cardBottomAnimated span {
+    transform: translateY(-25%);
+  }
 }

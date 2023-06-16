@@ -1,0 +1,24 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    color: var(--background-color);
+}
+
+.card {
+    background-color: var(--text-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.leftCard { grid-area: 1 / 1 / 6 / 2; }
+.rightCard1 { grid-area: 1 / 2 / 3 / 3; }
+.rightCard2 { grid-area: 3 / 2 / 4 / 3; }
+.rightCard3 { grid-area: 4 / 2 / 5 / 3; }
+.rightCard4 { grid-area: 5 / 2 / 6 / 3; }

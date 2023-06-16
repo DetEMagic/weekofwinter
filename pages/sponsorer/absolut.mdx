@@ -1,5 +1,11 @@
 
-![Absolut Logotyp](/sponsors/absolut.png)
+export const meta = {
+  title:"Absolut",
+  description:"Absolut är ett svenskt företag som tillverkar premiumvodka.",
+  keywords:"Absolut, Week of Winter",
+}
+
+![Nordic Wellness Logotyp](/sponsors/absolut.png)
 
 Absolut är ett svenskt företag som tillverkar premiumvodka. 
 Företaget grundades 1879 och blev känt internationellt under 
@@ -8,3 +14,7 @@ Absolut vodka säljs idag i över 120 länder och är ett av världens
 mest kända vodkamärken. Företaget är känt för sin starka miljöprofil 
 och har bland annat implementerat hållbara produktionsmetoder och 
 samarbeten med organisationer som stödjer klimatfrågor.
+
+export default ({ children }) => (
+  <Layout meta={meta}>{children}</Layout>
+);

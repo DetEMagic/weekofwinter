@@ -1,6 +1,12 @@
 import React from 'react'
 import s from "./Youtube.module.css"
 
+/**
+ * Embed a youtube video
+ * @component
+ * @example
+ * <Youtube title="Hallo" videoId="tYE42Ntdp18"/>
+ */
 export default function Youtube({videoId, title}) {
     return (
         <iframe

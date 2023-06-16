@@ -1,0 +1,78 @@
+/*
+The file that is used only with CircleInformation.js
+*/
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-block: 3em;
+    width: 100%;
+    height: 14em;
+}
+
+.leftContainer, .rightContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.9em;
+    max-width: 8em;
+}
+
+.leftContainer {
+    padding-right: 0.5em;
+    margin-left: -1em;
+    text-align: right;
+}
+
+.rightContainer {
+    padding-left: 0.5em;
+    margin-right: -1em;
+}
+
+.left {
+    margin-left: -1em;
+}
+
+.right {
+    margin-right: -1em;
+}
+
+.title {
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+.subTitle {
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+@media only screen and (min-width: 640px) {
+    .container {
+        height: 18em;
+    }
+
+    .leftContainer, .rightContainer {
+        font-size: 1.1em;
+        max-width: 10em;
+    }
+
+    .rightContainer {
+        padding-left: 1em;
+        margin-right: 0;
+    }
+
+    .leftContainer {
+        align-items: end;
+        padding-right: 1em;
+        margin-left: 0;
+    }
+
+    .right {
+        margin-right: -2em;
+    }
+
+    .left {
+        margin-left: -2em;
+    }
+}

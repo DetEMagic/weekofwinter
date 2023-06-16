@@ -1,93 +1,65 @@
 import React from 'react'
-import Image from 'next/image'
 import s from "./Socialmedia.module.css"
 import { animated, useSprings, useInView, config } from '@react-spring/web'
+import Facebook from "../icons/facebook.svg"
+import Instagram from "../icons/instagram.svg"
+import TikTok from "../icons/tiktok.svg"
 
-const icons = [
-  {
-    src:"facebook",
-    href: "https://www.facebook.com/Wofwinter",
-  },
-  {
-    src:"instagram",
-    href: "https://www.instagram.com/week_of_winter/",
-  },
-  {
-    src:"tiktok",
-    href: "https://www.facebook.com/Wofwinter",
-  },
-  /*
-  {
-    id:4,
-    src:"discord.svg",
-    alt:"discord",
-    href: "https://www.facebook.com/Wofwinter",
-  },
-  {
-    id:5,
-    src:"snapchat.svg",
-    alt:"snapchat",
-    href: "https://www.facebook.com/Wofwinter",
-  },
-  {
-    id:6,
-    src:"youtube.svg",
-    alt:"youtube",
-    href: "https://www.facebook.com/Wofwinter",
-  },
-  */
-]
+/**
+ * A component that displays social media icons that acts like an external link to that media
+ * @component
+ * @example
+ * <Socialmedia height="50" width="50" animation={false}/>
+ */
+export default function Socialmedia({width, height, animation = true}) {
+  const icons = [
+    {
+      type:<Facebook width={width} height={height}/>,
+      href: "https://www.facebook.com/Wofwinter",
+    },
+    {
+      type:<Instagram width={width} height={height}/>,
+      href: "https://www.instagram.com/week_of_winter/",
+    },
+    {
+      type:<TikTok width={width} height={height}/>,
+      href: "https://www.tiktok.com/@weekofwinter/",
+    },
+  ]
 
-const Icon = ({width, height, black, index, once}) => {
   const [ref, springs] = useInView(
     () => ({
       from: {
-        x:-(index+1-icons.length)*width, 
-        y: 0,
+        opacity: 0,
+        transform:"translate3d(0, 100px, 0)",
       },
       to: {
-        x: 0,
-        y: 0,
+        opacity: 1,
+        transform:"translate3d(0, 0, 0)",
       },
-      config: config.wobbly,
     }),
     {
-      once:once
+      once:true,
     }
   )
 
   return (
-    <animated.a 
-        ref={ref} 
-        style={{
-          marginRight:index === icons.length-1 ? "0px" : null, 
-          ...springs
-        }}
-        className={s.iconContainer}
-        href={icons[index].href} 
-        target="_blank"
-      >
-        <Image src={`/icons/${icons[index].src}${black ? "" : "_w"}.svg`} width={width} height={height} alt={icons[index].src}/>
-    </animated.a>
-  )
-}
-
-
-export default function Socialmedia({width, height, black, once = false}) {
-
-  return (
-    <div className={s.container}>
-      {icons.map((_, i) => 
-        <Icon 
-          key={i} 
-          width={width} 
-          height={height} 
-          black={black} 
-          index={i} 
-          once={once}
-        />
+    <animated.div ref={ref} style={animation ? springs : null} className={s.container}>
+      {icons.map((icon, i) => 
+        <a 
+          key={i}
+          ref={ref} 
+          style={{
+            marginRight: i === icons.length-1 ? "0px" : null,
+          }}
+          className={s.iconContainer}
+          href={icon.href} 
+          target="_blank"
+        >
+        {icon.type}
+        </a>
       )}
-    </div>
+    </animated.div>
   )
 }
 

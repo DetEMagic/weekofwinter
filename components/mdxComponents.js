@@ -4,16 +4,18 @@ import s from "./mdxComponents.module.css"
 import { useInView, animated } from '@react-spring/web'
 import { useState } from 'react'
 
+//This file is used for creating components that overides the default behavior of MDX
+
 const Heading = ({children}) => {
  const [ref, springs] = useInView(
     () => ({
       from: {
         opacity: 0,
-        y: 100,
+        transform:"translate3d(0, 100px, 0)",
       },
       to: {
         opacity: 1,
-        y: 0,
+        transform:"translate3d(0, 0, 0)",
       },
     }),
     {
@@ -40,11 +42,11 @@ const Text = (props) => {
     () => ({
       from: {
         opacity: 0,
-        y: 100,
+        transform:"translate3d(0, 100px, 0)",
       },
       to: {
         opacity: 1,
-        y: 0,
+        transform:"translate3d(0, 0, 0)",
       },
     }),
     {
@@ -63,17 +65,9 @@ const ResponsiveImage = (props) => {
   const [enlarge, setEnlarge] = useState(false);
 
   return (
-    <>
-      {enlarge ? 
-      <span className={s.enlargeImage}>
-        <Image alt={props.alt} className={s.img} fill {...props} />
-      </span>
-      :
-      <span className={s.imgContainer} onClick={()=>setEnlarge(!enlarge)}>
-        <Image alt={props.alt} className={s.img} fill {...props} />
-      </span>
-      }
-    </>
+    <span className={s.imgContainer} onClick={()=>setEnlarge(!enlarge)}>
+      <Image alt={props.alt} className={s.img} fill {...props} />
+    </span>
   )
 }
 
@@ -86,11 +80,11 @@ const ListItem = (props) => {
     () => ({
       from: {
         opacity: 0,
-        x: -100,
+        transform:"translate3d(-100px, 0, 0)",
       },
       to: {
         opacity: 1,
-        x: 0,
+        transform:"translate3d(0, 0, 0)",
       },
     }),
     {

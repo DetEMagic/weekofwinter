@@ -1,0 +1,36 @@
+.main {
+    margin-top: 84.57px;
+}
+
+.imgContainer {
+    position:relative;
+    height:40vh;
+}
+
+.img {
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.container {
+    max-width: calc(var(--max-width) + 5em);
+    padding-inline: var(--padding-inline);
+    margin: auto;
+    display: flex;
+    margin-top: -1.8em;
+    position: relative;
+}
+
+.container h1 {
+    display: flex;
+    margin: 0;
+    margin-left: 0.2em;
+    text-shadow: -2px -2px 30px black;
+}
+
+.emoji {
+    position: relative;
+    font-size: clamp(3.5em, 2vw + 3.5em, 5em);
+    bottom: -0.175em;
+}
+

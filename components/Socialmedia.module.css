@@ -4,7 +4,10 @@
 
 .iconContainer {
     display: flex;
-    justify-content: center;
     align-items: center;
     margin-right: 20px;
+}
+
+.iconContainer path {
+    stroke: var(--text-color);
 }

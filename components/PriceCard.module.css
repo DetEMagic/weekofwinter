@@ -1,0 +1,95 @@
+.container {
+    border-radius: var(--border-radius);
+    background-color: var(--text-color);
+    color: var(--background-color);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    width: 16rem;
+}
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title  {
+    font-weight: 700;
+    font-size: 2em;
+    margin-block: 1rem;
+}
+
+.price {
+    font-size: 1.3em;
+    margin-block:1rem;
+}
+
+.includesContainer {
+    border-top: 1px solid var(--background-color);
+}
+
+.ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.li {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+}
+
+.checkMark {
+    display: flex;
+    margin-right: 0.5rem;
+}
+
+.popular {
+  position: absolute;
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popular::before {
+  content: "Populärast";
+  position: absolute;
+  width: 150%;
+  height: 40px;
+  background-image: linear-gradient(45deg, #ff6547 0%, #ffb144  51%, #ff7053  100%);
+  transform: rotate(45deg) translateY(-20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.23);
+}
+
+.popular::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  bottom: 0;
+  right: 0;
+  height: 10px;
+  z-index: -1;
+  box-shadow: -110px -110px #cc3f47;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+}
+
+@media only screen and (min-width: 640px) {
+    .container {
+        margin: 1.5rem;
+    }
+}

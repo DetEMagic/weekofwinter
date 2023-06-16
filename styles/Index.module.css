@@ -11,7 +11,7 @@
 
 /*Css Performance attributes*/
 .parallaxMountain {
-    will-change:transform;
+    will-change: transform;
     contain: strict;
 }
 
@@ -33,11 +33,10 @@
 
 .welcomeHeading {
     font-family: Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif; 
-    font-size: 4.5em;
-    font-weight: bolder;
+    font-size: clamp(3em, 1.5vw + 3em, 4.5em);
     margin-bottom: 0;
     margin-top: 0;
-    text-shadow: 0px 0px 3px #1f2937;
+    text-shadow: var(--text-shadow)
 }
 
 .welcomeSubheading {
@@ -48,6 +47,86 @@
 .content {
     position: relative;
     background: var(--background-color);
-    z-index: 999;
+    z-index: 1;
     padding-top:1px;
+}
+
+.innerContent {
+    margin: calc(1em + 1ex) auto;
+    padding-inline: calc(1em + 1ex);
+    max-width: calc(50em + 50ex);
+}
+
+.infoBoxContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.circleInformationContainer {
+    display: block;
+}
+
+
+.priceSection {
+}
+
+.priceCardContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /*
+    background-color: var(--text-color);
+    color: var(--background-color);
+    */
+}
+
+.header {
+    text-align: center;
+}
+
+
+.addOnContainer {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addOnCards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/*Firefox engine är trash jämfört med de andras*/
+@-moz-document url-prefix() {
+    .parallaxMountain {
+        transform: none !important;
+    }
+}
+
+@media only screen and (min-width: 640px) {
+    .priceCardContainer {
+        flex-direction: row;
+        justify-content: center;
+        align-items: unset;
+    }
+}
+
+/*Desktop*/
+@media only screen and (min-width: 1024px) {
+    .infoBoxContainer {
+        flex-direction: row;
+    }
+
+    .addOnCards > div {
+        flex: 0 0 calc(50% - 1.5rem);
+    }
+}
+
+@media only screen and (min-width: 1204px) {
+    .circleInformationContainer {
+        display: flex;
+    }
 }

@@ -1,3 +1,8 @@
+/*
+The main css files where the default behavior of the website will be set.
+Also every component can use the classes defined in here.
+*/
+
 :root {
   --sky-color: linear-gradient(to bottom, #00a6ce 0%, #f0f9ff 100%);
   /*--sky-color: linear-gradient(to bottom, #f0f9ff 0%, #bfdbfe 100%);*/
@@ -5,11 +10,14 @@
   --footer-background-color: linear-gradient(to bottom, #081b31 0%, black 100%);
   --menu-background-color: linear-gradient(0deg, rgba(8,27,49,0.9) 0%, rgba(0,0,0,0.9) 100%);
   --menu-mobile-background-color:linear-gradient(0deg, rgba(8,27,49,1) 0%, rgba(0,0,0,1) 100%);
-  --menu-hover-color: rgba(0,0,0,0.96);
   --code-background: rgba(175,184,193,0.2);
+  --background-opacity:rgba(0,0,0,0.5);
+  --text-shadow: 0px 0px 3px #1f2937;
   --link-color: #85CEFF;
   --text-color:#FFFFFF;
-  --border-radius: 20px;
+  --border-radius: 3px;
+  --max-width:calc(40em + 40ex);
+  --padding-inline:calc(1em + 1ex);
 }
 
 * {
@@ -23,16 +31,24 @@ html {
 }
 
 body {
-    /*font-family: 'Helvetica','Helvetica Neue','SF Pro Text', 'SF Pro Icons',
-      'Arial', sans-serif;*/
+    font-family: 'Helvetica','Helvetica Neue','SF Pro Text', 'SF Pro Icons',
+      'Arial', sans-serif;
+    /*
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
                 Oxygen, Ubuntu, Cantarell, 'Open Sans', 
                 'Helvetica Neue', sans-serif;
+    */
     margin:0;
     background-color: var(--background-color);
     color: var(--text-color);
+    top:0 !important;/*Needed for google translate*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/*Remove google translate bar*/
+body > .skiptranslate {
+  display: none;
 }
 
 h1,h2,h3,h4,h5,h6,strong,th {
@@ -42,24 +58,20 @@ h1,h2,h3,h4,h5,h6,strong,th {
   margin-block:calc(.4em + .4ex);
 }
 
-h1 {
-  font-size: 2.5em;
-}
-
-h2 {
-  font-size: 2.2em;
+h1, h2 {
+  font-size: clamp(2.5em, 1.3vw + 2.5em, 3.8em);
 }
 
 h3 {
-  font-size: 1.9em;
+  font-size: clamp(1.6em, 1vw + 1.6em, 2.3em);
 }
 
 h4 {
-  font-size: 1.6em;
+  font-size: clamp(1.4em, 1vw + 1.4em, 1.7em);
 }
 
 h5 {
-  font-size: 1.3em;
+  font-size: clamp(1.2em, 1vw + 1.2em, 1.3em);
 }
 
 h6 {
@@ -92,12 +104,16 @@ code {
   background-color: var(--code-background);
 }
 
+/*
+  margin: calc(1em + 1ex) auto;
+  margin-block-start: calc(4.5em + 4.5ex);
+  */
 .mainContent {
   min-height: calc(100vh - (93px + 1em + 1ex));
-  margin: calc(1em + 1ex) auto;
-  margin-block-start: calc(4em + 4ex);
-  padding-inline: calc(1em + 1ex);
-  max-width: calc(36em + 36ex);
+  margin: auto;
+  margin-block-start: calc(1.5em + 1.5ex);
+  padding-inline: var(--padding-inline);
+  max-width: var(--max-width);
 }
 
 /*Desktop, Tablet*/

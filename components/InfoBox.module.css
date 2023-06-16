@@ -1,0 +1,29 @@
+.container {
+    width: 100%;
+    padding: 1em;
+    background-color: var(--text-color);
+    color:var(--background-color);
+    text-align: center;
+    margin:0.5em 0em;
+    border-radius: var(--border-radius);
+}
+
+.value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1em;
+}
+
+.container h5 {
+    margin-bottom: 0;
+    margin-top:0.3em;
+}
+
+@media only screen and (min-width: 1024px) {
+    .container {
+        margin:0.5em;
+    }
+}
+
+
+

@@ -29,7 +29,13 @@ const images = [
   },
 ];
 
-export default function ImageGrid() {
+/**
+ * Displays all the sponsors logo
+ * @component
+ * @example
+ * <Sponsors/>
+ */
+export default function Sponsors() {
   return (
     <div className={s.container}>
       {images.map((image, key) => (
@@ -38,6 +44,10 @@ export default function ImageGrid() {
             src={image.src}
             alt={image.alt + " logo"}
             style={{objectFit:"contain"}}
+            sizes="(max-width: 640px) 100vw,
+                    (max-width: 1024px) 50vw,
+                    (max-width: 1536px) 33vw,
+                    25vw"
             fill
           />    
         </div>

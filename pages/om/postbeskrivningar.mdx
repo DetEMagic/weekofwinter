@@ -1,8 +1,14 @@
-# Postbeskrivningar 😀
 
----
+export const meta = {
+  emoji:"📖",
+  image:"https://lh3.googleusercontent.com/pw/AJFCJaXYCjFiFm1HoAYjzTkQYT7Wv4oGFpDGiTAwoLWPskDCCc7FAtcvxld2azdSIdLpsDHNXQU1e2QeNV3ZXFcXPKIJ1CDF4vpasM8NC0zJe4vxeX9qeoTc_g8_IJhZIFzolrNq6gmUuDCOx5y5zsca9E-z=w2304-h1038-s-no?authuser=0",
+  color:"rgba(58, 214, 255, 0.1)",
+  title:"Postbeskrivingar",
+  description:"Week of Winters postbeskrivingar för de tillsatta i styrelsen",
+  keywords:"Postbeskrivning, styrelse",
+}
 
-### Ordförande
+### :gorilla: Ordförande 
 
 ###### Huvuduppgifter:
 - Se till att styrelsen arbetar i enlighet med de stadgar och riktlinjer som finns för Week of Winter
@@ -17,7 +23,7 @@ Som ordförande är man ansvarig för att helheten hos föreningen och för att 
 
 ---
 
-### Vice Ordförande
+### :sleeping: Vice Ordförande 
 
 ###### Huvuduppgifter:
 - Hantera ekonomin
@@ -32,7 +38,7 @@ läget till styrelsen. Utöver det ansvarar du även för att hitta sponsorer ti
 ---
 
 
-### PR-ansvarig
+### :thinking_face: PR-ansvarig
 
 ###### Huvuduppgifter:
 - Ansvara för sociala medier
@@ -48,7 +54,7 @@ Tillsammans med tryckansvarig så är du dessutom ansvarig för att foto/filma p
 ---
 
 
-### Tryckansvarig
+### :printer: Tryckansvarig
 
 ###### Huvuduppgifter:
 - Designa tryck
@@ -64,7 +70,7 @@ för att fota/filma på Week of Winter evenemang.
 
 ---
 
-### Eventansvarig
+### :partying_face: Eventansvarig
 
 ###### Huvuduppgifter:
 - Planera och genomföra evenemang
@@ -77,5 +83,6 @@ Detta är en kreativ post där man har fria tyglar för att hålla i roliga even
 
 ![Jag vill bli en profil](/stanton.jpeg)
 
-
-
+export default ({ children }) => (
+  <Layout meta={meta}>{children}</Layout>
+);

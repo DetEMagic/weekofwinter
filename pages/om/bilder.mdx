@@ -1,0 +1,22 @@
+import ImageGallery from "../../components/ImageGallery"
+import CircleInformation from "../../components/CircleInformation"
+
+
+export const meta = {
+  image:"https://lh3.googleusercontent.com/pw/AJFCJaUult8_cRXb089LltaJz_U8SIk2wmvdaf-ENEYFBXPnoh0hpI173m00Yr2xG-MaNNe3CxbobdaZ1iUVtrJ7DAYJmdrDr25YZ5AEYZdjhs9t290s8JBPft8DX-qWWHlAiKpBnR1b_t50LLGPPQ_-wpqc=w2304-h1038-s-no?authuser=0",
+  emoji:"📷",
+  color:"rgba(255, 255, 255, 0.1)",
+  title:"Bilder",
+  description:"Week of Winter bilder från tidigare skidresor och andra evenemang",
+  keywords:"Bilder, Skidor, Fest",
+}
+
+
+Här går det att hitta alla bilder från tidigare skidresor och evenmang :skier:
+
+<ImageGallery/>
+
+export default ({ children }) => (
+  <Layout meta={meta}>{children}</Layout>
+);
+
