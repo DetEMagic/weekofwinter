@@ -12,65 +12,65 @@ import Plus from "../icons/plus.svg"
 import Minus from "../icons/minus.svg"
 
 //The navigation bar that is shown all the time on the top
+let lastScrollTop = 0
+
 export default function Navbar() {
 
-  const nav = useRef(null)
-  let oldScrollY = 0;
-
-  const MENU_HEIGHT = 84.57 //Ehhh jävla piss och behöva ha statics värde
-
-  let menu = {
-    height:MENU_HEIGHT,
-    isHover:false,
-  }
-
-  const [height, navAnimation] = useSpring(()=>({
-    height:0,
-    y:0,
-  })) 
-
-
-  //Makes the navigation bar sticky when scrolling up
-  const sticky = () => {
-    if (window.scrollY > oldScrollY) {
-      navAnimation.start({
-        height:menu.isHover ? menu.height : 0,
-        y:menu.isHover ? 0 : -menu.height
-      })
-    } else {
-      navAnimation.start({
-        height:menu.isHover ? menu.height : (window.pageYOffset > menu.height ? menu.height : 0),
-        y:0
-      })
-    }
-    oldScrollY = window.scrollY;
-  };
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", sticky);
-
+    window.addEventListener('scroll', isSticky);
     return () => {
-      window.removeEventListener("scroll", sticky);
+        window.removeEventListener('scroll', isSticky);
     };
-  }, []);
+  });
 
+  const nav = useRef(null)
 
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const isSticky = () => {
+    const r = nav.current
+    r !== null && window.scrollY > 0 ? (
+      (window.scrollY > r.clientHeight) ? 
+      r.classList.add(s.sticky) : 
+      r.classList.remove(s.sticky)
+    ): null
+  }
+
   const router = useRouter()
 
   const [styles, animation]= useSpring(
     () => ({
-      width:"0%",
+      transform: "translate3d(100vw,0,0)",
       opacity:0,
     })
   )  
 
+
   const animateMenu = (path) => {
+    //Find how long down the user has scrolled on the page
+    const scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+
+    //makes the menu non-scrollable
+    if (!isMenuOpen) {
+      document.documentElement.style.cssText = "scroll-behavior: initial;"
+      document.body.style.cssText = `
+        overflow:hidden; 
+        position:fixed; 
+        top:-${scrollTop}px
+      ` 
+    } else {
+      document.documentElement.style.cssText = ""
+      document.body.style.cssText = ""
+      window.scrollTo(0, lastScrollTop)
+    }
+    lastScrollTop = scrollTop
+
     animation.start({
-      width: isMenuOpen ? "0%" : "100%",
+      transform: isMenuOpen ? "translate3d(100vw,0,0)" : "translate3d(0vw,0,0)",
       opacity: isMenuOpen ? 0 : 1,
-      immediate:router.pathname !== path ,
+      immediate:router.pathname !== path,
     })
+
     setMenuOpen(!isMenuOpen)
   }
 
@@ -80,36 +80,15 @@ export default function Navbar() {
     const [isOpen, setOpen] = useState(open)
     const refChildren = useRef(null)
 
+    const IconName = isOpen ? Minus : Plus
+
     const onMouseEnter = () => {
-      if (window.matchMedia("(min-width: 1024px)").matches) {
-        refChildren.current ? refChildren.current.classList.remove(s.invisible): null 
-
-        menu.height = (refChildren.current ? refChildren.current.clientHeight : 0)+MENU_HEIGHT
-        menu.isHover = true
-
-        navAnimation.start({
-          height:menu.height,
-          y:0,
-          opacity:1
-        })
-      }
+      refChildren.current ? refChildren.current.classList.remove(s.invisible): null 
     }
 
     const onMouseLeave = () => {
-      if (window.matchMedia("(min-width: 1024px)").matches) {
-        refChildren.current ? refChildren.current.classList.add(s.invisible): null
-
-        menu.height = window.pageYOffset <  0 ? 0 : MENU_HEIGHT
-        menu.isHover = false
-
-        navAnimation.start({
-          height:window.pageYOffset > menu.height ? menu.height : 0,
-          y:0
-        })
-      }
+      refChildren.current ? refChildren.current.classList.add(s.invisible): null
     }
-
-    const IconName = isOpen ? Minus : Plus
 
     return (
       <div
@@ -124,14 +103,7 @@ export default function Navbar() {
             className={topLevel ? s.topLevelLink : null}
             style={style}
             onClick={()=>{
-              animateMenu(href)
-              menu.height = MENU_HEIGHT
-              menu.isHover = false
-              navAnimation.start({
-                height:0,
-                y:0,
-                immediate:true,
-              })
+              //animateMenu(href)
             }}
           >
             {name}
@@ -167,9 +139,8 @@ export default function Navbar() {
 
   return (
     <animated.nav 
-      ref={nav} 
-      style={height} 
       className={s.navContainer}
+      ref={nav}
     >
       <div className={s.navInnerContainer}>
         <div className={s.logoContainer}>
@@ -177,15 +148,15 @@ export default function Navbar() {
         </div>
         <animated.div style={styles} className={s.container}>
           <div className={s.innerContainer}>
-              <Tree name="Hem"  href="/" topLevel>
-
-              </Tree>
               <Tree name="Events"  href="/events" topLevel>
                 <Tree name="Postbeskrivningar" href="/om/postbeskrivningar"></Tree>
               </Tree>
               <Tree name="Om"  href="/om" topLevel>
                 <Tree name="Bilder" href="/om/bilder"></Tree>
-                <Tree name="Postbeskrivningar" href="/om/postbeskrivningar"></Tree>
+                <Tree name="Postbeskrivningar" href="/om/postbeskrivningar">
+                  <Tree name="Bilder" href="/om/bilder"></Tree>
+
+                </Tree>
               </Tree>
               <Tree name="Sponsorer" href="/sponsorer" topLevel>
                 <Tree name="Absolut" href="/sponsorer/absolut"/>

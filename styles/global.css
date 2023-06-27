@@ -8,7 +8,7 @@ Also every component can use the classes defined in here.
   /*--sky-color: linear-gradient(to bottom, #f0f9ff 0%, #bfdbfe 100%);*/
   --background-color: #081b31;
   --footer-background-color: linear-gradient(to bottom, #081b31 0%, black 100%);
-  --menu-background-color: linear-gradient(0deg, rgba(8,27,49,0.9) 0%, rgba(0,0,0,0.9) 100%);
+  --menu-background-color: linear-gradient(0deg, rgba(8,27,49,0.75) 0%, rgba(0,0,0,0.75) 100%);
   --menu-mobile-background-color:linear-gradient(0deg, rgba(8,27,49,1) 0%, rgba(0,0,0,1) 100%);
   --code-background: rgba(175,184,193,0.2);
   --background-opacity:rgba(0,0,0,0.5);
@@ -41,7 +41,6 @@ body {
     margin:0;
     background-color: var(--background-color);
     color: var(--text-color);
-    top:0 !important;/*Needed for google translate*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

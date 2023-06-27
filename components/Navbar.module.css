@@ -4,13 +4,29 @@
     z-index: 9999;
     width: 100%;
     display: flex;
-    align-items: flex-start;
-    background: var(--menu-background-color);
-    backdrop-filter: blur(10px);
-    background-blend-mode: overlay;
-    box-shadow: 0px -25px 37px 0px rgba(255,255,255,1);
+    justify-content: center;
     text-shadow: 0px 0px 1px #1f2937;
 }
+
+.sticky {
+    backdrop-filter: blur(15px);
+    background-blend-mode: overlay;
+    box-shadow: 0px -25px 37px 0px rgba(255,255,255,1);
+    background: var(--menu-background-color);
+    animation: slideDown 0.35s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+      transform: translate3d(0,-100%,0);
+      opacity: 0;
+    }
+    to {
+      transform: translate3d(0,0,0);
+      opacity: 1;
+    }
+}
+
 
 .logoContainer, .burger {
     display: flex;
@@ -24,7 +40,7 @@
 }
 
 .logo {
-    margin-right: 1em;
+    margin-right: 1rem;
 }
 
 .plus {
@@ -37,9 +53,11 @@
 }
 
 .container {
-    position: absolute;
-    right: 0;
+    position: fixed;
     top: 0;
+    right: 0;
+    max-width: 400px;
+    width: 100%;
     z-index: 999;
     background: var(--menu-mobile-background-color);
     height: 100vh;
@@ -60,7 +78,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 1em;
+    padding: 0.7rem 0.9rem
 }
 
 .innerContainer {
@@ -136,7 +154,7 @@
 /*Desktop*/
 @media only screen and (min-width: 1024px) {
     .navContainer {
-        padding: 0em 1em 0em 1em;
+        padding: 0.4rem 0.8rem 0.4rem 0.8rem;
     }
 
     .container {
@@ -147,37 +165,29 @@
         background: transparent;
         /*Need to override inline react srping style*/
         opacity: 1 !important;
-        width: 100% !important;
+        transform: translate3d(0,0,0) !important;
         overflow: unset;
     }
 
     .container a {
-        font-size: 1.25em;
+        font-size: 1.125rem;
     }
 
     .children div {
         display: flex;
         align-items: baseline;
+        margin-left: 0.65em;
+    }
+
+    .navInnerContainer {
+        max-width: calc(48em + 48ex);
     }
 
     .navInnerContainer, .innerContainer {
         display: flex;
         align-items: center;
-        justify-content: center;
         padding: 0;
         width: 100%;
-    }
-
-    .topLevelChildren {
-        position: absolute;
-        border-bottom-left-radius: 0.3em;
-        border-bottom-right-radius: 0.3em;
-        padding: 0em 1em 1em 0em;
-        width: 100vw;
-    }
-
-    .linkContainer {
-        height: auto;
     }
 
     .topLevelLinkContainer {
@@ -185,17 +195,26 @@
     }
 
     .topLevelLink {
-        padding: 1.3em 1.5em 1.3em 1.5em;
+        padding: 1rem;
+    }
+
+    .topLevelChildren {
+        position: absolute;
+        padding: 0em 1em 1em 0em;
+        background-color: var(--background-color);
+        border-radius: var(--border-radius);
+    }
+
+    .linkContainer {
+        height: auto;
     }
 
     .socialMedia {
-        width: 25%;
         justify-content: end;
         padding: 0;
     }
 
     .logoContainer {
-        width: 25%;
     }
 
     .plus {

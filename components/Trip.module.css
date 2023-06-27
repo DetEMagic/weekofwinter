@@ -22,6 +22,7 @@
 .rightContent {
     position: relative;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     width: 100%;
 }
@@ -49,5 +50,6 @@
 
     .leftContent {
         margin-bottom: 0;
+        margin-right: 2rem;
     }
 }

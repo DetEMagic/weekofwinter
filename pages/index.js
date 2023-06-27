@@ -56,7 +56,8 @@ const ParallaxEffect = () => {
   const handleScroll = () => {
     lastKnownY = window.scrollY;
 
-    if (!ticking && lastKnownY < window.innerHeight) {
+    //lastKnownY !== 0 needed so that the mountains do not move when opening the menu in mobile
+    if (!ticking && lastKnownY < window.innerHeight && lastKnownY !== 0) {
       window.requestAnimationFrame(() => {
         animation.start({offset: lastKnownY});
         ticking = false;
@@ -140,7 +141,7 @@ const ParallaxEffect = () => {
 
       <div className={s.coverMountain}>
         <Snow/>
-        <Navbar innerHeightOffset/>
+        <Navbar/>
         <Image 
           src={`/parallax/layer4.svg`}
           className={s.mountainImage}
@@ -181,7 +182,7 @@ export default function HomePage() {
 
           <Trip
             title="Val-d'Isère 2024"
-            date="13 JAN KL. 10:00–22 JAN KL. 13:00"
+            date="13 JAN – 22 JAN"
             ticket="Biljettsläpp 23 SEPT KL. 18:00"
             place="Val-d'Isère, Frankrike"
             placeLink="https://goo.gl/maps/ra6y4Cr82uSyJ2bM7"
@@ -191,7 +192,7 @@ export default function HomePage() {
                 <p>Häng med på årets vinterresa 13/1 – 22/1. DIN plats på bussen ner säkrar du den 12:e Oktober. Mer info finns i evenemanget på</p>
               </>
             }
-            imageSrc="https://lh3.googleusercontent.com/pw/AJFCJaWoAz0nW-zUqYt18d9t0YneC1gtYmNOTr5T1E0tGkjjn8LwZY5b4GJJnpt6L61vAComp2w50fRTc6K366adZ4uOfA-x617W-tbc8gDkkN8Xmzlo2xRUSd3mrJFSDhlMIE6TeShHxwJt9nQlpP4W95d4=w1250-h1666-s-no?authuser=0"
+            imageSrc="/collage.webp"
             alt="stanton"
           />
 

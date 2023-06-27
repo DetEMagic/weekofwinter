@@ -42,7 +42,9 @@ export default function Trip({
           <TicketBlack width={30} height={30} className={s.icon}/>
           {ticket}
         </span>
+        <div>
         {description}
+        </div>
       </div>
     </div>
   )

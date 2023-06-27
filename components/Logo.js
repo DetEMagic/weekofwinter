@@ -10,7 +10,7 @@ import s from "./Logo.module.css"
  * @example
  * <Logo containerClass={s.logo} onClick={()=>isMenuOpen ? animateMenu("/") : null}/>
  */
-export default function Logo({containerClass, imageClass, width=80, height=50, ...props}) {
+export default function Logo({containerClass, imageClass, width=70, height=40, ...props}) {
   return (
     <>
     <div className={s.shadow}/>
