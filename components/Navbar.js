@@ -32,7 +32,7 @@ export default function Navbar({stickyOffset}) {
   const isSticky = () => {
     const r = nav.current
     r !== null && window.scrollY > 0 ? (
-      (window.scrollY > (stickyOffset ? window.innerHeight : r.clientHeight)) ? 
+      (window.scrollY > (stickyOffset ? window.innerHeight : 20)) ? 
       r.classList.add(s.sticky) : 
       r.classList.remove(s.sticky)
     ): null
@@ -174,14 +174,19 @@ export default function Navbar({stickyOffset}) {
       className={`${s.invisible} ${s.overlay}`}
     />
     <nav 
-      className={s.navContainer}
+      className={`${stickyOffset ? s.navContainerOffset : ""} ${s.navContainer}`}
       ref={nav}
     >
       <div 
         className={s.navInnerContainer}
       >
         <div className={s.logoContainer}>
-          <Logo containerClass={s.logo} onClick={()=>isMenuOpen ? mobileMenu("/") : null}/>
+          <Logo 
+            containerClass={s.logo} 
+            onClick={()=>{
+              isMenuOpen ? mobileMenu("/") : null
+            }}
+          />
         </div>
         <animated.div style={styles} className={s.container}>
           <div className={s.innerContainer}>

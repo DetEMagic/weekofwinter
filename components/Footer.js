@@ -23,7 +23,17 @@ export default function Footer() {
             <Socialmedia height="50" width="50"/>
             <span>© Week of Winter 2014-2023 Uppsala</span>
             <a href='mailto: weekofwinter@gmail.com' className={s.email}> weekofwinter@gmail.com</a>
-            <button className={s.arrowup} onClick={() => window.scrollTo(0,1)/* y>=1 is needed since otherwise the mountains won't move up, 0 does not work*/}>
+            <button 
+                className={s.arrowup} 
+                onClick={() => {
+                    window.scrollTo({
+                        top:0,
+                        left:1, 
+                        behavior:"smooth",
+                    })
+                    /* y>=1 is needed since otherwise the mountains won't move up, 
+                    0 does not work*/
+                }}>
                 <ArrowUp width={50} height={50}/>
             </button>
             <Sponsors/>
