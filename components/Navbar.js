@@ -10,11 +10,12 @@ import Burger from "../icons/burger.svg"
 import Close from "../icons/close.svg"
 import Plus from "../icons/plus.svg"
 import Minus from "../icons/minus.svg"
+import {useMediaQuery} from "./hooks"
 
 //The navigation bar that is shown all the time on the top
 let lastScrollTop = 0
 
-export default function Navbar() {
+export default function Navbar({stickyOffset}) {
 
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -26,11 +27,12 @@ export default function Navbar() {
   });
 
   const nav = useRef(null)
+  const overlay = useRef(null)
 
   const isSticky = () => {
     const r = nav.current
     r !== null && window.scrollY > 0 ? (
-      (window.scrollY > r.clientHeight) ? 
+      (window.scrollY > (stickyOffset ? window.innerHeight : r.clientHeight)) ? 
       r.classList.add(s.sticky) : 
       r.classList.remove(s.sticky)
     ): null
@@ -45,8 +47,13 @@ export default function Navbar() {
     })
   )  
 
+  const mobileStyle = useMediaQuery(1024)
 
-  const animateMenu = (path) => {
+
+  const mobileMenu = (path) => {
+    //check if desktop menu is used
+    if(!mobileStyle) return
+
     //Find how long down the user has scrolled on the page
     const scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
 
@@ -55,14 +62,18 @@ export default function Navbar() {
       document.documentElement.style.cssText = "scroll-behavior: initial;"
       document.body.style.cssText = `
         overflow:hidden; 
+        overflow-y:scroll;
         position:fixed; 
         top:-${scrollTop}px
       ` 
+      overlay.current.classList.remove(s.invisible)
     } else {
       document.documentElement.style.cssText = ""
       document.body.style.cssText = ""
+      overlay.current.classList.add(s.invisible)
       window.scrollTo(0, lastScrollTop)
     }
+
     lastScrollTop = scrollTop
 
     animation.start({
@@ -83,17 +94,26 @@ export default function Navbar() {
     const IconName = isOpen ? Minus : Plus
 
     const onMouseEnter = () => {
+      if(mobileStyle) return
+
       refChildren.current ? refChildren.current.classList.remove(s.invisible): null 
+
+      overlay.current.classList.remove(s.invisible)
+      nav.current.classList.add()
     }
 
     const onMouseLeave = () => {
+      if(mobileStyle) return
+
       refChildren.current ? refChildren.current.classList.add(s.invisible): null
+
+      overlay.current.classList.add(s.invisible)
     }
 
     return (
       <div
-        onMouseEnter={topLevel ? onMouseEnter : null} 
-        onMouseLeave={topLevel ? onMouseLeave : null}
+        onMouseEnter={topLevel && children ? onMouseEnter : null} 
+        onMouseLeave={topLevel && children ? onMouseLeave : null}
         className={topLevel ? s.topLevelLinkHover : null} 
       >
         <div className={`${topLevel ? s.topLevelLinkContainer : null} ${s.linkContainer}`}>
@@ -103,7 +123,7 @@ export default function Navbar() {
             className={topLevel ? s.topLevelLink : null}
             style={style}
             onClick={()=>{
-              //animateMenu(href)
+              mobileMenu(href)
             }}
           >
             {name}
@@ -123,12 +143,21 @@ export default function Navbar() {
           /> 
           : null }
         </div>
-        {children ? 
+        {children && topLevel ? 
+          <div className={s.topLevelChildren}>
+            <div 
+              ref={refChildren}
+              className={`${s.invisible} ${s.children} ${s.topLevelChildrenInner}`} 
+            >
+              {children}
+            </div>
+          </div>
+        : children ?
           <div 
             ref={refChildren}
-            className={`${s.invisible} ${s.children} ${topLevel ? s.topLevelChildren : ""}`} 
+            className={`${s.invisible} ${s.children}`} 
           >
-          {children}
+            {children}
           </div>
         : null}
       </div>
@@ -138,40 +167,49 @@ export default function Navbar() {
   const MenuIcon = isMenuOpen ? Close : Burger
 
   return (
-    <animated.nav 
+    <>
+    <div 
+      ref={overlay}
+      onClick={()=>isMenuOpen ? mobileMenu("/") : null}
+      className={`${s.invisible} ${s.overlay}`}
+    />
+    <nav 
       className={s.navContainer}
       ref={nav}
     >
-      <div className={s.navInnerContainer}>
+      <div 
+        className={s.navInnerContainer}
+      >
         <div className={s.logoContainer}>
-          <Logo containerClass={s.logo} onClick={()=>isMenuOpen ? animateMenu("/") : null}/>
+          <Logo containerClass={s.logo} onClick={()=>isMenuOpen ? mobileMenu("/") : null}/>
         </div>
         <animated.div style={styles} className={s.container}>
           <div className={s.innerContainer}>
-              <Tree name="Events"  href="/events" topLevel>
-                <Tree name="Postbeskrivningar" href="/om/postbeskrivningar"></Tree>
-              </Tree>
-              <Tree name="Om"  href="/om" topLevel>
+            <Tree name="Events"  href="/events" topLevel>
+              <Tree name="Postbeskrivningar" href="/om/postbeskrivningar"></Tree>
+            </Tree>
+            <Tree name="Om"  href="/om" topLevel>
+              <Tree name="Bilder" href="/om/bilder"></Tree>
+              <Tree name="Postbeskrivningar" href="/om/postbeskrivningar">
                 <Tree name="Bilder" href="/om/bilder"></Tree>
-                <Tree name="Postbeskrivningar" href="/om/postbeskrivningar">
-                  <Tree name="Bilder" href="/om/bilder"></Tree>
 
-                </Tree>
               </Tree>
-              <Tree name="Sponsorer" href="/sponsorer" topLevel>
-                <Tree name="Absolut" href="/sponsorer/absolut"/>
-                <Tree name="Mercedes-Benz" href="/sponsorer/mercedesbenz"/>
-                <Tree name="Nordic Wellness" href="/sponsorer/nordicwellness"/>
-                <Tree name="Skistar" href="/sponsorer/skistar"/>
-                <Tree name="Salomon" href="/sponsorer/salomon"/>
-                <Tree name="Stadler" href="/sponsorer/stadler"/>
-              </Tree>
+            </Tree>
+            <Tree name="Sponsorer" href="/sponsorer" topLevel>
+              <Tree name="Absolut" href="/sponsorer/absolut"/>
+              <Tree name="Mercedes-Benz" href="/sponsorer/mercedesbenz"/>
+              <Tree name="Nordic Wellness" href="/sponsorer/nordicwellness"/>
+              <Tree name="Skistar" href="/sponsorer/skistar"/>
+              <Tree name="Salomon" href="/sponsorer/salomon"/>
+              <Tree name="Stadler" href="/sponsorer/stadler"/>
+            </Tree>
+            <Tree name="Hejsan" href="/" topLevel/>
           </div>
           <div className={s.socialMedia}>
             <Socialmedia width="50" height="50" animation={false}/>
           </div>
         </animated.div>
-        <button className={s.burger} onClick={()=>animateMenu(router.pathname)}>
+        <button className={s.burger} onClick={()=>mobileMenu(router.pathname)}>
           <MenuIcon
             width={50}
             height={50}
@@ -179,7 +217,8 @@ export default function Navbar() {
         </button>
 
       </div>
-    </animated.nav>
+    </nav>
+    </>
   )
 }
 

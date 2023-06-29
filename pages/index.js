@@ -141,7 +141,7 @@ const ParallaxEffect = () => {
 
       <div className={s.coverMountain}>
         <Snow/>
-        <Navbar/>
+        <Navbar stickyOffset/>
         <Image 
           src={`/parallax/layer4.svg`}
           className={s.mountainImage}
