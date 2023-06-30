@@ -119,7 +119,23 @@ const ParallaxEffect = () => {
         <h1 className={s.welcomeHeading}>
           Week of Winter
         </h1>
-        
+        <TypeAnimation
+          sequence={[
+            "Uppsalas största skidförening",
+            1000, 
+            "Vi ses i Valdi!", 
+            1000, 
+            "#WeekofWinter2024", 
+            1000,
+            "För studenter av studenter.", 
+            1000,
+          ]}
+          speed={60}
+          wrapper="h3"
+          cursor={true}
+          repeat={Infinity}
+          className={s.welcomeSubheading}
+        />
       </animated.div>
 
 
