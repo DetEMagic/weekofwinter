@@ -50,7 +50,7 @@
 .logoShadow {
     top: 0;
     position: absolute;
-    z-index: -1;
+    z-index: 9998;
     box-shadow: 35px -10px 75px 65px rgba(0,166,206,1);
     height:1px;
     width:1px;
