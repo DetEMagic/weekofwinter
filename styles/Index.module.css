@@ -1,6 +1,7 @@
 .parallaxContainer {
     background: var(--sky-color);
     height: 114vh;
+    transform: translateZ(0px);
 }
 
 .parallaxMountain, .coverMountain {
