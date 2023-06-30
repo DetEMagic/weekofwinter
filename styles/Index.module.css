@@ -1,8 +1,8 @@
 .parallaxContainer {
     background: var(--sky-color);
     height: 114vh;
-    transform: translateZ(0px);
 }
+
 
 .parallaxMountain, .coverMountain {
     position: absolute;
@@ -15,6 +15,12 @@
     will-change: transform;
     contain: strict;
 }
+
+.parallaxMountain, .welcomeContainer {
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
 
 .mountainImage {
     object-fit: cover;
