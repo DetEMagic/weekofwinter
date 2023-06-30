@@ -43,6 +43,18 @@
     }    
 }
 
+.logo {
+    margin-right: 1rem;
+}
+
+.logoShadow {
+    top: 0;
+    position: absolute;
+    z-index: -1;
+    box-shadow: 35px -10px 75px 65px rgba(0,166,206,1);
+    height:1px;
+    width:1px;
+}
 
 .logoContainer, .burger {
     display: flex;
@@ -53,10 +65,6 @@
 .burger path {
     fill: var(--text-color);
     stroke: none;
-}
-
-.logo {
-    margin-right: 1rem;
 }
 
 .plus {

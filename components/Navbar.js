@@ -3,18 +3,44 @@ import { useSpring, animated, config } from '@react-spring/web'
 import Link from 'next/link';
 import s from "./Navbar.module.css";
 import Socialmedia from './Socialmedia';
-import Logo from './Logo';
 import { useRouter } from 'next/router';
-import SongPlayer from './SongPlayer';
+import {useMediaQuery} from "./hooks"
 import Burger from "../icons/burger.svg"
 import Close from "../icons/close.svg"
 import Plus from "../icons/plus.svg"
 import Minus from "../icons/minus.svg"
-import {useMediaQuery} from "./hooks"
+import WW from "../icons/logo.svg"
 
-//The navigation bar that is shown all the time on the top
+/**
+ * The website logo
+ * @component
+ * @example
+ * <Logo containerClass={s.logo} onClick={()=>isMenuOpen ? animateMenu("/") : null}/>
+ */
+function Logo({width=70, height=40, scroll, ...props}) {
+  return (
+    <>
+    <div className={s.logoShadow}/>
+    <Link 
+      aria-label='returnToHomePage'
+      className={s.logoContainer} 
+      href="/" 
+      scroll={scroll}
+      {...props}
+    >
+        <WW
+            width={width}
+            height={height}
+            className={s.logo}
+        />
+    </Link>
+    </>
+  )
+}
+
 let lastScrollTop = 0
 
+//The navigation bar that is shown all the time on the top
 export default function Navbar({stickyOffset}) {
 
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -99,7 +125,6 @@ export default function Navbar({stickyOffset}) {
       refChildren.current ? refChildren.current.classList.remove(s.invisible): null 
 
       overlay.current.classList.remove(s.invisible)
-      nav.current.classList.add()
     }
 
     const onMouseLeave = () => {
@@ -124,6 +149,7 @@ export default function Navbar({stickyOffset}) {
             style={style}
             onClick={()=>{
               mobileMenu(href)
+              onMouseLeave()
             }}
           >
             {name}
@@ -180,14 +206,20 @@ export default function Navbar({stickyOffset}) {
       <div 
         className={s.navInnerContainer}
       >
-        <div className={s.logoContainer}>
-          <Logo 
-            containerClass={s.logo} 
-            onClick={()=>{
-              isMenuOpen ? mobileMenu("/") : null
-            }}
-          />
-        </div>
+        <Logo 
+          scroll={router.pathname !== "/"}
+          onClick={()=>{
+            if(router.pathname === "/") {
+              window.scrollTo({
+                  top:0,
+                  left:1, 
+                  behavior:"smooth",
+              })
+            }
+
+            isMenuOpen ? mobileMenu("/") : null
+          }}
+        />
         <animated.div style={styles} className={s.container}>
           <div className={s.innerContainer}>
             <Tree name="Events"  href="/events" topLevel>
