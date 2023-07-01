@@ -20,7 +20,6 @@
     backface-visibility: hidden;
 }
 
-
 .mountainImage {
     object-fit: cover;
     pointer-events: none;
@@ -72,10 +71,6 @@
     display: block;
 }
 
-
-.priceSection {
-}
-
 .priceCardContainer {
     display: flex;
     align-items: center;
@@ -88,7 +83,11 @@
 }
 
 .header {
+    display: flex;
+    justify-content: center;
     text-align: center;
+    margin-top: 3rem;
+    margin-bottom: -0.75em;
 }
 
 
@@ -129,6 +128,10 @@
 
 /*Desktop*/
 @media only screen and (min-width: 1024px) {
+    .header {
+        margin-bottom: 1rem;
+    }
+
     .infoBoxContainer {
         flex-direction: row;
     }

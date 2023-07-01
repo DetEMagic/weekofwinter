@@ -57,7 +57,11 @@ export default function PriceCard(
           </ul>
         </div>
       </div>
-      <a href="www.skivenue.se" target={"_blank"} className={s.button}>
+      <a 
+        href="www.skivenue.se" 
+        target={"_blank"} 
+        className={`${s.button} ${popular ? s.buttonPopular : ""} `}
+      >
         Anmäl 
       </a>
     </AnimatedContainer>

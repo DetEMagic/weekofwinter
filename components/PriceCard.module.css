@@ -41,16 +41,11 @@
     display: flex;
     align-items: center;
     margin-top: 0.5rem;
-    font-size: 0.9em;
 }
 
 .checkMark {
     display: flex;
     margin-right: 0.5rem;
-}
-
-.popularScale {
-    transform: scale(1.1);
 }
 
 .popular {
@@ -70,7 +65,11 @@
   position: absolute;
   width: 150%;
   height: 40px;
+  /*
   background-image: linear-gradient(45deg, #ff6547 0%, #ffb144  51%, #ff7053  100%);
+  */
+  background-image: linear-gradient(45deg, #0190b4 0%, #02779a  51%, #0190b4  100%);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.23);
   transform: rotate(45deg) translateY(-20px);
   display: flex;
   align-items: center;
@@ -80,7 +79,6 @@
   font-size: 0.75em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.23);
 }
 
 .popular::after {
@@ -91,34 +89,25 @@
   right: 0;
   height: 10px;
   z-index: -1;
+  /*
   box-shadow: -110px -110px #cc3f47;
   background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  */
+  box-shadow: -110px -110px #02779a;
+  background-image: linear-gradient(45deg, #0190b4 0%, #02779a  51%, #0190b4  100%);
 }
 
-/*
 .button {
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    padding: 1rem;
-    margin-top: 1rem;
+    border: 1px solid var(--background-color);
+    transition: all .3s ease-in-out;
     border-radius: var(--border-radius);
     color: var(--background-color);
-    border: 1px solid var(--background-color);
-}
-*/
-
-.button {
-    background-color: var(--background-color);
-    transition: all .3s ease-in-out;
-    box-shadow: inset 0px 0px 100px 5px var(--ww-color);
-    color: var(--text-color);
-    border-radius: var(--border-radius);
     text-decoration: none;
-    padding: 1rem;
+    padding: 0.75rem;
     margin-top: 1rem;
     text-align: center;
-    font-weight: 700;
+    backface-visibility: hidden;
+    transform: translateZ(0px);
 }
 
 .button:hover {
@@ -129,8 +118,20 @@
     transform: scale(0.9);
 }
 
+.buttonPopular {
+    background-color: var(--background-color);
+    box-shadow: inset 0px 0px 100px 5px var(--ww-color);
+    color: var(--text-color);
+    border: none;
+    font-weight: 700;
+}
+
 @media only screen and (min-width: 640px) {
     .container {
         margin: 1.5rem;
+    }
+
+    .li {
+        font-size: 0.9em;
     }
 }

@@ -180,7 +180,7 @@ export default function HomePage() {
           <Trip
             title="Val-d'Isère 2024"
             date="13 JAN – 22 JAN"
-            ticket="Anmälan den 23 SEPT KL. 18:00"
+            ticket="Anmälan öppnar 23 SEPT KL. 18:00"
             place="Val-d'Isère, Frankrike"
             placeLink="https://goo.gl/maps/ra6y4Cr82uSyJ2bM7"
             description={
@@ -214,7 +214,7 @@ export default function HomePage() {
             />
           </div>
 
-          <section className={s.priceSection}>
+          <section>
             <header className={s.header}>
               <h2>Hur vill du följa med?</h2>
             </header>
