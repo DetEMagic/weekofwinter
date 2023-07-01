@@ -18,7 +18,7 @@ export default function Custom500() {
         <h1>Hoppsan! Sidan kunde inte hittas...</h1>
         <Lottie style={{marginTop:"40px"}} url="/lottie/404.json"/>
         <Link href="/">
-            <h2>Till Week of Winter</h2>
+            <h3>Till Week of Winter</h3>
         </Link>
       </div>
     </Layout>

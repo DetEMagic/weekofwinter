@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Date from "../icons/date.svg"
 import Place from "../icons/place.svg"
 import TicketBlack from "../icons/ticketBlack.svg"
+import AnimatedContainer from './AnimatedContainer'
 
 //Component used to divide content to the left and right beside each other
 export default function Trip({
@@ -18,7 +19,7 @@ export default function Trip({
 }) {
   return (
     <div className={s.container}>
-      <div className={s.leftContent}>
+      <AnimatedContainer className={s.leftContent}>
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -27,24 +28,28 @@ export default function Trip({
                   50vw"
           fill
         />
-      </div>
+      </AnimatedContainer>
       <div className={s.rightContent}>
-        <h2 className={s.title}>{title}</h2>
-        <span className={s.date}>
-          <Date width={30} height={30} className={s.icon}/>
-          {date}
-        </span>
-        <span className={s.date}>
-          <Place width={30} height={30} className={s.icon}/>
-          <a href={placeLink} target='_blank'>{place}</a>
-        </span>
-        <span className={s.date}>
-          <TicketBlack width={30} height={30} className={s.icon}/>
-          {ticket}
-        </span>
-        <div>
-        {description}
-        </div>
+        <AnimatedContainer>
+          <h2 className={s.title}>{title}</h2>
+        </AnimatedContainer>
+        <AnimatedContainer>
+          <span className={s.date}>
+            <Date width={30} height={30} className={s.icon}/>
+            {date}
+          </span>
+          <span className={s.date}>
+            <Place width={30} height={30} className={s.icon}/>
+            <a href={placeLink} target='_blank'>{place}</a>
+          </span>
+          <span className={s.date}>
+            <TicketBlack width={30} height={30} className={s.icon}/>
+            {ticket}
+          </span>
+        </AnimatedContainer>
+        <AnimatedContainer>
+          {description}
+        </AnimatedContainer>
       </div>
     </div>
   )

@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react'
 import s from "./Faq.module.css"
-import Image from 'next/image'
 import { useSpring, animated } from '@react-spring/web'
 import Plus from "../icons/plus.svg"
 import Minus from "../icons/minus.svg"
 import Emoji from './Emoji'
 import PropTypes from 'prop-types';
+import AnimatedContainer from './AnimatedContainer'
 
 const GrundPaket = () => (
   <ul className={s.grundpaket}>
@@ -75,7 +75,7 @@ function QA({id, question, answer, show, showId, setShowId}) {
   const Icon = show ? Minus : Plus
 
   return (
-    <div tabIndex={0} className={s.container}>
+    <AnimatedContainer tabIndex={0} className={s.container}>
       <button className={s.question} onClick={() => showId === id ? setShowId(-1) : setShowId(id)}>
         <h5>{question}</h5>
         <div className={s.icon}>
@@ -87,7 +87,7 @@ function QA({id, question, answer, show, showId, setShowId}) {
         {answer}
         </span>
       </animated.div>
-    </div>
+    </AnimatedContainer>
   )
 }
 

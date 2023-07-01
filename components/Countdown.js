@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { animated, useSpring, config } from "@react-spring/web";
+import { animated, useSpring, config, useInView, to } from "@react-spring/web";
 import s from "./Countdown.module.css";
 import { usePreviousValue, useCountdown } from './hooks';
 import PropTypes from 'prop-types';
@@ -8,11 +8,13 @@ import PropTypes from 'prop-types';
 const FlipCard = ({number}) => {
   const prevNumber = usePreviousValue(number);
 
+  console.log(number, prevNumber)
+
   const frontCardAnimation = useSpring({
     from: { transform: "rotateX(0deg)" },
     to: { transform: "rotateX(-180deg)" },
     delay: 0,
-    immediate: prevNumber === number,
+    immediate: prevNumber === number || prevNumber === 0,
     config:{duration:500},
     reset: true,
   });
@@ -21,13 +23,13 @@ const FlipCard = ({number}) => {
     from: { transform: "rotateX(180deg)" },
     to: { transform: "rotateX(0deg)" },
     delay: 0,
-    immediate: prevNumber === number,
+    immediate: prevNumber === number || prevNumber === 0,
     config:{duration:500},
     reset: true
   });
 
   return (
-    <div className={s.cardContainer}>
+    <animated.div className={s.cardContainer}>
       <div className={s.cardTop}>
         <span>
         {number}
@@ -48,7 +50,7 @@ const FlipCard = ({number}) => {
         {number}
         </span>
       </animated.div>
-    </div>
+    </animated.div>
   )
 }
 
@@ -67,30 +69,36 @@ const FlipCard = ({number}) => {
 export default function Countdown({title, date, dateExpired}) {
   const [days, hours, minutes, seconds] = useCountdown(date); 
 
+  const [ref, inView] = useInView()
+
   if (days + hours + minutes + seconds <= 0 && dateExpired) {
     return dateExpired 
   } else {
     return (
       <div className={s.container}>
-        <h2>{title}</h2>
-        <div className={s.countDownContainer}>
-          <div className={s.title}>
-            <FlipCard number={days}/>
-            <h5>Dagar</h5>
-          </div>
-          <div className={s.title}>
-            <FlipCard number={hours}/>
-            <h5>Timmar</h5>
-          </div>
-          <div className={s.title}>
-            <FlipCard number={minutes}/>
-            <h5>Minuter</h5>
-          </div>
-          <div className={s.title}>
-            <FlipCard number={seconds}/>
-            <h5>Sekunder</h5>
-          </div>
-        </div>
+          <h2>{title}</h2>
+          <animated.div ref={ref} className={s.countDownContainer}>
+            {inView ? 
+            <>
+              <div className={s.title}>
+                <FlipCard number={days}/>
+                <h5>Dagar</h5>
+              </div>
+              <div className={s.title}>
+                <FlipCard number={hours}/>
+                <h5>Timmar</h5>
+              </div>
+              <div className={s.title}>
+                <FlipCard number={minutes}/>
+                <h5>Minuter</h5>
+              </div>
+              <div className={s.title}>
+                <FlipCard number={seconds}/>
+                <h5>Sekunder</h5>
+              </div>
+            </>
+            :null}
+          </animated.div>
       </div>
     );
   }

@@ -222,14 +222,9 @@ export default function Navbar({stickyOffset}) {
         />
         <animated.div style={styles} className={s.container}>
           <div className={s.innerContainer}>
-            <Tree name="Events"  href="/events" topLevel>
-              <Tree name="Postbeskrivningar" href="/om/postbeskrivningar"></Tree>
-            </Tree>
+            <Tree name="Bilder" href="/om/bilder" topLevel/>
             <Tree name="Om"  href="/om" topLevel>
-              <Tree name="Bilder" href="/om/bilder"></Tree>
               <Tree name="Postbeskrivningar" href="/om/postbeskrivningar">
-                <Tree name="Bilder" href="/om/bilder"></Tree>
-
               </Tree>
             </Tree>
             <Tree name="Sponsorer" href="/sponsorer" topLevel>
@@ -240,7 +235,6 @@ export default function Navbar({stickyOffset}) {
               <Tree name="Salomon" href="/sponsorer/salomon"/>
               <Tree name="Stadler" href="/sponsorer/stadler"/>
             </Tree>
-            <Tree name="Hejsan" href="/" topLevel/>
           </div>
           <div className={s.socialMedia}>
             <Socialmedia width="50" height="50" animation={false}/>

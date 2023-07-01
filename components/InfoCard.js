@@ -2,6 +2,7 @@ import React from 'react'
 import Emoji from './Emoji'
 import s from "./InfoCard.module.css"
 import PropTypes from 'prop-types';
+import AnimatedContainer from './AnimatedContainer';
 
 /**
  * A card to showcase information with a title, description and an icon 
@@ -15,7 +16,7 @@ import PropTypes from 'prop-types';
  */
 export default function InfoCard({title, desc, icon}) {
   return (
-    <div tabIndex={0} className={s.container}>
+    <AnimatedContainer tabIndex={0} className={s.container}>
       <div className={s.icon}>
         {icon}
       </div>
@@ -23,7 +24,7 @@ export default function InfoCard({title, desc, icon}) {
         <strong >{title}</strong>
         {desc}
       </p>
-    </div>
+    </AnimatedContainer>
   )
 }
 

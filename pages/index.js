@@ -140,6 +140,7 @@ const ParallaxEffect = () => {
 
 
       <div className={s.coverMountain}>
+        <Snow/>
         <Navbar stickyOffset/>
         <Image 
           src={`/parallax/layer4.svg`}
@@ -176,13 +177,10 @@ export default function HomePage() {
       <article className={s.content}>
         <div className={s.innerContent}>
 
-          {//<SiteMenu/>
-          }
-
           <Trip
             title="Val-d'Isère 2024"
             date="13 JAN – 22 JAN"
-            ticket="Biljettsläpp 23 SEPT KL. 18:00"
+            ticket="Anmälan den 23 SEPT KL. 18:00"
             place="Val-d'Isère, Frankrike"
             placeLink="https://goo.gl/maps/ra6y4Cr82uSyJ2bM7"
             description={
