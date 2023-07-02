@@ -104,9 +104,29 @@ code {
   background-color: var(--code-background);
 }
 
+.errorPageContainer {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.errorPageImg {
+  height: 30vh;
+}
+
 /*Desktop, Tablet*/
 @media only screen and (min-width: 640px) {
   html {
     font-size: 1.125em;
+  }
+
+  .errorPageImg {
+    height: 40vh;
+  }
+}
+
+/*Desktop*/
+@media only screen and (min-width: 1024px) {
+  .errorPageImg {
+    height: 55vh;
   }
 }

@@ -31,7 +31,7 @@ export default function Lottie({url, loop=true, autoplay=true, ...props}) {
     return (
         <div 
             ref={container}
-            className={s.container}
+            className={`${s.container} ${props.className}`}
             {...props}
         />
     )

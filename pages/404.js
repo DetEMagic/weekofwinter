@@ -14,9 +14,9 @@ export default function Custom500() {
 
   return (
     <Layout meta={meta}>
-      <div style={{marginTop: "6rem", textAlign:"center"}}>
+      <div className="errorPageContainer">
         <h1>Hoppsan! Sidan kunde inte hittas...</h1>
-        <Lottie style={{maxWidth:"50rem"}} url="/lottie/404.json"/>
+        <Lottie className="errorPageImg" url="/lottie/404.json"/>
         <Link href="/">
             <h3>Till Week of Winter</h3>
         </Link>
