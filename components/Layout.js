@@ -22,6 +22,8 @@ export default function Layout({
 
   const boxShadow = {boxShadow:`0px 100px 100px 100px ${meta.color}`}
 
+  //<Emoji className={s.emoji} symbol={meta.emoji} label={meta.title}/>
+
   return (
     <>
       <Head>
@@ -38,22 +40,21 @@ export default function Layout({
         {meta.image ? 
         <>
         <div style={boxShadow} className={s.imgContainer}>
-            <Image
-              src={meta.image}
-              alt={meta.title}
-              className={s.img}
-              fill
-            />
-        </div>
-        <div className={s.container}>
-            <Emoji className={s.emoji} symbol={meta.emoji} label={meta.title}/>
+          <Image
+            src={meta.image}
+            alt={meta.title}
+            className={s.img}
+            fill
+          />
+          <div className={s.container}>
             <h1>
               {meta.title}
             </h1>
+          </div>
         </div>
         </>
         : null}
-        <article className='mainContent'>
+        <article className={s.mainContent}>
           {children}
         </article>
       </main>

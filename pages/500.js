@@ -13,10 +13,10 @@ export default function Custom500() {
 
   return (
     <Layout meta={meta}>
-      <div style={{textAlign:"center", height:"50vh"}}>
+      <div style={{marginTop: "6rem", textAlign:"center"}}>
         <h1>500 - Server fel.</h1>
         <h3>Vänligen försök igen senare.</h3>
-        <Lottie url="/lottie/500.json"/>
+        <Lottie style={{maxWidth:"36rem", marginTop:"-2rem"}} url="/lottie/500.json"/>
       </div>
     </Layout>
   )

@@ -32,7 +32,7 @@ export default function Lottie({url, loop=true, autoplay=true, ...props}) {
         <div 
             ref={container}
             className={s.container}
-            style={{...props.style}} 
+            {...props}
         />
     )
 }

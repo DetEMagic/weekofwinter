@@ -106,8 +106,7 @@
 }
 
 .innerContainer {
-    z-index: 999;
-    padding: 5em 1.5em 0em 1.5em; 
+    padding: 6em 1.5em 0em 1.5em; 
 }
 
 .children div {

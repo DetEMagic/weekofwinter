@@ -16,7 +16,6 @@ Also every component can use the classes defined in here.
   --menu-background-color:rgba(8, 27, 49, 0.8);
   --menu-mobile-background-color:linear-gradient(0deg, rgba(8,27,49,1) 0%, rgba(0,0,0,1) 100%);
   --code-background: rgba(175,184,193,0.2);
-  --text-shadow: 0px 0px 3px #1f2937;
   --max-width:calc(40em + 40ex);
   --padding-inline:calc(1em + 1ex);
 }
@@ -53,13 +52,14 @@ body > .skiptranslate {
 
 h1,h2,h3,h4,h5,h6,strong,th {
   font-weight: 700;
-  letter-spacing: .0125em;
   line-height: calc(1em + .4ex);
   margin-block:calc(.4em + .4ex);
+  letter-spacing: .0125em;
 }
 
 h1, h2 {
   font-size: clamp(2.5em, 1.3vw + 2.5em, 3.8em);
+  letter-spacing: -.0125em;
 }
 
 h3 {
@@ -102,18 +102,6 @@ code {
   font-size: 85%;
   border-radius: 6px;
   background-color: var(--code-background);
-}
-
-/*
-  margin: calc(1em + 1ex) auto;
-  margin-block-start: calc(4.5em + 4.5ex);
-  */
-.mainContent {
-  min-height: calc(100vh - (93px + 1em + 1ex));
-  margin: auto;
-  margin-block-start: calc(1.5em + 1.5ex);
-  padding-inline: var(--padding-inline);
-  max-width: var(--max-width);
 }
 
 /*Desktop, Tablet*/

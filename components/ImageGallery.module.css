@@ -25,7 +25,7 @@
 .title {
     position: relative;
     z-index: 1;
-    background-color: var(--background-opacity);
+    background-color: rgba(0,0,0,0.5);
     padding: 0.15em;
     border-radius: var(--border-radius);
 }

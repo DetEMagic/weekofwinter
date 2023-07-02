@@ -8,8 +8,6 @@ import PropTypes from 'prop-types';
 const FlipCard = ({number}) => {
   const prevNumber = usePreviousValue(number);
 
-  console.log(number, prevNumber)
-
   const frontCardAnimation = useSpring({
     from: { transform: "rotateX(0deg)" },
     to: { transform: "rotateX(-180deg)" },

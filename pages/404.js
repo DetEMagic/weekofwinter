@@ -14,9 +14,9 @@ export default function Custom500() {
 
   return (
     <Layout meta={meta}>
-      <div style={{textAlign:"center", height:"50vh"}}>
+      <div style={{marginTop: "6rem", textAlign:"center"}}>
         <h1>Hoppsan! Sidan kunde inte hittas...</h1>
-        <Lottie style={{marginTop:"40px"}} url="/lottie/404.json"/>
+        <Lottie style={{maxWidth:"50rem"}} url="/lottie/404.json"/>
         <Link href="/">
             <h3>Till Week of Winter</h3>
         </Link>

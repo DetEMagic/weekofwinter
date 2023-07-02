@@ -121,11 +121,11 @@ const ParallaxEffect = () => {
         </h1>
         <TypeAnimation
           sequence={[
-            "Uppsalas största skidförening",
+            "Uppsala universitets skidförening",
             1000, 
             "Vi ses i Valdi!", 
             1000, 
-            "#WeekofWinter2024", 
+            "#WW2024", 
             1000,
             "För studenter av studenter.", 
             1000,
@@ -190,7 +190,7 @@ export default function HomePage() {
               </>
             }
             imageSrc="/collage.webp"
-            alt="stanton"
+            imageAlt="Images of Val-d'Isère"
           />
 
 

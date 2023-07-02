@@ -41,7 +41,7 @@
     font-size: clamp(3em, 1.5vw + 3em, 4.5em);
     margin-bottom: 0;
     margin-top: 0;
-    text-shadow: var(--text-shadow)
+    text-shadow: 0px 0px 3px black;
 }
 
 .welcomeSubheading {
@@ -57,7 +57,7 @@
 }
 
 .innerContent {
-    margin: calc(1em + 1ex) auto;
+    margin: 0 auto;
     padding-inline: calc(1em + 1ex);
     max-width: calc(50em + 50ex);
 }
