@@ -51,39 +51,7 @@ const useCountdown = (date) => {
   return calculateTime(countDown);
 };
 
-
-
-/**
- * This hook is used to apply different styles depending on the window size
- * //https://stackoverflow.com/questions/72238021/how-to-apply-media-query-in-nextjs
- * @param {number} maxWidth - the css max-width that is used with media query selector 
- * @returns {boolean} true if the window size is less than maxWidth otherwise false
- * @example
- * useMediaQuery(1024)
- */
-const useMediaQuery = (maxWidth) => {
-  const [targetReached, setTargetReached] = useState(false)
-
-  const updateTarget = useCallback((e) => {
-    if (e.matches) setTargetReached(true)
-    else setTargetReached(false)
-  }, [])
-
-  useEffect(() => {
-    const media = window.matchMedia(`(max-width: ${maxWidth}px)`)
-    media.addEventListener('change', updateTarget)
-
-    // Check on mount (callback is not called until a change occurs)
-    if (media.matches) setTargetReached(true)
-
-    return () => media.removeEventListener('change', updateTarget)
-  }, [])
-
-  return targetReached
-}
-
 export {
   usePreviousValue,
   useCountdown,
-  useMediaQuery,
 }

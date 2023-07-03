@@ -21,7 +21,7 @@ export default function Footer() {
         <footer className={s.container}>
             <span className={s.title}>Se till och följ oss på</span>
             <Socialmedia height="50" width="50"/>
-            <span>© Week of Winter 2014-2023 Uppsala</span>
+            <span>{`© Week of Winter 2014-${new Date().getFullYear()} Uppsala`}</span>
             <a href='mailto: weekofwinter@gmail.com' className={s.email}> weekofwinter@gmail.com</a>
             <button 
                 className={s.arrowup} 

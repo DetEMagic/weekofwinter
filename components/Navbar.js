@@ -4,7 +4,6 @@ import Link from 'next/link';
 import s from "./Navbar.module.css";
 import Socialmedia from './Socialmedia';
 import { useRouter } from 'next/router';
-import {useMediaQuery} from "./hooks"
 import Burger from "../icons/burger.svg"
 import Close from "../icons/close.svg"
 import Plus from "../icons/plus.svg"
@@ -38,22 +37,29 @@ function Logo({width=70, height=40, scroll, ...props}) {
   )
 }
 
+
 let lastScrollTop = 0
 
 //The navigation bar that is shown all the time on the top
 export default function Navbar({stickyOffset}) {
 
   const [isMenuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener('scroll', isSticky);
-    return () => {
-        window.removeEventListener('scroll', isSticky);
-    };
-  });
+  const router = useRouter()
 
   const nav = useRef(null)
   const overlay = useRef(null)
+  const mobileStyle = "(max-width:1024px)"
+
+  useEffect(() => {
+    window.addEventListener('scroll', isSticky);
+    const media = window.matchMedia(mobileStyle);
+    media.addEventListener('change', resetMenu);
+
+    return () => {
+      window.removeEventListener('scroll', isSticky);
+      media.addEventListener('change', resetMenu);
+    };
+  }, []);
 
   const isSticky = () => {
     const r = nav.current
@@ -64,32 +70,22 @@ export default function Navbar({stickyOffset}) {
     ): null
   }
 
-  const router = useRouter()
+  const resetMenu = (event) => {
+    nonScrollable(event.matches)
+  } 
 
-  const [styles, animation]= useSpring(
-    () => ({
-      transform: "translate3d(100vw,0,0)",
-      opacity:0,
-    })
-  )  
-
-  const mobileStyle = useMediaQuery(1024)
-
-
-  const mobileMenu = (path) => {
-    //check if desktop menu is used
-    if(!mobileStyle) return
-
+  function nonScrollable(noScroll) {
     //Find how long down the user has scrolled on the page
     const scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
 
     //makes the menu non-scrollable
-    if (!isMenuOpen) {
+    if (noScroll) {
       document.documentElement.style.cssText = "scroll-behavior: initial;"
       document.body.style.cssText = `
         overflow:hidden; 
         overflow-y:scroll;
         position:fixed; 
+        width:100%;
         top:-${scrollTop}px
       ` 
       overlay.current.classList.remove(s.invisible)
@@ -101,6 +97,20 @@ export default function Navbar({stickyOffset}) {
     }
 
     lastScrollTop = scrollTop
+  }
+
+
+  const [styles, animation]= useSpring(
+    () => ({
+      transform: "translate3d(100vw,0,0)",
+      opacity:0,
+    })
+  )  
+
+  const mobileMenu = (path) => {
+    //check if desktop menu is used
+    if(!window.matchMedia(mobileStyle).matches) return
+    nonScrollable(!isMenuOpen)
 
     animation.start({
       transform: isMenuOpen ? "translate3d(100vw,0,0)" : "translate3d(0vw,0,0)",
@@ -111,7 +121,6 @@ export default function Navbar({stickyOffset}) {
     setMenuOpen(!isMenuOpen)
   }
 
-
   //Used to create a new menu link in the navigation bar
   const Tree = ({ children, name, href, style, topLevel = false, open = false}) => {
     const [isOpen, setOpen] = useState(open)
@@ -119,18 +128,34 @@ export default function Navbar({stickyOffset}) {
 
     const IconName = isOpen ? Minus : Plus
 
-    const onMouseEnter = () => {
-      if(mobileStyle) return
+    const springs = useSpring({
+      from: {
+        height: 0,
+        overflow:"hidden"
+      },
+      to: {
+        height:isOpen && refChildren.current ? refChildren.current.offsetHeight + 18 : 0,
+        overflow:"hidden"
+      },
+      immediate: isOpen || (typeof window !== "undefined" ? window.matchMedia(mobileStyle).matches : null) ? false : true 
+    })
 
-      refChildren.current ? refChildren.current.classList.remove(s.invisible): null 
+    const onMouseEnter = () => {
+      //check if moble menu is used
+      if(window.matchMedia(mobileStyle).matches) return
+      setOpen(true)
+
+      //refChildren.current ? refChildren.current.classList.remove(s.invisible): null 
 
       overlay.current.classList.remove(s.invisible)
     }
 
     const onMouseLeave = () => {
-      if(mobileStyle) return
+      //check if moble menu is used
+      if(window.matchMedia(mobileStyle).matches) return
+      setOpen(false)
 
-      refChildren.current ? refChildren.current.classList.add(s.invisible): null
+      //refChildren.current ? refChildren.current.classList.add(s.invisible): null
 
       overlay.current.classList.add(s.invisible)
     }
@@ -158,33 +183,20 @@ export default function Navbar({stickyOffset}) {
           <IconName
             width={30} 
             height={30} 
-            onClick={()=>{
-              isOpen ? 
-                refChildren.current.classList.add(s.invisible) :
-                refChildren.current.classList.remove(s.invisible) 
-              setOpen(!isOpen)
-
-            }} 
+            onClick={()=>setOpen(!isOpen)} 
             className={s.plus}
           /> 
           : null }
         </div>
-        {children && topLevel ? 
-          <div className={s.topLevelChildren}>
-            <div 
-              ref={refChildren}
-              className={`${s.invisible} ${s.children} ${s.topLevelChildrenInner}`} 
-            >
-              {children}
-            </div>
-          </div>
-        : children ?
+        {children ? 
+        <animated.div style={springs} className={topLevel ? s.topLevelChildren : ""}>
           <div 
             ref={refChildren}
-            className={`${s.invisible} ${s.children}`} 
+            className={`${s.children} ${topLevel ? s.topLevelChildrenInner : ""}`} 
           >
             {children}
           </div>
+        </animated.div>
         : null}
       </div>
     )
@@ -196,7 +208,7 @@ export default function Navbar({stickyOffset}) {
     <>
     <div 
       ref={overlay}
-      onClick={()=>isMenuOpen ? mobileMenu("/") : null}
+      onClick={()=>mobileMenu(router.pathname)}
       className={`${s.invisible} ${s.overlay}`}
     />
     <nav 
