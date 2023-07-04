@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext, memo, forwardRef } from 'react'
+import React, { useRef, useState, useEffect} from 'react'
 import { useSpring, animated, config } from '@react-spring/web'
 import Link from 'next/link';
 import s from "./Navbar.module.css";
@@ -71,7 +71,15 @@ export default function Navbar({stickyOffset}) {
   }
 
   const resetMenu = (event) => {
-    nonScrollable(event.matches)
+    if(!window.matchMedia(mobileStyle).matches) {
+      nonScrollable(event.matches)
+      animation.start({
+        transform: "translate3d(100vw,0,0)",
+        opacity: 0,
+        immediate:true
+      })
+      setMenuOpen(false)
+    }
   } 
 
   function nonScrollable(noScroll) {
@@ -88,14 +96,13 @@ export default function Navbar({stickyOffset}) {
         width:100%;
         top:-${scrollTop}px
       ` 
-      overlay.current.classList.remove(s.invisible)
+      overlay.current ? overlay.current.classList.remove(s.invisible) : null
     } else {
       document.documentElement.style.cssText = ""
       document.body.style.cssText = ""
-      overlay.current.classList.add(s.invisible)
+      overlay.current ? overlay.current.classList.add(s.invisible) : null
       window.scrollTo(0, lastScrollTop)
     }
-
     lastScrollTop = scrollTop
   }
 
@@ -122,7 +129,7 @@ export default function Navbar({stickyOffset}) {
   }
 
   //Used to create a new menu link in the navigation bar
-  const Tree = ({ children, name, href, style, topLevel = false, open = false}) => {
+  const Tree = React.memo(({ children, name, href, style, topLevel = false, open = false}) => {
     const [isOpen, setOpen] = useState(open)
     const refChildren = useRef(null)
 
@@ -139,6 +146,19 @@ export default function Navbar({stickyOffset}) {
       },
       immediate: isOpen || (typeof window !== "undefined" ? window.matchMedia(mobileStyle).matches : null) ? false : true 
     })
+
+    useEffect(() => {
+      const media = window.matchMedia(mobileStyle);
+      media.addEventListener('change', closeMenu);
+
+      return () => {
+        media.addEventListener('change', closeMenu);
+      };
+    }, [])
+
+    const closeMenu = (event) => {
+      if(!window.matchMedia(mobileStyle).matches) setOpen(event.matches)
+    }
 
     const onMouseEnter = () => {
       //check if moble menu is used
@@ -200,7 +220,7 @@ export default function Navbar({stickyOffset}) {
         : null}
       </div>
     )
-  }
+  })
 
   const MenuIcon = isMenuOpen ? Close : Burger
 

@@ -30,7 +30,7 @@ import SiteMenu from '../components/SiteMenu';
 
 //debounce to not change the parallax on every pixel
 /*
-function debounce(func, timeout = 4){
+function debounce(func, timeout = 10){
   let timer;
   return (...args) => {
     clearTimeout(timer);
@@ -46,7 +46,10 @@ const ParallaxEffect = () => {
   const [{ offset }, animation] = useSpring(
     () => ({ 
       from: {offset:0},
-      config: config.gentle
+      config: {
+        clamp:true, //no bounce
+        ...config.gentle
+      }
   }));
 
   let lastKnownY = 0;
@@ -100,13 +103,13 @@ const ParallaxEffect = () => {
                 transform: offset.to((o) => `translate3d(0px, ${o * speed}px, 0px)`)
               }}
           >
-          <Image 
-            src={`/parallax/layer${i}.svg`}
-            className={s.mountainImage}
-            alt="Mountain landscape"
-            fill
-            priority
-          />
+            <Image 
+              src={`/parallax/layer${i}.svg`}
+              className={s.mountainImage}
+              alt="Mountain landscape"
+              fill
+              priority
+            />
           </animated.div>
       )}
 
