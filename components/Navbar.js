@@ -57,9 +57,9 @@ export default function Navbar({stickyOffset}) {
 
     return () => {
       window.removeEventListener('scroll', isSticky);
-      media.addEventListener('change', resetMenu);
+      media.removeEventListener('change', resetMenu);
     };
-  }, []);
+  }, [isMenuOpen]);
 
   const isSticky = () => {
     const r = nav.current
@@ -71,7 +71,7 @@ export default function Navbar({stickyOffset}) {
   }
 
   const resetMenu = (event) => {
-    if(!window.matchMedia(mobileStyle).matches) {
+    if(!window.matchMedia(mobileStyle).matches && isMenuOpen) {
       nonScrollable(event.matches)
       animation.start({
         transform: "translate3d(100vw,0,0)",
@@ -79,6 +79,8 @@ export default function Navbar({stickyOffset}) {
         immediate:true
       })
       setMenuOpen(false)
+    } else {
+      overlay.current ? overlay.current.classList.add(s.invisible) : null
     }
   } 
 
@@ -118,7 +120,6 @@ export default function Navbar({stickyOffset}) {
     //check if desktop menu is used
     if(!window.matchMedia(mobileStyle).matches) return
     nonScrollable(!isMenuOpen)
-
     animation.start({
       transform: isMenuOpen ? "translate3d(100vw,0,0)" : "translate3d(0vw,0,0)",
       opacity: isMenuOpen ? 0 : 1,

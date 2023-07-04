@@ -47,7 +47,6 @@ const ParallaxEffect = () => {
     () => ({ 
       from: {offset:0},
       config: {
-        clamp:true, //no bounce
         ...config.gentle
       }
   }));
