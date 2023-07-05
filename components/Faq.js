@@ -102,7 +102,7 @@ export default function FAQ() {
 
   return (
     <section className={s.faq}>
-      <header className={s.header}>
+      <header id="fragor" className={s.header}>
         <h2>Frågor? Svar.</h2>
       </header>
       {questions.map((q, id)=>

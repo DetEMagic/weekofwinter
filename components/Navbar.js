@@ -193,6 +193,7 @@ export default function Navbar({stickyOffset}) {
           <Link 
             prefetch={false}
             href={href} 
+            aria-label={name}
             className={topLevel ? s.topLevelLink : null}
             style={style}
             onClick={()=>{
@@ -261,6 +262,7 @@ export default function Navbar({stickyOffset}) {
         />
         <animated.div style={styles} className={s.container}>
           <div className={s.innerContainer}>
+            <Tree name="Frågor?" href="/#fragor" topLevel/>
             <Tree name="Bilder" href="/om/bilder" topLevel/>
             <Tree name="Om"  href="/om" topLevel>
               <Tree name="Postbeskrivningar" href="/om/postbeskrivningar">
