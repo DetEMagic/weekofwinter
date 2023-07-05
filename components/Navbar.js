@@ -132,6 +132,7 @@ export default function Navbar({stickyOffset}) {
   //Used to create a new menu link in the navigation bar
   const Tree = React.memo(({ children, name, href, style, topLevel = false, open = false}) => {
     const [isOpen, setOpen] = useState(open)
+    const refAnimatedChildren= useRef(null)
     const refChildren = useRef(null)
 
     const IconName = isOpen ? Minus : Plus
@@ -145,7 +146,8 @@ export default function Navbar({stickyOffset}) {
         height:isOpen && refChildren.current ? refChildren.current.offsetHeight + 18 : 0,
         overflow:"hidden"
       },
-      immediate: isOpen || (typeof window !== "undefined" ? window.matchMedia(mobileStyle).matches : null) ? false : true 
+      immediate: isOpen || (typeof window !== "undefined" ? window.matchMedia(mobileStyle).matches : null) ? false : true,
+      onRest: !isOpen && refAnimatedChildren.current ? refAnimatedChildren.current.classList.remove(s.topLevelChildrenPadding):null
     })
 
     useEffect(() => {
@@ -164,9 +166,9 @@ export default function Navbar({stickyOffset}) {
     const onMouseEnter = () => {
       //check if moble menu is used
       if(window.matchMedia(mobileStyle).matches) return
+      refAnimatedChildren.current ? refAnimatedChildren.current.classList.add(s.topLevelChildrenPadding):null
       setOpen(true)
 
-      //refChildren.current ? refChildren.current.classList.remove(s.invisible): null 
 
       overlay.current.classList.remove(s.invisible)
     }
@@ -210,9 +212,13 @@ export default function Navbar({stickyOffset}) {
           : null }
         </div>
         {children ? 
-        <animated.div style={springs} className={topLevel ? s.topLevelChildren : ""}>
+        <animated.div 
+          ref={refAnimatedChildren}
+          style={springs} 
+          className={topLevel ? s.topLevelChildren : ""}
+        >
           <div 
-            ref={refChildren}
+            ref={refChildren} 
             className={`${s.children} ${topLevel ? s.topLevelChildrenInner : ""}`} 
           >
             {children}

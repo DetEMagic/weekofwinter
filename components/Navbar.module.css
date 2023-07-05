@@ -111,7 +111,7 @@
 
 .children div {
     font-size:calc(8px + 0.4em);
-    margin-left:1em;
+    margin-left:0.5em;
 }
 
 .linkContainer {
@@ -175,7 +175,7 @@
     .children div {
         display: flex;
         align-items: baseline;
-        margin-left: 0.65rem;
+        margin-left: 0.55rem;
     }
 
     .topLevelLinkContainer {
@@ -188,6 +188,9 @@
 
     .topLevelChildren {
         position: absolute;
+    }
+
+    .topLevelChildrenPadding {
         padding-top: 13px;
     }
 
