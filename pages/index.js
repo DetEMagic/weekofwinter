@@ -179,6 +179,9 @@ export default function HomePage() {
       <article className={s.content}>
         <div className={s.innerContent}>
 
+          <h2 id="om">Om oss</h2>
+          <p>Week of winter är en skidförening som är basert i Uppsala bllasbla</p>
+
           <Trip
             title="Val-d'Isère 2024"
             date="13 JAN – 22 JAN"

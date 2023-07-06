@@ -28,6 +28,7 @@ html {
   word-wrap: break-word;
   line-height: calc(1em + 1ex);
   font-kerning: normal;
+  scroll-behavior: smooth
 }
 
 body {

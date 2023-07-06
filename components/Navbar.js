@@ -72,7 +72,7 @@ export default function Navbar({stickyOffset}) {
 
   const resetMenu = (event) => {
     if(!window.matchMedia(mobileStyle).matches && isMenuOpen) {
-      nonScrollable(event.matches)
+      //nonScrollable(event.matches)
       animation.start({
         transform: "translate3d(100vw,0,0)",
         opacity: 0,
@@ -90,7 +90,7 @@ export default function Navbar({stickyOffset}) {
 
     //makes the menu non-scrollable
     if (noScroll) {
-      document.documentElement.style.cssText = "scroll-behavior: initial;"
+      document.documentElement.style.cssText = "scroll-behavior: auto;"
       document.body.style.cssText = `
         overflow:hidden; 
         overflow-y:scroll;
@@ -119,7 +119,7 @@ export default function Navbar({stickyOffset}) {
   const mobileMenu = (path) => {
     //check if desktop menu is used
     if(!window.matchMedia(mobileStyle).matches) return
-    nonScrollable(!isMenuOpen)
+    //nonScrollable(!isMenuOpen)
     animation.start({
       transform: isMenuOpen ? "translate3d(100vw,0,0)" : "translate3d(0vw,0,0)",
       opacity: isMenuOpen ? 0 : 1,
@@ -191,11 +191,11 @@ export default function Navbar({stickyOffset}) {
       >
         <div className={`${topLevel ? s.topLevelLinkContainer : null} ${s.linkContainer}`}>
           <Link 
-            prefetch={false}
             href={href} 
             aria-label={name}
             className={topLevel ? s.topLevelLink : null}
             style={style}
+            scroll={!href.includes("#")}
             onClick={()=>{
               mobileMenu(href)
               onMouseLeave()
@@ -262,12 +262,10 @@ export default function Navbar({stickyOffset}) {
         />
         <animated.div style={styles} className={s.container}>
           <div className={s.innerContainer}>
+            <Tree name="Om" href="/#om" topLevel/>
+            <Tree name="Årets Resa" href="/#arets-resa" topLevel/>
             <Tree name="Frågor?" href="/#fragor" topLevel/>
-            <Tree name="Bilder" href="/om/bilder" topLevel/>
-            <Tree name="Om"  href="/om" topLevel>
-              <Tree name="Postbeskrivningar" href="/om/postbeskrivningar">
-              </Tree>
-            </Tree>
+            <Tree name="Mer" href="/#mer" topLevel/>
             <Tree name="Sponsorer" href="/sponsorer" topLevel>
               <Tree name="Absolut" href="/sponsorer/absolut"/>
               <Tree name="Mercedes-Benz" href="/sponsorer/mercedesbenz"/>
