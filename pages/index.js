@@ -27,6 +27,7 @@ import Insurance from "../icons/insurance.svg"
 import CalenderCancel from "../icons/calenderCancel.svg"
 import Ski from "../icons/ski.svg"
 import SiteMenu from '../components/SiteMenu';
+import LinkBox from '../components/LinkBox';
 
 //debounce to not change the parallax on every pixel
 /*
@@ -143,7 +144,6 @@ const ParallaxEffect = () => {
 
       <div className={s.coverMountain}>
         <Snow/>
-        <Navbar stickyOffset/>
         <Image 
           src={`/parallax/layer4.svg`}
           className={s.mountainImage}
@@ -175,52 +175,57 @@ export default function HomePage() {
       <link rel="shortcut icon" href="/favicon.ico"/>
     </Head>
     <main>
+      <Navbar stickyOffset/>
       <ParallaxEffect/>
       <article className={s.content}>
         <div className={s.innerContent}>
 
-          <h2 id="om">Om oss</h2>
-          <p>Week of winter är en skidförening som är basert i Uppsala bllasbla</p>
+          <section id="om" className={s.section}>
+            <header>
+              <h2>Om oss</h2>
+            </header>
+            <p>Week of winter är en skidförening som är basert i Uppsala bllasbla</p>
+          </section>
 
-          <Trip
-            title="Val-d'Isère 2024"
-            date="13 JAN – 22 JAN"
-            ticket="Anmälan öppnar 23 SEPT KL. 18:00"
-            place="Val-d'Isère, Frankrike"
-            placeLink="https://goo.gl/maps/ra6y4Cr82uSyJ2bM7"
-            description={
-              <>
-                <p>Val-d’Isère är byn som har de lilla extra! Lite finare, lite mysigare och lite lyxigare rent generellt. Skidåkningen i systemet Espace Killy håller absolut toppklass och här upplever du unik afterski på La Folie Douce och Cocorico. Nattklubben DouDoune är utan tvekan en av alpernas absolut bästa och mest välkända nattklubbar. Om inte detta skulle vara nog så är atmosfären i Val d’Isère något helt unikt och byn är också sprängfylld av restauranger, barer och butiker. </p>
-                <p>Häng med på årets vinterresa 13/1 – 22/1. DIN plats på bussen ner säkrar du den 12:e Oktober. Mer info finns i evenemanget på</p>
-              </>
-            }
-            imageSrc="/collage.webp"
-            imageAlt="Images of Val-d'Isère"
-          />
-
-
-
-          <div className={s.infoBoxContainer}>
-            <InfoBox
-              value={12}
-              desc="Afterski Barer"
+          <section id="arets-resa" className={s.section}>
+            <Trip
+              title="Val-d'Isère 2024"
+              date="13 JAN – 22 JAN"
+              ticket="Anmälan öppnar 23 SEPT KL. 18:00"
+              place="Val-d'Isère, Frankrike"
+              placeLink="https://goo.gl/maps/ra6y4Cr82uSyJ2bM7"
+              description={
+                <>
+                  <p>Val-d’Isère är byn som har de lilla extra! Lite finare, lite mysigare och lite lyxigare rent generellt. Skidåkningen i systemet Espace Killy håller absolut toppklass och här upplever du unik afterski på La Folie Douce och Cocorico. Nattklubben DouDoune är utan tvekan en av alpernas absolut bästa och mest välkända nattklubbar. Om inte detta skulle vara nog så är atmosfären i Val d’Isère något helt unikt och byn är också sprängfylld av restauranger, barer och butiker. </p>
+                  <p>Häng med på årets vinterresa 13/1 – 22/1. DIN plats på bussen ner säkrar du den 12:e Oktober. Mer info finns i evenemanget på</p>
+                </>
+              }
+              imageSrc="/collage.webp"
+              imageAlt="Images of Val-d'Isère"
             />
-            <InfoBox
-              valueBefore="0"
-              value={4}
-              valueAfter=":30"
-              desc="Stängning av Nattklubb"
-            />
-            <InfoBox
-              startValue={10}
-              value={3.5}
-              valueAfter="€"
-              desc="Bärs på Krazy Kanguruh"
-            />
-          </div>
 
-          <section>
-            <header className={s.header}>
+            <div className={s.infoBoxContainer}>
+              <InfoBox
+                value={12}
+                desc="Afterski Barer"
+              />
+              <InfoBox
+                valueBefore="0"
+                value={4}
+                valueAfter=":30"
+                desc="Stängning av Nattklubb"
+              />
+              <InfoBox
+                startValue={10}
+                value={3.5}
+                valueAfter="€"
+                desc="Bärs på Krazy Kanguruh"
+              />
+            </div>
+          </section>
+
+          <section id="anmal" className={s.section}>
+            <header className={s.priceCardHeader}>
               <h2>Hur vill du följa med?</h2>
             </header>
             <div className={s.priceCardContainer}>
@@ -302,8 +307,49 @@ export default function HomePage() {
             </div>
           </section>
 
+          <section id="fragor" className={`${s.section} ${s.faq}`}>
+            <header className={s.faqHeader}>
+              <h2>Frågor? Svar.</h2>
+            </header>
+            <FAQ
+              questions={[
+                {
+                  q:"Vad är Week of Winter?",
+                  a:"Week of Winter är en skidförening för Uppsalas studenter med fokus på teknologer och naturvetare!"
+                },
+                {
+                  q:"Vem får följa med?",
+                  a:"Week of Winter riktar sig till teknologer vid Uppsala Universitet men det är fritt vem som helst över 18 år att följa med"
+                },
+                {
+                  q:"Kan man boka egen transaport ner?",
+                  a: "Ja, det går bra att boka egen transport, det alternativet fyller man i vid bokning"
+                },
+                {
+                  q:"Går det bra att ta med sina egna skidor ned?",
+                  a:"Ja, det går bra ta med sina egna skidor ned, oavsett om man åker buss eller flyger ned så går det att beställa skidtransport"
+                },
+                {
+                  q:"När går det att boka boende?",
+                  a:"Bokandet av boende öppnar ungefär i mitten av November och mer information kommer ungefär två veckor innan bokningen öppnar"
+                }
+              ]}
+            />
+          </section>
 
-          <FAQ/>
+          <section id="mer" className={`${s.section} ${s.more}`}>
+            <header className={s.faqHeader}>
+              <h2>Mer</h2>
+            </header>
+            <LinkBox
+              name="Bilder"
+              href="/mer/bilder"
+            />
+            <LinkBox
+              name="Postbeskrivningar"
+              href="/mer/postbeskrivningar"
+            />
+          </section>
 
           <Countdown 
             title="Avresa Val d'isere"
@@ -321,41 +367,6 @@ export default function HomePage() {
     </>
   );
 }
-
-
-/*
-          <div className={s.circleInformationContainer}>
-            <CircleInformation 
-              title="Grundpaketet"
-              subTitle="7 395 kr"
-              info={[
-                "Bussresa tur och retur från Uppsala", 
-                "Boende i skidorten", 
-                "6 dagars liftkort",
-                "24/7 service- och jourtelefon", 
-                "Resegaranti", 
-                "Guideservice"
-              ]}
-              backgroundColor="#15803d"
-              duration={1500}
-            />
-
-            <CircleInformation 
-              title="Flygpaketet"
-              subTitle="9 999 kr"
-              info={[
-                "Flygresa tur & retur inkl. transfer från Lyon", 
-                "Boende i skidorten", 
-                "6 dagars liftkort",
-                "24/7 service- och jourtelefon", 
-                "Resegaranti", 
-                "Guideservice"
-              ]}
-              backgroundColor="#5b21b6"
-              duration={1500}
-            />
-          </div>
-          */
 
 //Override default page layout
 HomePage.getLayout = (page) => page

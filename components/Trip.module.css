@@ -45,7 +45,7 @@
 @media only screen and (min-width: 1024px) {
     .container {
         flex-direction: row;
-        margin-block: 3rem;
+        margin-block: 2.5rem;
     }
 
     .leftContent {

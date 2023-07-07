@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0.6rem 1rem 1rem;
+    background-color: var(--text-color);
+    color: var(--background-color);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    justify-content: space-between;
+}
+
+.container:hover {
+    text-decoration: underline;
+}

@@ -27,32 +27,3 @@
 .answerContainer {
     overflow: hidden;
 }
-
-.faq {
-    margin: auto;
-    max-width: 50em;
-}
-
-.header {
-    display: flex;
-    justify-content: center;
-    padding-top: 3rem;
-}
-
-.header h2 {
-    max-width: 66.66%;
-    text-align: center;
-}
-
-.grundpaket {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-/*Desktop*/
-@media only screen and (min-width: 640px) {
-    .header h2 {
-        max-width: none;
-    }   
-}

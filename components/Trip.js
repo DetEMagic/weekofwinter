@@ -18,7 +18,7 @@ export default function Trip({
   description,
 }) {
   return (
-    <div id="arets-resa" className={s.container}>
+    <div className={s.container}>
       <AnimatedContainer className={s.leftContent}>
         <Image
           src={imageSrc}

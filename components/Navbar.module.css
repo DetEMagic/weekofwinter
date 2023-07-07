@@ -85,7 +85,7 @@
     z-index: 999;
     background: var(--menu-mobile-background-color);
     height: 100vh;
-    overflow: auto;
+    overflow-y: scroll;
 }
 
 .container a {

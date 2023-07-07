@@ -3,7 +3,6 @@
     height: 114vh;
 }
 
-
 .parallaxMountain, .coverMountain {
     position: absolute;
     width: 100%;
@@ -62,6 +61,10 @@
     max-width: calc(50em + 50ex);
 }
 
+.section {
+    padding-block: 72px 0px;
+}
+
 .infoBoxContainer {
     display: flex;
     flex-direction: column;
@@ -69,6 +72,13 @@
 
 .circleInformationContainer {
     display: block;
+}
+
+.priceCardHeader {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: -0.75em;
 }
 
 .priceCardContainer {
@@ -82,15 +92,6 @@
     */
 }
 
-.header {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 3rem;
-    margin-bottom: -0.75em;
-}
-
-
 .addOnContainer {
     margin-top: 2.5rem;
     display: flex;
@@ -101,6 +102,26 @@
 .addOnCards {
     display: flex;
     flex-wrap: wrap;
+}
+
+.faq {
+    margin: auto;
+    max-width: 50em;
+}
+
+.faqHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.faqHeader h2 {
+    max-width: 66.66%;
+    text-align: center;
+}
+
+.more {
+    margin: auto;
+    max-width: 40em;
 }
 
 
@@ -124,14 +145,18 @@
         justify-content: center;
         align-items: unset;
     }
+
+    .faqHeader {
+        max-width: none;
+    }
+
+    .priceCardHeader {
+        margin-bottom: 1rem;
+    }
 }
 
 /*Desktop*/
 @media only screen and (min-width: 1024px) {
-    .header {
-        margin-bottom: 1rem;
-    }
-
     .infoBoxContainer {
         flex-direction: row;
     }
