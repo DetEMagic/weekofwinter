@@ -3,6 +3,17 @@
     height: 114vh;
 }
 
+/*
+.removeFlicker {
+    animation: fadein 0.01s ease-in;
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+*/
+
 .parallaxMountain, .coverMountain {
     position: absolute;
     width: 100%;

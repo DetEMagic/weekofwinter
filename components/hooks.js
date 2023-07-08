@@ -60,17 +60,16 @@ function saveScrollPos(url) {
 function restoreScrollPos(url) {
   const scrollPos = JSON.parse(sessionStorage.getItem(url));
   if (scrollPos) {
-    setTimeout(()=> { //Utan denna så kommmer webläsaren att scrolla till t.ex. #om när man går bakåt i webläsaren 
       document.documentElement.style.cssText = "scroll-behavior: auto" // need to override smooth behavior
       window.scrollTo(scrollPos.x, scrollPos.y);
       document.documentElement.style.cssText = ""
-    }, 0)
   }
 }
 
 const useScrollRestoration = (router) => {
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
+      let timer;
       let shouldScrollRestore = false;
       window.history.scrollRestoration = 'manual';
       restoreScrollPos(router.asPath);
@@ -86,8 +85,19 @@ const useScrollRestoration = (router) => {
 
       const onRouteChangeComplete = url => {
         if (shouldScrollRestore) {
-          shouldScrollRestore = false;
-          restoreScrollPos(url);
+          if(url.includes("#")) {
+            console.log(url)
+            const landingPage = document.getElementById("landingPage");
+            landingPage ? landingPage.classList.add("removeFlicker"):null
+            timer = setTimeout(()=> {
+              shouldScrollRestore = false;
+              restoreScrollPos(url);
+              //landingPage.classList.remove("load")
+            }, 1)
+          } else {
+            shouldScrollRestore = false;
+            restoreScrollPos(url);
+          }
         }
       };
 
@@ -100,6 +110,7 @@ const useScrollRestoration = (router) => {
       });
 
       return () => {
+        clearInterval(timer)
         window.removeEventListener('beforeunload', onBeforeUnload);
         Router.events.off('routeChangeStart', onRouteChangeStart);
         Router.events.off('routeChangeComplete', onRouteChangeComplete);

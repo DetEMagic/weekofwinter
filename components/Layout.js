@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Image from 'next/image'
 import Emoji from './Emoji'
 import s from "./Layout.module.css"
 import PropTypes from 'prop-types';
+import { useSpring, animated } from '@react-spring/web'
 
 /**
  * A component to define the layout of the html
@@ -20,7 +21,16 @@ export default function Layout({
   children
 }) {
 
-  const boxShadow = {boxShadow:`0px 100px 100px 100px ${meta.color}`}
+  const boxShadow = `0px 100px 100px 100px ${meta.color}`
+  const [imageIsLoaded, setImageIsLoaded] = useState(false)
+  const {opacity} = useSpring({
+    from: {
+      opacity:0,
+    },
+    to: {
+      opacity:imageIsLoaded ? 1 : 0,
+    }
+  })
 
   //<Emoji className={s.emoji} symbol={meta.emoji} label={meta.title}/>
 
@@ -39,19 +49,25 @@ export default function Layout({
       <main className={s.main}>
         {meta.image ? 
         <>
-        <div style={boxShadow} className={s.imgContainer}>
+        <animated.div style={{opacity:opacity, boxShadow:boxShadow}} className={s.imgContainer}>
           <Image
             src={meta.image}
             alt={meta.title}
             className={s.img}
+            onLoad={event => {
+              // next/image use an 1x1 px git as placeholder. We only want the onLoad event on the actual image
+              if (event.target.src.indexOf('data:image/gif;base64') < 0) {
+                setImageIsLoaded(true)
+              }
+            }}
             fill
-          />
+            />
           <div className={s.container}>
             <h1>
               {meta.title}
             </h1>
           </div>
-        </div>
+        </animated.div>
         </>
         : null}
         <article className={s.mainContent}>

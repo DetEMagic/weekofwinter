@@ -94,7 +94,7 @@ const ParallaxEffect = () => {
   ]
 
   return (
-    <div className={s.parallaxContainer}>
+    <div className={s.parallaxContainer} id="landingPage">
       {layers.map(({speed}, i) =>  
           <animated.div
               key={i}
