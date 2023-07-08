@@ -9,6 +9,7 @@ import Close from "../icons/close.svg"
 import Plus from "../icons/plus.svg"
 import Minus from "../icons/minus.svg"
 import WW from "../icons/logo.svg"
+import { useScrollspy } from './hooks';
 
 /**
  * The website logo
@@ -37,9 +38,59 @@ function Logo({width=70, height=40, scroll, ...props}) {
   )
 }
 
+const links = [
+  {
+    name:"Om",
+    href:"/#om"
+  },
+  {
+    name:"Årets Resa",
+    href:"/#arets-resa"
+  },
+  {
+    name:"Anmäl",
+    href:"/#anmal"
+  },
+  {
+    name:"Frågor?",
+    href:"/#fragor"
+  },
+  {
+    name:"Mer",
+    href:"/#mer",
+    children:[
+      {
+        name:"Bilder",
+        href:"/mer/bilder",
+      },
+      {
+        name:"Postbeskrivningar",
+        href:"/mer/postbeskrivningar",
+      }
+    ]
+  },
+]
+/*
+            <Tree name="Om" href="/#om" topLevel/>
+            <Tree name="Årets Resa" href="/#arets-resa" topLevel/>
+            <Tree name="Anmäl" href="/#anmal" topLevel/>
+            <Tree name="Frågor?" href="/#fragor" topLevel/>
+            <Tree name="Mer" href="/#mer" topLevel>
+              <Tree name="Bilder" href="/mer/bilder"/>
+              <Tree name="Postbeskrivningar" href="/mer/postbeskrivningar"/>
+            </Tree>
+            <Tree name="Sponsorer" href="/sponsorer" topLevel>
+              <Tree name="Absolut" href="/sponsorer/absolut"/>
+              <Tree name="Mercedes-Benz" href="/sponsorer/mercedesbenz"/>
+              <Tree name="Nordic Wellness" href="/sponsorer/nordicwellness"/>
+              <Tree name="Skistar" href="/sponsorer/skistar"/>
+              <Tree name="Salomon" href="/sponsorer/salomon"/>
+              <Tree name="Stadler" href="/sponsorer/stadler"/>
+            </Tree>
+            */
+
 
 let lastScrollTop = 0
-
 //The navigation bar that is shown all the time on the top
 export default function Navbar({stickyOffset}) {
 
@@ -129,8 +180,8 @@ export default function Navbar({stickyOffset}) {
     setMenuOpen(!isMenuOpen)
   }
 
-  //Used to create a new menu link in the navigation bar
-  const Tree = React.memo(({ children, name, href, style, topLevel = false, open = false}) => {
+  //Used to recurively create the navigation links
+  const Tree = React.memo(({links, activeId="", topLevel = false, open = false}) => {
     const [isOpen, setOpen] = useState(open)
     const refAnimatedChildren= useRef(null)
     const refChildren = useRef(null)
@@ -184,53 +235,60 @@ export default function Navbar({stickyOffset}) {
     }
 
     return (
-      <div
-        onMouseEnter={topLevel && children ? onMouseEnter : null} 
-        onMouseLeave={topLevel && children ? onMouseLeave : null}
-        className={topLevel ? s.topLevelLinkHover : null} 
-      >
-        <div className={`${topLevel ? s.topLevelLinkContainer : null} ${s.linkContainer}`}>
-          <Link 
-            href={href} 
-            aria-label={name}
-            className={topLevel ? s.topLevelLink : null}
-            style={style}
-            scroll={!href.includes("#")}
-            onClick={()=>{
-              mobileMenu(href)
-              onMouseLeave()
-            }}
-          >
-            {name}
-          </Link>
-          {children ? 
-          <IconName
-            width={30} 
-            height={30} 
-            onClick={()=>setOpen(!isOpen)} 
-            className={s.plus}
-          /> 
-          : null }
-        </div>
-        {children ? 
-        <animated.div 
-          ref={refAnimatedChildren}
-          style={springs} 
-          className={topLevel ? s.topLevelChildren : ""}
+      <>
+      {links.map((item)=> (
+        <div
+          key={`nav-link-${item.name}`}
+          onMouseEnter={topLevel && item.children ? onMouseEnter : null} 
+          onMouseLeave={topLevel && item.children ? onMouseLeave : null}
+          className={topLevel ? s.topLevelLinkHover : null} 
         >
-          <div 
-            ref={refChildren} 
-            className={`${s.children} ${topLevel ? s.topLevelChildrenInner : ""}`} 
-          >
-            {children}
+          <div className={`${topLevel ? s.topLevelLinkContainer : null} ${s.linkContainer}`}>
+            <Link 
+              href={item.href} 
+              aria-label={item.name}
+              className={topLevel ? s.topLevelLink : null}
+              style={activeId === item.href.split("#")[1] ? {color:"var(--link-color)"}:null}
+              scroll={!item.href.includes("#")}
+              onClick={()=>{
+                mobileMenu(item.href)
+                onMouseLeave()
+              }}
+            >
+              {item.name}
+            </Link>
+            {item.children ? 
+            <IconName
+              width={30} 
+              height={30} 
+              onClick={()=>setOpen(!isOpen)} 
+              className={s.plus}
+            /> 
+            : null }
           </div>
-        </animated.div>
-        : null}
-      </div>
+          {item.children ? 
+          <animated.div 
+            ref={refAnimatedChildren}
+            style={springs} 
+            className={topLevel ? s.topLevelChildren : ""}
+          >
+            <div 
+              ref={refChildren} 
+              className={`${s.children} ${topLevel ? s.topLevelChildrenInner : ""}`} 
+            >
+              <Tree links={item.children}/>
+            </div>
+          </animated.div>
+          : null}
+        </div>
+      ))}
+      </>
     )
   })
 
   const MenuIcon = isMenuOpen ? Close : Burger
+
+  const activeId = useScrollspy(links.map(({href})=>href.split("#")[1]), 66)
 
   return (
     <>
@@ -262,22 +320,7 @@ export default function Navbar({stickyOffset}) {
         />
         <animated.div style={styles} className={s.container}>
           <div className={s.innerContainer}>
-            <Tree name="Om" href="/#om" topLevel/>
-            <Tree name="Årets Resa" href="/#arets-resa" topLevel/>
-            <Tree name="Anmäl" href="/#anmal" topLevel/>
-            <Tree name="Frågor?" href="/#fragor" topLevel/>
-            <Tree name="Mer" href="/#mer" topLevel>
-              <Tree name="Bilder" href="/mer/bilder"/>
-              <Tree name="Postbeskrivningar" href="/mer/postbeskrivningar"/>
-            </Tree>
-            <Tree name="Sponsorer" href="/sponsorer" topLevel>
-              <Tree name="Absolut" href="/sponsorer/absolut"/>
-              <Tree name="Mercedes-Benz" href="/sponsorer/mercedesbenz"/>
-              <Tree name="Nordic Wellness" href="/sponsorer/nordicwellness"/>
-              <Tree name="Skistar" href="/sponsorer/skistar"/>
-              <Tree name="Salomon" href="/sponsorer/salomon"/>
-              <Tree name="Stadler" href="/sponsorer/stadler"/>
-            </Tree>
+            <Tree links={links} activeId={activeId} topLevel/>
           </div>
           <div className={s.socialMedia}>
             <Socialmedia width="50" height="50" animation={false}/>

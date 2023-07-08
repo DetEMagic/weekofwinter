@@ -4,6 +4,7 @@ import s from "./LinkBox.module.css"
 import Arrow from "../icons/rightArrow.svg"
 import { useSpring, animated } from '@react-spring/web'
 import { useRouter } from 'next/router'
+import AnimatedContainer from './AnimatedContainer'
 
 export default function LinkBox({name, href}) {
 
@@ -17,18 +18,20 @@ export default function LinkBox({name, href}) {
 
 
   return (
-    <h5>
-      <Link
-        href={href}
-        className={s.container}
-        onMouseEnter={()=> setIsBooped(!isBooped)}
-        onMouseLeave={()=> setIsBooped(!isBooped)}
-      >
-      {name}
-      <animated.span style={style}>
-        <Arrow width={35} height={35}/>
-      </animated.span>
-      </Link>
-    </h5>
+    <AnimatedContainer>
+      <h5>
+        <Link
+          href={href}
+          className={s.container}
+          onMouseEnter={()=> setIsBooped(!isBooped)}
+          onMouseLeave={()=> setIsBooped(!isBooped)}
+        >
+        {name}
+        <animated.span style={style}>
+          <Arrow width={35} height={35}/>
+        </animated.span>
+        </Link>
+      </h5>
+    </AnimatedContainer>
   )
 }

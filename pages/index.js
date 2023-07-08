@@ -347,8 +347,20 @@ export default function HomePage() {
               href="/mer/bilder"
             />
             <LinkBox
+              name="Styrelsen"
+              href="/mer/styrelsen"
+            />
+            <LinkBox
+              name="Historia"
+              href="/mer/historia"
+            />
+            <LinkBox
               name="Postbeskrivningar"
               href="/mer/postbeskrivningar"
+            />
+            <LinkBox
+              name="Stadgar"
+              href="/mer/stadgar"
             />
           </section>
 

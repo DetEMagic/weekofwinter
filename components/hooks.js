@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Router from "next/router";
 
 /**
@@ -72,36 +72,40 @@ const useScrollRestoration = (router) => {
       let timer;
       let shouldScrollRestore = false;
       window.history.scrollRestoration = 'manual';
-      restoreScrollPos(router.asPath);
 
+      /*
+      restoreScrollPos(router.asPath);
       const onBeforeUnload = event => {
         saveScrollPos(router.asPath);
         delete event['returnValue'];
       };
+      */
 
       const onRouteChangeStart = () => {
         saveScrollPos(router.asPath);
       };
 
       const onRouteChangeComplete = url => {
-        if (shouldScrollRestore) {
-          if(url.includes("#")) {
-            console.log(url)
-            const landingPage = document.getElementById("landingPage");
-            landingPage ? landingPage.classList.add("removeFlicker"):null
-            timer = setTimeout(()=> {
-              shouldScrollRestore = false;
-              restoreScrollPos(url);
-              //landingPage.classList.remove("load")
-            }, 1)
-          } else {
+        if (!shouldScrollRestore) {
+          return
+        }
+        
+        if(url.includes("#")) {
+          console.log(url)
+          const landingPage = document.getElementById("landingPage");
+          landingPage ? landingPage.classList.add("removeFlicker"):null
+          timer = setTimeout(()=> {
             shouldScrollRestore = false;
             restoreScrollPos(url);
-          }
+            //landingPage.classList.remove("load")
+          }, 1)
+        } else {
+          shouldScrollRestore = false;
+          restoreScrollPos(url);
         }
       };
 
-      window.addEventListener('beforeunload', onBeforeUnload);
+      //window.addEventListener('beforeunload', onBeforeUnload);
       Router.events.on('routeChangeStart', onRouteChangeStart);
       Router.events.on('routeChangeComplete', onRouteChangeComplete);
       Router.beforePopState(() => {
@@ -111,7 +115,7 @@ const useScrollRestoration = (router) => {
 
       return () => {
         clearInterval(timer)
-        window.removeEventListener('beforeunload', onBeforeUnload);
+        //window.removeEventListener('beforeunload', onBeforeUnload);
         Router.events.off('routeChangeStart', onRouteChangeStart);
         Router.events.off('routeChangeComplete', onRouteChangeComplete);
         Router.beforePopState(() => true);
@@ -120,8 +124,54 @@ const useScrollRestoration = (router) => {
   }, [router]);
 }
 
+// Restrict value to be between the range [0, value]
+const clamp = (value) => Math.max(0, value);
+
+// Check if number is between two values
+const isBetween = (value, floor, ceil) =>
+  value >= floor && value <= ceil;
+
+const useScrollspy = (ids, offset= 0) => {
+  const [activeId, setActiveId] = useState("");
+
+  useLayoutEffect(() => {
+    const listener = () => {
+      const scroll = window.pageYOffset;
+
+      const position = ids
+        .map((id) => {
+          const element = document.getElementById(id);
+
+          if (!element) return { id, top: -1, bottom: -1 };
+
+          const rect = element.getBoundingClientRect();
+          const top = clamp(rect.top + scroll - offset);
+          const bottom = clamp(rect.bottom + scroll - offset);
+
+          return { id, top, bottom };
+        })
+        .find(({ top, bottom }) => isBetween(scroll, top, bottom));
+
+      setActiveId(position?.id || "");
+    };
+
+    listener();
+
+    window.addEventListener("resize", listener);
+    window.addEventListener("scroll", listener);
+
+    return () => {
+      window.removeEventListener("resize", listener);
+      window.removeEventListener("scroll", listener);
+    };
+  }, [ids, offset]);
+
+  return activeId;
+};
+
 export {
   usePreviousValue,
   useCountdown,
   useScrollRestoration,
+  useScrollspy,
 }
