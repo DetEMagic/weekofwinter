@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import Router from "next/router";
 
 /**
  * This hook is used to get the previous value
@@ -51,7 +52,65 @@ const useCountdown = (date) => {
   return calculateTime(countDown);
 };
 
+function saveScrollPos(url) {
+  const scrollPos = { x: window.scrollX, y: window.scrollY };
+  sessionStorage.setItem(url, JSON.stringify(scrollPos));
+}
+
+function restoreScrollPos(url) {
+  const scrollPos = JSON.parse(sessionStorage.getItem(url));
+  if (scrollPos) {
+    setTimeout(()=> { //Utan denna så kommmer webläsaren att scrolla till t.ex. #om när man går bakåt i webläsaren 
+      document.documentElement.style.cssText = "scroll-behavior: auto" // need to override smooth behavior
+      window.scrollTo(scrollPos.x, scrollPos.y);
+      document.documentElement.style.cssText = ""
+    }, 0)
+  }
+}
+
+const useScrollRestoration = (router) => {
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      let shouldScrollRestore = false;
+      window.history.scrollRestoration = 'manual';
+      restoreScrollPos(router.asPath);
+
+      const onBeforeUnload = event => {
+        saveScrollPos(router.asPath);
+        delete event['returnValue'];
+      };
+
+      const onRouteChangeStart = () => {
+        saveScrollPos(router.asPath);
+      };
+
+      const onRouteChangeComplete = url => {
+        if (shouldScrollRestore) {
+          shouldScrollRestore = false;
+          restoreScrollPos(url);
+        }
+      };
+
+      window.addEventListener('beforeunload', onBeforeUnload);
+      Router.events.on('routeChangeStart', onRouteChangeStart);
+      Router.events.on('routeChangeComplete', onRouteChangeComplete);
+      Router.beforePopState(() => {
+        shouldScrollRestore = true;
+        return true;
+      });
+
+      return () => {
+        window.removeEventListener('beforeunload', onBeforeUnload);
+        Router.events.off('routeChangeStart', onRouteChangeStart);
+        Router.events.off('routeChangeComplete', onRouteChangeComplete);
+        Router.beforePopState(() => true);
+      };
+    }
+  }, [router]);
+}
+
 export {
   usePreviousValue,
   useCountdown,
+  useScrollRestoration,
 }

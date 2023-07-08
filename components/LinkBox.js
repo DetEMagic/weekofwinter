@@ -3,9 +3,11 @@ import React, { useState } from 'react'
 import s from "./LinkBox.module.css"
 import Arrow from "../icons/rightArrow.svg"
 import { useSpring, animated } from '@react-spring/web'
+import { useRouter } from 'next/router'
 
 export default function LinkBox({name, href}) {
 
+  const router = useRouter()
   const [isBooped, setIsBooped] = useState(false);
 
   const style = useSpring({
