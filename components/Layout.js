@@ -21,9 +21,9 @@ export default function Layout({
   children
 }) {
 
-  const boxShadow = `0px 100px 100px 100px ${meta.color}`
+  const boxShadow = {boxShadow:`0px 100px 100px 100px ${meta.color}`}
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
-  const {opacity} = useSpring({
+  const imgStyle = useSpring({
     from: {
       opacity:0,
     },
@@ -49,25 +49,27 @@ export default function Layout({
       <main className={s.main}>
         {meta.image ? 
         <>
-        <animated.div style={{opacity:opacity, boxShadow:boxShadow}} className={s.imgContainer}>
-          <Image
-            src={meta.image}
-            alt={meta.title}
-            className={s.img}
-            onLoad={event => {
-              // next/image use an 1x1 px git as placeholder. We only want the onLoad event on the actual image
-              if (event.target.src.indexOf('data:image/gif;base64') < 0) {
-                setImageIsLoaded(true)
-              }
-            }}
-            fill
-            />
+        <div style={boxShadow} className={s.imgContainer}>
+          <animated.div style={imgStyle}>
+            <Image
+              src={meta.image}
+              alt={meta.title}
+              className={s.img}
+              onLoad={event => {
+                // next/image use an 1x1 px git as placeholder. We only want the onLoad event on the actual image
+                if (event.target.src.indexOf('data:image/gif;base64') < 0) {
+                  setImageIsLoaded(true)
+                }
+              }}
+              fill
+              />
+          </animated.div>
           <div className={s.container}>
             <h1>
               {meta.title}
             </h1>
           </div>
-        </animated.div>
+        </div>
         </>
         : null}
         <article className={s.mainContent}>
