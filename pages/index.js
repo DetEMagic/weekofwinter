@@ -28,6 +28,7 @@ import CalenderCancel from "../icons/calenderCancel.svg"
 import Ski from "../icons/ski.svg"
 import SiteMenu from '../components/SiteMenu';
 import LinkBox from '../components/LinkBox';
+import tripImage from "../public/collage.webp"
 
 //debounce to not change the parallax on every pixel
 /*
@@ -200,7 +201,7 @@ export default function HomePage() {
                   <p>Häng med på årets vinterresa 13/1 – 22/1. DIN plats på bussen ner säkrar du den 12:e Oktober. Mer info finns i evenemanget på</p>
                 </>
               }
-              imageSrc="/collage.webp"
+              imageSrc={tripImage}
               imageAlt="Images of Val-d'Isère"
             />
 
