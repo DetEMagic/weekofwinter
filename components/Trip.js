@@ -24,6 +24,7 @@ export default function Trip({
           src={imageSrc}
           alt={imageAlt}
           className={s.image}
+          placeholder="blur"
           sizes="(max-width: 1024px) 100vw,
                   50vw"
           fill
