@@ -57,7 +57,6 @@ const FlipCard = ({number}) => {
  * @component
  * @example
  * <Countdown 
- *   title="Avresa Val d'isere"
  *   date={new Date(2024, 1, 14, 18, 0, 0)}
  *   dateExpired={
  *     <h2>TAGGA!</h2>
@@ -96,11 +95,6 @@ export default function Countdown({date, dateExpired}) {
 };
 
 Countdown.propTypes = {
-  /**
-   * The title of the countdown 
-   */
-  title: PropTypes.string.isRequired,
-
   /**
    * The date when the countdown should end
    */
