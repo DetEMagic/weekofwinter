@@ -49,8 +49,8 @@ export default function Layout({
       <main className={s.main}>
         {meta.image ? 
         <>
-        <div style={boxShadow} className={s.imgContainer}>
-          <animated.div style={imgStyle}>
+        <div style={boxShadow} className={s.container}>
+          <animated.div style={imgStyle} className={s.imgContainer}>
             <Image
               src={meta.image}
               alt={meta.title}
@@ -61,11 +61,12 @@ export default function Layout({
                   setImageIsLoaded(true)
                 }
               }}
+              priority
               fill
-              />
+            />
           </animated.div>
-          <div className={s.container}>
-            <h1>
+          <div className={s.titleContainer}>
+            <h1 className={s.title}>
               {meta.title}
             </h1>
           </div>

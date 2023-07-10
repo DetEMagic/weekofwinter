@@ -364,14 +364,17 @@ export default function HomePage() {
             />
           </section>
 
-          <Countdown 
-            title="Avresa Val d'isere"
-            date={new Date(2024, 1, 14, 18, 0, 0)}
-            dateExpired={
-              <h2>TAGGA!</h2>
-            }
-          />
-
+          <section className={s.section}>
+            <header className={s.faqHeader}>
+              <h2>Avresa Val-d'Isère</h2>
+            </header>
+            <Countdown 
+              date={new Date(2024, 1, 14, 18, 0, 0)}
+              dateExpired={
+                <h2>TAGGA!</h2>
+              }
+            />
+          </section>
           
        </div>
       </article>

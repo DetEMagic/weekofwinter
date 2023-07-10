@@ -12,7 +12,7 @@ const FlipCard = ({number}) => {
     from: { transform: "rotateX(0deg)" },
     to: { transform: "rotateX(-180deg)" },
     delay: 0,
-    immediate: prevNumber === number || prevNumber === 0,
+    immediate: prevNumber === number,
     config:{duration:500},
     reset: true,
   });
@@ -21,7 +21,7 @@ const FlipCard = ({number}) => {
     from: { transform: "rotateX(180deg)" },
     to: { transform: "rotateX(0deg)" },
     delay: 0,
-    immediate: prevNumber === number || prevNumber === 0,
+    immediate: prevNumber === number, 
     config:{duration:500},
     reset: true
   });
@@ -64,20 +64,15 @@ const FlipCard = ({number}) => {
  *   }
  * />
  */
-export default function Countdown({title, date, dateExpired}) {
+export default function Countdown({date, dateExpired}) {
   const [days, hours, minutes, seconds] = useCountdown(date); 
-
-  const [ref, inView] = useInView()
 
   if (days + hours + minutes + seconds <= 0 && dateExpired) {
     return dateExpired 
   } else {
     return (
       <div className={s.container}>
-          <h2>{title}</h2>
-          <animated.div ref={ref} className={s.countDownContainer}>
-            {inView ? 
-            <>
+          <div className={s.countDownContainer}>
               <div className={s.title}>
                 <FlipCard number={days}/>
                 <h5>Dagar</h5>
@@ -94,9 +89,7 @@ export default function Countdown({title, date, dateExpired}) {
                 <FlipCard number={seconds}/>
                 <h5>Sekunder</h5>
               </div>
-            </>
-            :null}
-          </animated.div>
+          </div>
       </div>
     );
   }

@@ -3,8 +3,8 @@
     flex-direction: column;
     align-items: center;
     background: var(--footer-background-color); 
-    padding:  0px 1em 2.5em; 
-    margin-top: 2rem;
+    padding: 2rem var(--padding-inline) 2rem;
+    margin-top: 4rem;
 }
 
 .container span {

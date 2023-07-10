@@ -1,3 +1,7 @@
+.main {
+    margin-top: 66px;
+}
+
 .mainContent {
   margin: auto;
   margin-block-start: calc(2.5em + 2.5ex);
@@ -5,13 +9,12 @@
   max-width: var(--max-width);
 }
 
-.main {
-    margin-top: 66px;
+.container, .imgContainer {
+    height: 40vh;
 }
 
-.imgContainer, .container {
-    position:relative;
-    height:40vh;
+.imgContainer, .titleContainer {
+    position: relative;
 }
 
 .img {
@@ -19,7 +22,7 @@
     border-radius: var(--border-radius);
 }
 
-.container {
+.titleContainer {
     max-width: calc(var(--max-width) + 0.5em + 0.5ex);
     padding-inline: calc(0.5em + 0.5ex);
     margin: 0 auto;
@@ -27,18 +30,9 @@
     align-items: flex-end;
 }
 
-.container h1 {
+.title {
     margin: 0;
-    margin-bottom: -0.55em;
+    margin-top: -0.65em;
     width: 100%;
     text-shadow: 0px -2px 30px black;
 }
-
-/*
-.emoji {
-    position: relative;
-    font-size: clamp(3.5em, 2vw + 3.5em, 5em);
-    bottom: -0.175em;
-}
-*/
-

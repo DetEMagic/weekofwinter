@@ -70,24 +70,6 @@ const links = [
     ]
   },
 ]
-/*
-            <Tree name="Om" href="/#om" topLevel/>
-            <Tree name="Årets Resa" href="/#arets-resa" topLevel/>
-            <Tree name="Anmäl" href="/#anmal" topLevel/>
-            <Tree name="Frågor?" href="/#fragor" topLevel/>
-            <Tree name="Mer" href="/#mer" topLevel>
-              <Tree name="Bilder" href="/mer/bilder"/>
-              <Tree name="Postbeskrivningar" href="/mer/postbeskrivningar"/>
-            </Tree>
-            <Tree name="Sponsorer" href="/sponsorer" topLevel>
-              <Tree name="Absolut" href="/sponsorer/absolut"/>
-              <Tree name="Mercedes-Benz" href="/sponsorer/mercedesbenz"/>
-              <Tree name="Nordic Wellness" href="/sponsorer/nordicwellness"/>
-              <Tree name="Skistar" href="/sponsorer/skistar"/>
-              <Tree name="Salomon" href="/sponsorer/salomon"/>
-              <Tree name="Stadler" href="/sponsorer/stadler"/>
-            </Tree>
-            */
 
 
 let lastScrollTop = 0
@@ -229,8 +211,6 @@ export default function Navbar({stickyOffset}) {
       if(window.matchMedia(mobileStyle).matches) return
       setOpen(false)
 
-      //refChildren.current ? refChildren.current.classList.add(s.invisible): null
-
       overlay.current.classList.add(s.invisible)
     }
 
@@ -252,7 +232,9 @@ export default function Navbar({stickyOffset}) {
               scroll={!item.href.includes("#")}
               onClick={()=>{
                 mobileMenu(item.href)
-                onMouseLeave()
+                if(router.pathname === item.href) {
+                  onMouseLeave()
+                } 
               }}
             >
               {item.name}
@@ -288,7 +270,7 @@ export default function Navbar({stickyOffset}) {
 
   const MenuIcon = isMenuOpen ? Close : Burger
 
-  const activeId = useScrollspy(links.map(({href})=>href.split("#")[1]), 66)
+  const activeId = useScrollspy(links.map(({href})=>href.split("#")[1]), 86)
 
   return (
     <>

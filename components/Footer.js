@@ -36,7 +36,7 @@ export default function Footer() {
                 }}>
                 <ArrowUp width={50} height={50}/>
             </button>
-            <Sponsors/>
+            {/*<Sponsors/>*/}
         </footer>
     )
 }

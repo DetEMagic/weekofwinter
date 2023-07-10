@@ -38,12 +38,13 @@ const calculateTime = (countDown) => {
  * useCountdown(new Date(2024, 1, 14, 18, 0, 0))
  */
 const useCountdown = (date) => {
-  const [countDown, setCountDown] = useState(1000)
+  const [countDown, setCountDown] = useState(-1)
+  const timezoneOffset = date.getTimezoneOffset() * 60 * 1000
 
   useEffect(() => {
-    setCountDown(date.getTime() - new Date().getTime())
+    setCountDown(date.getTime() - new Date().getTime() + timezoneOffset)
     const interval = setInterval(() => {
-      setCountDown(date.getTime() - new Date().getTime());
+      setCountDown(date.getTime() - new Date().getTime() + timezoneOffset);
     }, 1000);
 
     return () => clearInterval(interval);

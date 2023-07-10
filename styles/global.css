@@ -10,11 +10,9 @@ Also every component can use the classes defined in here.
   --link-color: #85CEFF;
   --border-radius: 3px;
   --sky-color: linear-gradient(to bottom, #00a6ce 0%, #f0f9ff 100%);
-  /*--sky-color: linear-gradient(to bottom, #f0f9ff 0%, #bfdbfe 100%);*/
-  --footer-background-color: linear-gradient(to bottom, #081b31 0%, black 100%);
-  /*--menu-background-color: linear-gradient(0deg, rgba(8,27,49,0.75) 0%, rgba(0,0,0,0.75) 100%);*/
+  --footer-background-color: linear-gradient(to bottom, var(--background-color) 0%, #0a1118 100%);
   --menu-background-color:rgba(8, 27, 49, 0.8);
-  --menu-mobile-background-color:linear-gradient(0deg, rgba(8,27,49,1) 0%, rgba(0,0,0,1) 100%);
+  --menu-mobile-background-color:var(--menu-background-color);
   --code-background: rgba(175,184,193,0.2);
   --max-width:calc(40em + 40ex);
   --padding-inline:calc(1em + 1ex);
@@ -115,7 +113,7 @@ code {
 }
 
 .removeFlicker {
-  animation: fadein 0.05s ease-in;
+  animation: fadein 0.1s ease-in;
 }
 
 @keyframes fadein {
