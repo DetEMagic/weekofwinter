@@ -64,13 +64,13 @@ const FlipCard = ({number}) => {
  * />
  */
 export default function Countdown({date, dateExpired}) {
-  const [days, hours, minutes, seconds] = useCountdown(date); 
+  const [ref, days, hours, minutes, seconds] = useCountdown(date); 
 
   if (days + hours + minutes + seconds <= 0 && dateExpired) {
     return dateExpired 
   } else {
     return (
-      <div className={s.container}>
+      <div ref={ref} className={s.container}>
           <div className={s.countDownContainer}>
               <div className={s.title}>
                 <FlipCard number={days}/>

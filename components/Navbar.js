@@ -96,7 +96,7 @@ export default function Navbar({stickyOffset}) {
 
   const isSticky = () => {
     const r = nav.current
-    r !== null && window.scrollY > 0 ? (
+    r !== null ? (
       (window.scrollY > (stickyOffset ? window.innerHeight : 20)) ? 
       r.classList.add(s.sticky) : 
       r.classList.remove(s.sticky)
@@ -293,7 +293,7 @@ export default function Navbar({stickyOffset}) {
             if(router.pathname === "/") {
               window.scrollTo({
                   top:0,
-                  left:1, 
+                  left:0, 
                   behavior:"smooth",
               })
             }

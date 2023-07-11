@@ -13,6 +13,7 @@ export default function AnimatedContainer({children, transform="", ...props}) {
     }),
     {
       once:true,
+      rootMargin:"50px 0px"
     }
   )
 

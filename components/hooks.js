@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Router from "next/router";
+import { useInView } from "@react-spring/web";
 
 /**
  * This hook is used to get the previous value
@@ -33,24 +34,27 @@ const calculateTime = (countDown) => {
  * This hook is used to return the day, hour, minute and seconds left of the countdown
  * //https://blog.greenroots.info/how-to-create-a-countdown-timer-using-react-hooks
  * @param {date} date - the date when the countdown ends
- * @returns {[number, number , number, number]} [days, hours, minutes, seconds] the time left of the countdown 
+ * @returns {[ref, number, number , number, number]} ref - used for intersection oberserver so it does not run in the background all the time,
+ *                                                   [days, hours, minutes, seconds] the time left of the countdown 
  * @example
  * useCountdown(new Date(2024, 1, 14, 18, 0, 0))
  */
 const useCountdown = (date) => {
-  const [countDown, setCountDown] = useState(-1)
+  const [ref, inView] = useInView()
+  const [countDown, setCountDown] = useState(1000)
   const timezoneOffset = date.getTimezoneOffset() * 60 * 1000
 
   useEffect(() => {
+    if(!inView) return
     setCountDown(date.getTime() - new Date().getTime() + timezoneOffset)
     const interval = setInterval(() => {
       setCountDown(date.getTime() - new Date().getTime() + timezoneOffset);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [inView]);
 
-  return calculateTime(countDown);
+  return [ref, ...calculateTime(countDown)]
 };
 
 function saveScrollPos(url) {
@@ -92,7 +96,6 @@ const useScrollRestoration = (router) => {
         }
         
         if(url.includes("#")) {
-          console.log(url)
           const landingPage = document.getElementById("landingPage");
           landingPage ? landingPage.classList.add("removeFlicker"):null
           timer = setTimeout(()=> {

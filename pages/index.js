@@ -9,7 +9,7 @@ import Youtube from '../components/Youtube';
 import Snow from '../components/Snow';
 import { useRouter } from 'next/router';
 import { TypeAnimation } from 'react-type-animation';
-import { animated, useScroll, useSpring, config } from "@react-spring/web";
+import { animated, useScroll, useSpring, config, useInView } from "@react-spring/web";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import s from "../styles/Index.module.css"
@@ -47,6 +47,8 @@ function debounce(func, timeout = 10){
 //This component is used to display the parallax effect 
 const ParallaxEffect = () => {
 
+  const [ref, inView] = useInView()
+
   const [{ offset }, animation] = useSpring(
     () => ({ 
       from: {offset:0},
@@ -55,17 +57,13 @@ const ParallaxEffect = () => {
       }
   }));
 
-  let lastKnownY = 0;
   let ticking = false;
   
-  //Used for optimization 
   const handleScroll = () => {
-    lastKnownY = window.scrollY;
-
-    //lastKnownY !== 0 needed so that the mountains do not move when opening the menu in mobile
-    if (!ticking && lastKnownY < window.innerHeight && lastKnownY !== 0) {
+    if (!ticking) {
+      //Used for optimization 
       window.requestAnimationFrame(() => {
-        animation.start({offset: lastKnownY});
+        animation.start({offset: window.scrollY});
         ticking = false;
       });
   
@@ -74,12 +72,14 @@ const ParallaxEffect = () => {
   };
 
   useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
+    if(!inView) return
 
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-  });
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [inView]);
 
   const layers = [
     {
@@ -97,23 +97,23 @@ const ParallaxEffect = () => {
   ]
 
   return (
-    <div className={s.parallaxContainer} id="landingPage">
+    <div ref={ref} className={s.parallaxContainer} id="landingPage">
       {layers.map(({speed}, i) =>  
-          <animated.div
-              key={i}
-              className={s.parallaxMountain}
-              style={{
-                transform: offset.to((o) => `translate3d(0px, ${o * speed}px, 0px)`)
-              }}
-          >
-            <Image 
-              src={`/parallax/layer${i}.svg`}
-              className={s.mountainImage}
-              alt="Mountain landscape"
-              fill
-              priority
-            />
-          </animated.div>
+        <animated.div
+            key={i}
+            className={s.parallaxMountain}
+            style={{
+              transform: offset.to((o) => `translate3d(0px, ${o * speed}px, 0px)`)
+            }}
+        >
+          <Image 
+            src={`/parallax/layer${i}.svg`}
+            className={s.mountainImage}
+            alt="Mountain landscape"
+            fill
+            priority
+          />
+        </animated.div>
       )}
 
       <animated.div 

@@ -14,9 +14,6 @@ import InfoBox from './InfoBox';
  *<Footer/>
  */
 export default function Footer() {
-    //const {locale: activeLocal, locales, asPath} = useRouter();
-    //find all the avaialbe languages
-    //const availableLocal = locales.filter(locale => locale !== activeLocal)
     return (  
         <footer className={s.container}>
             <span className={s.title}>Se till och följ oss på</span>
@@ -28,11 +25,9 @@ export default function Footer() {
                 onClick={() => {
                     window.scrollTo({
                         top:0,
-                        left:1, 
+                        left:0, 
                         behavior:"smooth",
                     })
-                    /* y>=1 is needed since otherwise the mountains won't move up, 
-                    0 does not work*/
                 }}>
                 <ArrowUp width={50} height={50}/>
             </button>

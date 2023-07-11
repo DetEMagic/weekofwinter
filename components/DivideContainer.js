@@ -5,7 +5,7 @@ import s from "./DivideContainer.module.css"
 export default function DivideContainer({reverse=false, image=false, ...props}) {
   return (
     <div className={`${reverse ? s.reverse : ""}  ${s.container} `}>
-      <div className={`${s.content} ${image ? s.image : ""} ${reverse ? "" : ""}`}>
+      <div className={`${s.content} ${reverse ? "" : ""}`}>
         {props.children[0]}
       </div>
       <AnimatedContainer className={`${s.content} ${image ? s.image : ""} ${reverse ? s.right : s.left}`}>
