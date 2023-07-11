@@ -60,7 +60,7 @@ const ParallaxEffect = () => {
   let ticking = false;
   
   const handleScroll = () => {
-    if (!ticking) {
+    if (!ticking && window.scrollY < window.innerHeight) {
       //Used for optimization 
       window.requestAnimationFrame(() => {
         animation.start({offset: window.scrollY});
