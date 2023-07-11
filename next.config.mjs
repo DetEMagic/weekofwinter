@@ -36,7 +36,8 @@ const nextConfig = {
         domains: [
             'www.freepnglogos.com',
             'div2procdn.shopdutyfree.com', 
-            'lh3.googleusercontent.com'
+            'lh3.googleusercontent.com',//Google photos
+            'i.ytimg.com'//Youtube
         ],
     },
     webpack(config) {

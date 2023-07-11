@@ -7,9 +7,9 @@
     margin-bottom: 1rem;
 }
 
-
 .image {
     aspect-ratio: 1/1;
+    position: relative;
 }
 
 /*Desktop*/

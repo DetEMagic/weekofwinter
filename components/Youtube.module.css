@@ -1,8 +1,27 @@
+.img {
+    object-fit: contain;
+    border-radius: calc(var(--border-radius)*2);
+}
+
 .video {
+    display: flex;
+    position: relative;
     border: 0;
     border-radius: calc(var(--border-radius)*2);
     width: 100%;
     aspect-ratio: 16/9;
+    background-color: black;
+}
+
+.youtubePlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 68px;
+    height: 48px;
+    margin-left: -34px;
+    margin-top: -24px;
+    z-index: 1;
 }
 
 
