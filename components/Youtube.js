@@ -5,9 +5,14 @@ import YoutubePlay from "../icons/youtubePlay.svg"
 
 /**
  * Embed a youtube video
+ * 
  * @component
  * @example
- * <Youtube title="Hallo" videoId="tYE42Ntdp18"/>
+ * <Youtube 
+ *   title="Hallo" 
+ *   videoId="tYE42Ntdp18" 
+ *   sizes="(max-width: 1024px) 100vw,50vw" // used for optimizing image
+ * />
  */
 export default function Youtube(
   {

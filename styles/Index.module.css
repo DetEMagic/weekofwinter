@@ -109,14 +109,17 @@
     max-width: 50em;
 }
 
-.faqHeader {
+.header {
     display: flex;
     justify-content: center;
 }
 
-.faqHeader h2 {
-    max-width: 66.66%;
+.header h2 {
     text-align: center;
+}
+
+.splitHeader h2 {
+    max-width: 66.66%;
 }
 
 .more {
@@ -127,6 +130,7 @@
 .aboutTitle {
     margin: 0 0 -.6rem 0;
 }
+
 
 /*Firefox engine är trash jämfört med de andras*/
 @-moz-document url-prefix() {
@@ -141,9 +145,8 @@
         transform: none !important;
     }
     
-    .section {
-        padding-block: 36px;
-        scroll-margin-top: 36px;
+    .section:first-child {
+        padding-block: 36px 0px;
     }
 }
 
@@ -154,7 +157,7 @@
         align-items: unset;
     }
 
-    .faqHeader {
+    .splitHeader h2 {
         max-width: none;
     }
 

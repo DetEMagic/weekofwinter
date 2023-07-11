@@ -195,7 +195,7 @@ export default function HomePage() {
                 <p className={s.about}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium pulvinar enim non mollis. Curabitur commodo aliquam placerat. Donec ut tortor eget lectus porttitor pulvinar. Suspendisse orci velit, venenatis et augue quis, suscipit lacinia sapien. Nulla facilisi. Aenean commodo justo vel lorem sodales, et ultrices orci vehicula. Morbi vitae neque sed urna condimentum cursus sit amet ut tortor. Aenean facilisis maximus lectus, id vehicula quam porttitor vitae. Maecenas eget urna vel odio condimentum tempor nec eu metus.</p>
                 </AnimatedContainer>
               </>
-              <Youtube title="Hallo" videoId="tYE42Ntdp18"/>
+              <Youtube title="Week of Winter" videoId="tYE42Ntdp18"/>
             </DivideContainer>
           </section>
 
@@ -320,7 +320,7 @@ export default function HomePage() {
           </section>
 
           <section id="fragor" className={`${s.section} ${s.faq}`}>
-            <header className={s.faqHeader}>
+            <header className={`${s.header} ${s.splitHeader}`}>
               <h2>Frågor? Svar.</h2>
             </header>
             <FAQ
@@ -350,7 +350,7 @@ export default function HomePage() {
           </section>
 
           <section id="mer" className={`${s.section} ${s.more}`}>
-            <header className={s.faqHeader}>
+            <header className={s.header}>
               <h2>Mer</h2>
             </header>
             <LinkBox
@@ -376,7 +376,7 @@ export default function HomePage() {
           </section>
 
           <section className={s.section}>
-            <header className={s.faqHeader}>
+            <header className={s.header}>
               <h2>Avresa Val-d'Isère</h2>
             </header>
             <Countdown 
