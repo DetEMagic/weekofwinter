@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.left, .right {
+    margin-bottom: 1rem;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.image {
+    aspect-ratio: 1/1;
+}
+
+/*Desktop*/
+@media only screen and (min-width: 1024px) {
+    .container {
+        flex-direction: row;
+        margin-block: 2rem;
+    }
+
+    .reverse {
+        flex-direction: row-reverse;
+    }
+
+    .right {
+        margin-right: 2.5rem;
+    }
+
+    .left {
+        margin-left: 2.5rem;
+    }
+}

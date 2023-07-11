@@ -1,6 +1,6 @@
 .video {
     border: 0;
-    border-radius: var(--border-radius);
+    border-radius: calc(var(--border-radius)*2);
     width: 100%;
     aspect-ratio: 16/9;
 }

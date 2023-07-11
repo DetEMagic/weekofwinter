@@ -3,17 +3,6 @@
     height: 114vh;
 }
 
-/*
-.removeFlicker {
-    animation: fadein 0.01s ease-in;
-}
-
-@keyframes fadein {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-*/
-
 .parallaxMountain, .coverMountain {
     position: absolute;
     width: 100%;
@@ -73,7 +62,7 @@
 }
 
 .section {
-    padding-block: 72px 0px;
+    padding-block: 72px 0;
 }
 
 .infoBoxContainer {
@@ -135,6 +124,9 @@
     max-width: 40em;
 }
 
+.aboutTitle {
+    margin: 0 0 -.6rem 0;
+}
 
 /*Firefox engine är trash jämfört med de andras*/
 @-moz-document url-prefix() {
@@ -147,6 +139,11 @@
     /*Det laggar för mycket på mobilen annars*/
     .parallaxMountain {
         transform: none !important;
+    }
+    
+    .section {
+        padding-block: 36px;
+        scroll-margin-top: 36px;
     }
 }
 

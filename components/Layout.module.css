@@ -26,8 +26,6 @@
     max-width: calc(var(--max-width) + 0.5em + 0.5ex);
     padding-inline: calc(0.5em + 0.5ex);
     margin: 0 auto;
-    display: flex;
-    align-items: flex-end;
 }
 
 .title {

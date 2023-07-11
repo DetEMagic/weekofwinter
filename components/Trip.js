@@ -5,6 +5,7 @@ import Date from "../icons/date.svg"
 import Place from "../icons/place.svg"
 import TicketBlack from "../icons/ticketBlack.svg"
 import AnimatedContainer from './AnimatedContainer'
+import DivideContainer from './DivideContainer'
 
 //Component used to divide content to the left and right beside each other
 export default function Trip({
@@ -18,21 +19,12 @@ export default function Trip({
   description,
 }) {
   return (
-    <div className={s.container}>
-      <AnimatedContainer className={s.leftContent}>
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          className={s.image}
-          placeholder="blur"
-          sizes="(max-width: 1024px) 100vw,
-                  50vw"
-          fill
-        />
-      </AnimatedContainer>
-      <div className={s.rightContent}>
+    <DivideContainer reverse image>
+      <>
         <AnimatedContainer>
-          <h2 className={s.title}>{title}</h2>
+          <header>
+            <h2 className={s.title}>{title}</h2>
+          </header>
         </AnimatedContainer>
         <AnimatedContainer>
           <span className={s.date}>
@@ -51,7 +43,16 @@ export default function Trip({
         <AnimatedContainer>
           {description}
         </AnimatedContainer>
-      </div>
-    </div>
+      </>
+      <Image
+        src={imageSrc}
+        alt={imageAlt}
+        className={s.image}
+        placeholder="blur"
+        sizes="(max-width: 1024px) 100vw,
+                50vw"
+        fill
+      />
+    </DivideContainer>
   )
 }

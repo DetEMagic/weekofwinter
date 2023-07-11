@@ -120,6 +120,7 @@ export default function Navbar({stickyOffset}) {
   function nonScrollable(noScroll) {
     //Find how long down the user has scrolled on the page
     const scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+    const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth
 
     //makes the menu non-scrollable
     if (noScroll) {
@@ -127,9 +128,9 @@ export default function Navbar({stickyOffset}) {
       document.body.style.cssText = `
         overflow:hidden; 
         height:100%;
-        padding-right:15px;
+        padding-right:${scrollBarWidth}px;
       ` 
-      nav.current.style.cssText="padding-right:15px"
+      nav.current.style.cssText=`padding-right:${scrollBarWidth}px`
       overlay.current ? overlay.current.classList.remove(s.invisible) : null
     } else {
       document.documentElement.style.cssText = ""

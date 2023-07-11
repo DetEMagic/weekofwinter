@@ -29,6 +29,8 @@ import Ski from "../icons/ski.svg"
 import SiteMenu from '../components/SiteMenu';
 import LinkBox from '../components/LinkBox';
 import tripImage from "../public/collage.webp"
+import DivideContainer from '../components/DivideContainer';
+import AnimatedContainer from '../components/AnimatedContainer';
 
 //debounce to not change the parallax on every pixel
 /*
@@ -157,6 +159,7 @@ const ParallaxEffect = () => {
   )
 }
 
+
 export default function HomePage() {
 
   const meta = {
@@ -180,12 +183,20 @@ export default function HomePage() {
       <ParallaxEffect/>
       <article className={s.content}>
         <div className={s.innerContent}>
-
           <section id="om" className={s.section}>
-            <header>
-              <h2>Om oss</h2>
-            </header>
-            <p>Week of winter är en skidförening som är basert i Uppsala bllasbla</p>
+            <DivideContainer>
+              <>
+                <AnimatedContainer>
+                  <header>
+                    <h2 className={s.aboutTitle}>Om oss</h2>
+                  </header>
+                </AnimatedContainer>
+                <AnimatedContainer>
+                <p className={s.about}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium pulvinar enim non mollis. Curabitur commodo aliquam placerat. Donec ut tortor eget lectus porttitor pulvinar. Suspendisse orci velit, venenatis et augue quis, suscipit lacinia sapien. Nulla facilisi. Aenean commodo justo vel lorem sodales, et ultrices orci vehicula. Morbi vitae neque sed urna condimentum cursus sit amet ut tortor. Aenean facilisis maximus lectus, id vehicula quam porttitor vitae. Maecenas eget urna vel odio condimentum tempor nec eu metus.</p>
+                </AnimatedContainer>
+              </>
+              <Youtube title="Hallo" videoId="tYE42Ntdp18"/>
+            </DivideContainer>
           </section>
 
           <section id="arets-resa" className={s.section}>
