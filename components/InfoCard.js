@@ -16,7 +16,7 @@ import AnimatedContainer from './AnimatedContainer';
  */
 export default function InfoCard({title, desc, icon}) {
   return (
-    <AnimatedContainer tabIndex={0} className={s.container}>
+    <AnimatedContainer className={s.container}>
       <div className={s.icon}>
         {icon}
       </div>

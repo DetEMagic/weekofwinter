@@ -8,7 +8,6 @@ import AnimatedContainer from './AnimatedContainer'
 
 export default function LinkBox({name, href}) {
 
-  const router = useRouter()
   const [isBooped, setIsBooped] = useState(false);
 
   const style = useSpring({

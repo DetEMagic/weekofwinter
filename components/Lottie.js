@@ -25,6 +25,7 @@ export default function Lottie({url, loop=true, autoplay=true, ...props}) {
                 preserveAspectRatio: 'xMidYMid meet' //Great setting
             }
         })
+        console.log(instance)
 
         return () => instance.destroy();
     },[])
@@ -33,8 +34,8 @@ export default function Lottie({url, loop=true, autoplay=true, ...props}) {
     return (
         <div 
             ref={container}
-            className={`${s.container} ${props.className}`}
             {...props}
+            className={`${s.container} ${props.className || ""}`}
         />
     )
 }

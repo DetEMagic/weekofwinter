@@ -34,7 +34,6 @@ export default function PriceCard(
 
   return (
     <AnimatedContainer 
-      tabIndex={0} 
       transform={popular ? "scale(1.1)" : ""} 
       className={s.container}
     >
