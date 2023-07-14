@@ -1,3 +1,7 @@
+//This file is used to handle lottie-files, however lottie_light is currently
+//as large as nextjs, 45KB gzipped size which makes the website 
+//load speed much slower.
+/*
 import { useEffect, useRef } from "react";
 import lottie from "lottie-web/build/player/lottie_light";
 import s from "./Lottie.module.css";
@@ -7,7 +11,7 @@ import s from "./Lottie.module.css";
  * @component
  * @example
  * <Lottie style={{marginTop:"40px"}} url="/lottie/404.json"/>
- */
+ * 
 export default function Lottie({url, loop=true, autoplay=true, ...props}) {
 
     const container = useRef(null);
@@ -36,3 +40,4 @@ export default function Lottie({url, loop=true, autoplay=true, ...props}) {
         />
     )
 }
+*/

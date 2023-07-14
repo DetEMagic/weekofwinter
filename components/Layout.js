@@ -7,6 +7,24 @@ import Emoji from './Emoji'
 import s from "./Layout.module.css"
 import PropTypes from 'prop-types';
 import { useSpring, animated } from '@react-spring/web'
+import { MDXProvider } from '@mdx-js/react'
+import { Heading, Text, ResponsiveImage, NextLink, ListItem } from './mdxComponents'
+import Youtube from './Youtube'
+
+//override mdx components
+const components = {
+  h1: Heading.H2, //should only be one h1 per page so is overrided to prevent errors
+  h2: Heading.H2,
+  h3: Heading.H3,
+  h4: Heading.H4,
+  h5: Heading.H5,
+  h6: Heading.H6,
+  p: Text,
+  img: ResponsiveImage,
+  a: NextLink, 
+  li: ListItem,
+  Youtube,
+}
 
 /**
  * A component to define the layout of the html
@@ -35,7 +53,7 @@ export default function Layout({
   //<Emoji className={s.emoji} symbol={meta.emoji} label={meta.title}/>
 
   return (
-    <>
+    <MDXProvider components={components}>
       <Head>
         <title>{`${meta.title} - Week of Winter`}</title>
         <meta name="description" content={meta.description} key="desc"/>
@@ -78,7 +96,7 @@ export default function Layout({
         </article>
       </main>
       <Footer/>
-    </>
+    </MDXProvider>
   )
 }
 

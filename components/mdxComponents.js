@@ -30,7 +30,6 @@ const Heading = ({children}) => {
   )
 }
 
-Heading.H1 = (props) => <Heading><h1 {...props}/></Heading> 
 Heading.H2 = (props) => <Heading><h2 {...props}/></Heading> 
 Heading.H3 = (props) => <Heading><h3 {...props}/></Heading>
 Heading.H4 = (props) => <Heading><h4 {...props}/></Heading>

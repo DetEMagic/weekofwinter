@@ -1,4 +1,3 @@
-import Lottie from "../components/Lottie"
 import Layout from "../components/Layout"
 
 /**

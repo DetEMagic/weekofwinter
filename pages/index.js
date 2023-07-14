@@ -2,13 +2,13 @@
   This file is the websites index page i.e. the first page to land on
 */
 
-import { useState, useRef, useEffect, memo } from 'react';
+import { useEffect} from 'react';
 import Image from "next/image";
 import Trip from '../components/Trip';
 import Youtube from '../components/Youtube';
 import Snow from '../components/Snow';
 import { TypeAnimation } from 'react-type-animation';
-import { animated, useScroll, useSpring, config, useInView } from "@react-spring/web";
+import { animated, useSpring, config, useInView } from "@react-spring/web";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import s from "../styles/Index.module.css"
@@ -16,7 +16,6 @@ import InfoBox from '../components/InfoBox';
 import FAQ from '../components/Faq';
 import Countdown from '../components/Countdown';
 import Head from 'next/head';
-import CircleInformation from '../components/CircleInformation';
 import PriceCard from '../components/PriceCard';
 import InfoCard from '../components/InfoCard';
 import Ticket from "../icons/ticket.svg"
