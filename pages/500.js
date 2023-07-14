@@ -16,7 +16,6 @@ export default function Custom500() {
       <div className="errorPageContainer">
         <h1>500 - Server fel.</h1>
         <h3>Vänligen försök igen senare.</h3>
-        <Lottie className="errorPageImg" url="/lottie/500.json"/>
       </div>
     </Layout>
   )

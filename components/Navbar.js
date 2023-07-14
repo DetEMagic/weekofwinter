@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect} from 'react'
-import { useSpring, animated, config } from '@react-spring/web'
+import { useSpring, animated} from '@react-spring/web'
 import Link from 'next/link';
 import s from "./Navbar.module.css";
 import Socialmedia from './Socialmedia';

@@ -7,7 +7,6 @@ import Image from "next/image";
 import Trip from '../components/Trip';
 import Youtube from '../components/Youtube';
 import Snow from '../components/Snow';
-import { useRouter } from 'next/router';
 import { TypeAnimation } from 'react-type-animation';
 import { animated, useScroll, useSpring, config, useInView } from "@react-spring/web";
 import Navbar from '../components/Navbar';
@@ -26,7 +25,6 @@ import PlusAdd from "../icons/plusAdd.svg"
 import Insurance from "../icons/insurance.svg"
 import CalenderCancel from "../icons/calenderCancel.svg"
 import Ski from "../icons/ski.svg"
-import SiteMenu from '../components/SiteMenu';
 import LinkBox from '../components/LinkBox';
 import tripImage from "../public/collage.webp"
 import DivideContainer from '../components/DivideContainer';
