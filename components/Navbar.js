@@ -96,11 +96,15 @@ export default function Navbar({stickyOffset}) {
 
   const isSticky = () => {
     const r = nav.current
-    r !== null ? (
-      (window.scrollY > (stickyOffset ? window.innerHeight : 20)) ? 
-      r.classList.add(s.sticky) : 
-      r.classList.remove(s.sticky)
-    ): null
+    if(!r) return
+
+    if(stickyOffset && window.scrollY > window.innerHeight) {
+      r.classList.add(s.sticky, s.stickyOffset)
+    } else if (!stickyOffset && window.scrollY > 20) {
+      r.classList.add(s.sticky)
+    } else {
+      r.classList.remove(s.sticky, s.stickyOffset)
+    }
   }
 
   const resetMenu = (event) => {
