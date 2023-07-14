@@ -1,6 +1,10 @@
+import NextBundleAnalyzer from '@next/bundle-analyzer';
 import nextMDX from '@next/mdx';
 import emoji from 'remark-emoji';
 
+const withBundleAnalyzer = NextBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 const withMDX = nextMDX({
     extension: /\.mdx?$/,
@@ -24,14 +28,6 @@ const nextConfig = {
     //React's Strict Mode is a development mode only feature for highlighting potential problems in an application. 
     //It helps to identify unsafe lifecycles, legacy API usage, and a number of other features.
     reactStrictMode: true,
-    i18n: {
-        // These are all the locales you want to support in
-        // your application
-        locales: ['sv-Sv', 'en-UK'],
-        // This is the default locale you want to be used when visiting
-        // a non-locale prefixed path e.g. `/hello`
-        defaultLocale: 'sv-Sv'
-    },
     images: {
         domains: [
             'www.freepnglogos.com',
@@ -70,4 +66,4 @@ const nextConfig = {
 }
 
 // Merge MDX config with Next.js config
-export default withMDX(nextConfig)
+export default withMDX(withBundleAnalyzer(nextConfig))

@@ -14,14 +14,17 @@ import TikTok from "../icons/tiktok.svg"
 export default function Socialmedia({width, height, animation = true}) {
   const icons = [
     {
+      label:"Facebook",
       type:<Facebook width={width} height={height}/>,
       href: "https://www.facebook.com/Wofwinter",
     },
     {
+      label:"Instagram",
       type:<Instagram width={width} height={height}/>,
       href: "https://www.instagram.com/week_of_winter/",
     },
     {
+      label:"Tiktok",
       type:<TikTok width={width} height={height}/>,
       href: "https://www.tiktok.com/@weekofwinter/",
     },
@@ -54,6 +57,7 @@ export default function Socialmedia({width, height, animation = true}) {
           }}
           className={s.iconContainer}
           href={icon.href} 
+          aria-label={icon.label}
           target="_blank"
         >
         {icon.type}

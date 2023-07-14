@@ -313,6 +313,7 @@ export default function Navbar({stickyOffset}) {
           <MenuIcon
             width={50}
             height={50}
+            aria-label={isMenuOpen ? "Stäng Menyn" : "Öppna Menyn"}
           />
         </button>
 
