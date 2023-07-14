@@ -22,14 +22,16 @@ export default function Layout({
   children
 }) {
 
-  const boxShadow = {boxShadow:`0px 100px 100px 100px ${meta.color}`}
+  const boxShadow = `0px 100px 100px 100px ${meta.color}`
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
   const imgStyle = useSpring({
     from: {
       opacity:0,
+      boxShadow:boxShadow,
     },
     to: {
       opacity:imageIsLoaded ? 1 : 0,
+      boxShadow:boxShadow,
     }
   })
 
@@ -50,27 +52,25 @@ export default function Layout({
       <main className={s.main}>
         {meta.image ? 
         <>
-        <div style={boxShadow} className={s.container}>
-          <animated.div style={imgStyle} className={s.imgContainer}>
-            <Image
-              src={meta.image}
-              alt={meta.title}
-              className={s.img}
-              onLoad={event => {
-                // next/image use an 1x1 px git as placeholder. We only want the onLoad event on the actual image
-                if (event.target.src.indexOf('data:image/gif;base64') < 0) {
-                  setImageIsLoaded(true)
-                }
-              }}
-              priority
-              fill
-            />
-          </animated.div>
-          <div className={s.titleContainer}>
-            <h1 className={s.title}>
-              {meta.title}
-            </h1>
-          </div>
+        <animated.div style={imgStyle} className={s.imgContainer}>
+          <Image
+            src={meta.image}
+            alt={meta.title}
+            className={s.img}
+            onLoad={event => {
+              // next/image use an 1x1 px git as placeholder. We only want the onLoad event on the actual image
+              if (event.target.src.indexOf('data:image/gif;base64') < 0) {
+                setImageIsLoaded(true)
+              }
+            }}
+            priority
+            fill
+          />
+        </animated.div>
+        <div className={s.titleContainer}>
+          <h1 className={s.title}>
+            {meta.title}
+          </h1>
         </div>
         </>
         : null}
