@@ -1,3 +1,4 @@
+import Lottie from "../components/Lottie"
 import Layout from "../components/Layout"
 
 /**
@@ -15,6 +16,7 @@ export default function Custom500() {
       <div className="errorPageContainer">
         <h1>500 - Server fel.</h1>
         <h3>Vänligen försök igen senare.</h3>
+        <Lottie url="/lottie/500.json" className="errorPageImg"/>
       </div>
     </Layout>
   )

@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import s from "./mdxComponents.module.css"
 import { useInView, animated } from '@react-spring/web'
-import { useState } from 'react'
 
 //This file is used for creating components that overides the default behavior of MDX
 
@@ -61,11 +60,15 @@ const Text = (props) => {
 }
 
 const ResponsiveImage = (props) => {
-  const [enlarge, setEnlarge] = useState(false);
-
   return (
-    <span className={s.imgContainer} onClick={()=>setEnlarge(!enlarge)}>
-      <Image alt={props.alt} className={s.img} fill {...props} />
+    <span className={s.imgContainer}>
+      <Image 
+        alt={props.alt} 
+        className={s.img} 
+        fill 
+        sizes="(max-width: 1024px) 100vw, 50vw" 
+        {...props} 
+      />
     </span>
   )
 }

@@ -25,7 +25,7 @@ import Insurance from "../icons/insurance.svg"
 import CalenderCancel from "../icons/calenderCancel.svg"
 import Ski from "../icons/ski.svg"
 import LinkBox from '../components/LinkBox';
-import tripImage from "../public/collage.webp"
+import tripImage from "../public/image/trip.webp"
 import DivideContainer from '../components/DivideContainer';
 import AnimatedContainer from '../components/AnimatedContainer';
 

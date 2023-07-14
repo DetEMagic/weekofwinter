@@ -10,6 +10,7 @@
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.4.8",
     "@react-spring/web": "^9.7.3",
+    "lottie-web": "^5.12.2",
     "next": "^13.4.8",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

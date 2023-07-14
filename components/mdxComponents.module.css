@@ -2,7 +2,7 @@
     display: flex;
     position: relative;
     width: 100%;
-    aspect-ratio: 16/9; /*Prisa Gud här kommer skatteåterbäringen*/
+    aspect-ratio: 3/2; /*Prisa Gud här kommer skatteåterbäringen*/
 }
 
 .img {
