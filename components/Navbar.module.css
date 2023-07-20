@@ -81,7 +81,8 @@
 }
 
 .plus {
-    margin-left: 0.5em;
+    display: flex;
+    padding: 0.5em 1.6em;
     cursor: pointer;
 }
 
@@ -93,7 +94,6 @@
     position: fixed;
     top: 0;
     right: 0;
-    max-width: 400px;
     width: 100%;
     z-index: 999;
     background: var(--menu-mobile-background-color);
@@ -101,13 +101,15 @@
     overflow-y: scroll;
 }
 
-.container a {
+.link {
     color: white;
-    font-size: 1.5em;
+    font-size: 1.6em;
     text-decoration: none;
+    padding: 0.5em 1.6em;
+    width: 100%;
 }
 
-.container a:hover {
+.link:hover {
     text-decoration: underline;
 }
 
@@ -119,25 +121,30 @@
 }
 
 .innerContainer {
-    padding: 6em 1.5em 0em 1.5em; 
+    padding-top: 6em;
 }
 
 .children div {
     font-size:calc(8px + 0.4em);
-    margin-left:0.5em;
+    margin-left:0.7em;
 }
 
 .linkContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1em;
 }
 
 .socialMedia {
     display: flex;
     justify-content: center;
     padding: 2em;
+}
+
+@media only screen and (min-width: 640px) {
+    .container {
+        max-width: 400px;
+    }
 }
 
 /*Desktop*/
@@ -173,20 +180,22 @@
         max-width: none;
         height: inherit;
         background: transparent;
+        z-index: 9999;
         /*Need to override inline react srping style*/
         opacity: 1 !important;
         transform: translate3d(0,0,0) !important;
         overflow: unset;
     }
 
-    .container a {
+    .link {
         font-size: 1.125rem;
+        padding: 0.5rem 1rem;
     }
 
     .children div {
         display: flex;
         align-items: baseline;
-        margin-left: 0.55rem;
+        margin-left: 0;
     }
 
     .topLevelLinkContainer {
@@ -208,7 +217,7 @@
     .topLevelChildrenInner {
         background-color: var(--menu-background-color);
         border-radius: var(--border-radius);
-        padding: 0 1rem 1rem 0;
+        padding-block: 0.5rem;
     }
 
     .socialMedia {

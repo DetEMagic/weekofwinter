@@ -28,6 +28,7 @@ import LinkBox from '../components/LinkBox';
 import tripImage from "../public/image/trip.webp"
 import DivideContainer from '../components/DivideContainer';
 import AnimatedContainer from '../components/AnimatedContainer';
+import Sponsors from '../components/Sponsors';
 
 //debounce to not change the parallax on every pixel
 /*
@@ -379,7 +380,7 @@ export default function HomePage() {
             <Countdown 
               date={new Date(2024, 1, 14, 18, 0, 0)}
               dateExpired={
-                <h2>TAGGA!</h2>
+                <div style={{textAlign:"center"}}>Taggish</div>
               }
             />
           </section>

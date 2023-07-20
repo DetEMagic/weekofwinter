@@ -11,33 +11,6 @@ import Minus from "../icons/minus.svg"
 import WW from "../icons/logo.svg"
 import { useScrollspy } from './hooks';
 
-/**
- * The website logo
- * @component
- * @example
- * <Logo containerClass={s.logo} onClick={()=>isMenuOpen ? animateMenu("/") : null}/>
- */
-function Logo({width=70, height=40, scroll, ...props}) {
-  return (
-    <>
-    <div className={s.logoShadow}/>
-    <Link 
-      aria-label='returnToHomePage'
-      className={s.logoContainer} 
-      href="/" 
-      scroll={scroll}
-      {...props}
-    >
-        <WW
-            width={width}
-            height={height}
-            className={s.logo}
-        />
-    </Link>
-    </>
-  )
-}
-
 const links = [
   {
     name:"Om",
@@ -70,7 +43,6 @@ const links = [
     ]
   },
 ]
-
 
 let lastScrollTop = 0
 //The navigation bar that is shown all the time on the top
@@ -232,7 +204,7 @@ export default function Navbar({stickyOffset}) {
             <Link 
               href={item.href} 
               aria-label={item.name}
-              className={topLevel ? s.topLevelLink : null}
+              className={`${topLevel ? s.topLevelLink : null}  ${s.link}`}
               style={activeId === item.href.split("#")[1] ? {color:"var(--link-color)"}:null}
               scroll={!item.href.includes("#")}
               onClick={()=>{
@@ -245,12 +217,9 @@ export default function Navbar({stickyOffset}) {
               {item.name}
             </Link>
             {item.children ? 
-            <IconName
-              width={30} 
-              height={30} 
-              onClick={()=>setOpen(!isOpen)} 
-              className={s.plus}
-            /> 
+            <span onClick={()=>setOpen(!isOpen)} className={s.plus}>
+              <IconName width={30} height={30}/> 
+            </span>
             : null }
           </div>
           {item.children ? 
@@ -327,3 +296,29 @@ export default function Navbar({stickyOffset}) {
   )
 }
 
+/**
+ * The website logo
+ * @component
+ * @example
+ * <Logo containerClass={s.logo} onClick={()=>isMenuOpen ? animateMenu("/") : null}/>
+ */
+function Logo({width=70, height=40, scroll, ...props}) {
+  return (
+    <>
+    <div className={s.logoShadow}/>
+    <Link 
+      aria-label='returnToHomePage'
+      className={s.logoContainer} 
+      href="/" 
+      scroll={scroll}
+      {...props}
+    >
+        <WW
+            width={width}
+            height={height}
+            className={s.logo}
+        />
+    </Link>
+    </>
+  )
+}
