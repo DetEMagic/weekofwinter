@@ -22,16 +22,15 @@ export default function Layout({
   children
 }) {
 
-  const boxShadow = `0px 100px 100px 100px ${meta.color}`
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
   const imgStyle = useSpring({
     from: {
       opacity:0,
-      boxShadow:boxShadow,
+      boxShadow:`0px 0px 0px 0px ${meta.color}`,
     },
     to: {
       opacity:imageIsLoaded ? 1 : 0,
-      boxShadow:boxShadow,
+      boxShadow:imageIsLoaded ? `0px 100px 100px 100px ${meta.color}` : `0px 0x 0px 0px ${meta.color}`,
     }
   })
 

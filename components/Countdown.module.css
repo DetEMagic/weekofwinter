@@ -38,15 +38,19 @@
 }
 
 .cardTop span, .cardTopAnimated span {
-  transform: translateY(60%);
+  transform: translateY(calc(60% + 1px));
 }
 
 .cardBottom span, .cardBottomAnimated span {
-  transform: translateY(-40%);
+  transform: translateY(calc(-40% - 1px));
 }
 
-.cardTop, .cardBottom, .cardBottomAnimated, .cardTopAnimated {
-  border-bottom: 2px solid var(--background-color);
+.cardTop, .cardTopAnimated {
+  border-bottom: 1px solid var(--background-color);
+}
+
+.cardBottom, .cardBottomAnimated {
+  border-top: 1px solid var(--background-color);
 }
 
 .cardTopAnimated, .cardBottomAnimated {
@@ -80,10 +84,10 @@
   }
 
   .cardTop span, .cardTopAnimated span {
-    transform: translateY(75%);
+    transform: translateY(calc(75% + 1px));
   }
 
   .cardBottom span, .cardBottomAnimated span {
-    transform: translateY(-25%);
+    transform: translateY(calc(-25% - 1px));
   }
 }
