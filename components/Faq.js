@@ -29,7 +29,7 @@ function QA({id, question, answer, show, showId, setShowId}) {
       height:0
     },
     to: {
-      height:show ? ref.current.offsetHeight + 20 : 0
+      height:show ? ref.current.offsetHeight + 19 : 0
     },
   })
 
