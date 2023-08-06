@@ -135,10 +135,10 @@ const ParallaxEffect = () => {
             1000,
           ]}
           speed={60}
-          wrapper="h3"
+          wrapper="span"
           cursor={true}
           repeat={Infinity}
-          className={s.welcomeSubheading}
+          className={`${s.welcomeSubheading} h3`}
         />
       </animated.div>
 

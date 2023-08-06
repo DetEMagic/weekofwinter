@@ -43,6 +43,7 @@ export default function Socialmedia({width, height, animation = true}) {
     }),
     {
       once:true,
+      rootMargin:"50px 0px"
     }
   )
 

@@ -74,19 +74,19 @@ export default function Countdown({date, dateExpired}) {
           <div className={s.countDownContainer}>
               <div className={s.title}>
                 <FlipCard number={days}/>
-                <h5>Dagar</h5>
+                <div className='h5'>Dagar</div>
               </div>
               <div className={s.title}>
                 <FlipCard number={hours}/>
-                <h5>Timmar</h5>
+                <div className='h5'>Timmar</div>
               </div>
               <div className={s.title}>
                 <FlipCard number={minutes}/>
-                <h5>Minuter</h5>
+                <div className='h5'>Minuter</div>
               </div>
               <div className={s.title}>
                 <FlipCard number={seconds}/>
-                <h5>Sekunder</h5>
+                <div className='h5'>Sekunder</div>
               </div>
           </div>
       </div>

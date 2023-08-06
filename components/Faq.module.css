@@ -4,7 +4,6 @@
     width: 100%;
     padding: 0 1rem;
     border-radius: var(--border-radius);
-    margin-block: 0.8rem;
 }
 
 .question {
@@ -26,4 +25,8 @@
 
 .answerContainer {
     overflow: hidden;
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: calc(1em + 1ex);
 }

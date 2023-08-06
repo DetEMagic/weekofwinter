@@ -36,8 +36,8 @@ function QA({id, question, answer, show, showId, setShowId}) {
   const Icon = show ? Minus : Plus
 
   return (
-    <AnimatedContainer tabIndex={0} className={s.container}>
-      <button className={`${s.question} h5`} onClick={() => showId === id ? setShowId(-1) : setShowId(id)}>
+    <AnimatedContainer tabIndex={0} className={`${s.container} h5`}>
+      <button className={s.question} onClick={() => showId === id ? setShowId(-1) : setShowId(id)}>
         {question}
         <div className={s.icon}>
           <Icon width={35} height={35}/>
