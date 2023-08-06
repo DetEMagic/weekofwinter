@@ -51,7 +51,7 @@ export default function InfoBox(
         </animated.span>
         {valueAfter}
       </div>
-      <h5>{desc}</h5>
+      <span className='h5'>{desc}</span>
     </div>
   )
 }

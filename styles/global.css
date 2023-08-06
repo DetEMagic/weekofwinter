@@ -45,9 +45,12 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6,strong,th {
+  margin-block: calc(.4em + .4ex);
+}
+
+h1,h2,h3,h4,h5,h6,strong,th, .h5 {
   font-weight: 700;
   line-height: calc(1em + .4ex);
-  margin-block:calc(.4em + .4ex);
   letter-spacing: .0125em;
 }
 
@@ -64,7 +67,7 @@ h4 {
   font-size: clamp(1.4em, 1vw + 1.4em, 1.7em);
 }
 
-h5 {
+h5, .h5 {
   font-size: clamp(1.2em, 1vw + 1.2em, 1.3em);
 }
 

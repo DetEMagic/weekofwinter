@@ -17,20 +17,18 @@ export default function LinkBox({name, href}) {
 
 
   return (
-    <AnimatedContainer>
-      <h5>
-        <Link
-          href={href}
-          className={s.container}
-          onMouseEnter={()=> setIsBooped(!isBooped)}
-          onMouseLeave={()=> setIsBooped(!isBooped)}
-        >
-        {name}
-        <animated.span style={style}>
-          <Arrow width={35} height={35}/>
-        </animated.span>
-        </Link>
-      </h5>
+    <AnimatedContainer className="h5">
+      <Link
+        href={href}
+        className={s.container}
+        onMouseEnter={()=> setIsBooped(!isBooped)}
+        onMouseLeave={()=> setIsBooped(!isBooped)}
+      >
+      {name}
+      <animated.span style={style}>
+        <Arrow width={35} height={35}/>
+      </animated.span>
+      </Link>
     </AnimatedContainer>
   )
 }

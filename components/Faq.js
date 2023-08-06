@@ -29,7 +29,7 @@ function QA({id, question, answer, show, showId, setShowId}) {
       height:0
     },
     to: {
-      height:show ? ref.current.offsetHeight + 18 : 0
+      height:show ? ref.current.offsetHeight + 20 : 0
     },
   })
 
@@ -37,8 +37,8 @@ function QA({id, question, answer, show, showId, setShowId}) {
 
   return (
     <AnimatedContainer tabIndex={0} className={s.container}>
-      <button className={s.question} onClick={() => showId === id ? setShowId(-1) : setShowId(id)}>
-        <h5>{question}</h5>
+      <button className={`${s.question} h5`} onClick={() => showId === id ? setShowId(-1) : setShowId(id)}>
+        {question}
         <div className={s.icon}>
           <Icon width={35} height={35}/>
         </div>

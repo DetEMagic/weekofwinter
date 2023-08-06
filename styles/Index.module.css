@@ -150,12 +150,6 @@
     }
 }
 
-@media only screen and (min-width: 640px) and (max-width:1024px) {
-    .innerContent {
-        padding-inline: calc(3em + 3ex);
-    }
-}
-
 @media only screen and (min-width: 640px) {
     .priceCardContainer {
         flex-direction: row;
@@ -169,6 +163,12 @@
 
     .priceCardHeader {
         margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (min-width: 640px) and (max-width:1023px) {
+    .innerContent {
+        padding-inline: calc(3em + 3ex);
     }
 }
 
