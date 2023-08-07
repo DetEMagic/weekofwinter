@@ -51,18 +51,20 @@ export default function Layout({
       <main className={s.main}>
         {meta.image ? 
         <>
-        <animated.div style={imgStyle} className={s.imgContainer}>
+        <animated.div className={s.imgContainer}>
           <Image
             src={meta.image}
             alt={meta.title}
             className={s.img}
+            placeholder="blur"
+            /*
             onLoad={event => {
               // next/image use an 1x1 px git as placeholder. We only want the onLoad event on the actual image
               if (event.target.src.indexOf('data:image/gif;base64') < 0) {
                 setImageIsLoaded(true)
               }
             }}
-            priority
+            */
             fill
           />
         </animated.div>
