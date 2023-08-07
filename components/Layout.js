@@ -25,9 +25,11 @@ export default function Layout({
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
   const imgStyle = useSpring({
     from: {
+      opacity:0,
       boxShadow:`0px 0px 0px 0px ${meta.color}`,
     },
     to: {
+      opacity:imageIsLoaded ? 1 : 0,
       boxShadow:`0px 100px 100px 100px ${meta.color}`,
     }
   })
@@ -54,6 +56,7 @@ export default function Layout({
             src={meta.image}
             alt={meta.title}
             className={s.img}
+            placeholder='blur'
             onLoad={event => {
               // next/image use an 1x1 px git as placeholder. We only want the onLoad event on the actual image
               if (event.target.src.indexOf('data:image/gif;base64') < 0) {
