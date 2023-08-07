@@ -25,7 +25,7 @@ export default function ImageGallery() {
   return (
     <div className={s.container}>
       {albums.map((img, i)=>
-        <a key={i} href={img.album} target='_blank'>
+        <a aria-label={`Länk till fotoalbumet ${img.title}`} key={i} href={img.album} target='_blank'>
           <div className={`${s.imageContainer}`}>
             <Image
               src={img.albumCover}

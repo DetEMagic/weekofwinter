@@ -40,7 +40,7 @@ const calculateTime = (countDown) => {
  * useCountdown(new Date(2024, 1, 14, 18, 0, 0))
  */
 const useCountdown = (date) => {
-  const [ref, inView] = useInView()
+  const [ref, inView] = useInView({rootMargin:"50% 0%"})
   const [countDown, setCountDown] = useState(1000)
   const timezoneOffset = date.getTimezoneOffset() * 60 * 1000
 
