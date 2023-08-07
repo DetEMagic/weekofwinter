@@ -25,10 +25,15 @@ export default function Layout({
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
   const imgStyle = useSpring({
     from: {
+      filter:"blur(20px)", 
       boxShadow:`0px 0px 0px 0px ${meta.color}`,
     },
     to: {
+      filter: imageIsLoaded ? "blur(0px)" : "blur(20px)",
       boxShadow:`0px 100px 100px 100px ${meta.color}`,
+    },
+    config: {
+      duration:200
     }
   })
 
@@ -55,12 +60,7 @@ export default function Layout({
             alt={meta.title}
             className={s.img}
             placeholder='blur'
-            onLoad={event => {
-              // next/image use an 1x1 px git as placeholder. We only want the onLoad event on the actual image
-              if (event.target.src.indexOf('data:image/gif;base64') < 0) {
-                setImageIsLoaded(true)
-              }
-            }}
+            onLoadingComplete={()=>setImageIsLoaded(true)}
             priority
             fill
           />
