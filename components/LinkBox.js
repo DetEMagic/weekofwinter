@@ -24,7 +24,12 @@ export default function LinkBox({name, href}) {
         onMouseEnter={()=> setIsBooped(!isBooped)}
         onMouseLeave={()=> setIsBooped(!isBooped)}
       >
-      {name}
+      <span 
+        style={name.trim().includes(" ") ? null : {whiteSpace:"nowrap"}} 
+        className={s.name}
+      >
+        {name}
+      </span>
       <animated.span style={style}>
         <Arrow width={35} height={35}/>
       </animated.span>

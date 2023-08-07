@@ -12,3 +12,8 @@
 .container:hover {
     text-decoration: underline;
 }
+
+.name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
