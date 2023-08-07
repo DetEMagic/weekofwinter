@@ -22,19 +22,15 @@ export default function Layout({
   children
 }) {
 
-  const [imageIsLoaded, setImageIsLoaded] = useState(false)
   const imgStyle = useSpring({
     from: {
-      filter:"blur(20px)", 
+      opacity:0,
       boxShadow:`0px 0px 0px 0px ${meta.color}`,
     },
     to: {
-      filter: imageIsLoaded ? "blur(0px)" : "blur(20px)",
+      opacity:1,
       boxShadow:`0px 100px 100px 100px ${meta.color}`,
     },
-    config: {
-      duration:200
-    }
   })
 
   //<Emoji className={s.emoji} symbol={meta.emoji} label={meta.title}/>
@@ -60,7 +56,6 @@ export default function Layout({
             alt={meta.title}
             className={s.img}
             placeholder='blur'
-            onLoadingComplete={()=>setImageIsLoaded(true)}
             priority
             fill
           />
