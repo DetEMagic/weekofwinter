@@ -25,12 +25,10 @@ export default function Layout({
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
   const imgStyle = useSpring({
     from: {
-      opacity:0,
       boxShadow:`0px 0px 0px 0px ${meta.color}`,
     },
     to: {
-      opacity:imageIsLoaded ? 1 : 0,
-      boxShadow:imageIsLoaded ? `0px 100px 100px 100px ${meta.color}` : `0px 0x 0px 0px ${meta.color}`,
+      boxShadow:`0px 100px 100px 100px ${meta.color}`,
     }
   })
 
@@ -51,20 +49,18 @@ export default function Layout({
       <main className={s.main}>
         {meta.image ? 
         <>
-        <animated.div className={s.imgContainer}>
+        <animated.div style={imgStyle} className={s.imgContainer}>
           <Image
             src={meta.image}
             alt={meta.title}
             className={s.img}
-            placeholder="blur"
-            /*
             onLoad={event => {
               // next/image use an 1x1 px git as placeholder. We only want the onLoad event on the actual image
               if (event.target.src.indexOf('data:image/gif;base64') < 0) {
                 setImageIsLoaded(true)
               }
             }}
-            */
+            priority
             fill
           />
         </animated.div>
