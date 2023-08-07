@@ -52,10 +52,10 @@ export default function Layout({
         <>
         <animated.div style={imgStyle} className={s.imgContainer}>
           <Image
-            src={meta.image}
             alt={meta.title}
             className={s.img}
             placeholder='blur'
+            src={meta.image}
             priority
             fill
           />
