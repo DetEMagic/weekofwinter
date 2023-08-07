@@ -29,7 +29,7 @@ const nextConfig = {
     //It helps to identify unsafe lifecycles, legacy API usage, and a number of other features.
     reactStrictMode: true,
     i18n: {
-        locales:["sv", "en"],
+        locales:["sv"],
         defaultLocale:"sv",
     },
     images: {
