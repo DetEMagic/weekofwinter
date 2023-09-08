@@ -21,7 +21,7 @@ export default function Socialmedia({width, height, animation = true}) {
     {
       label:"Instagram",
       type:<Instagram width={width} height={height}/>,
-      href: "https://www.instagram.com/week_of_winter/",
+      href: "https://www.instagram.com/weekofwinter/",
     },
     {
       label:"Tiktok",
