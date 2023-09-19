@@ -1,5 +1,5 @@
 .img {
-    object-fit: contain;
+    object-fit: cover;
     border-radius: calc(var(--border-radius)*2);
 }
 

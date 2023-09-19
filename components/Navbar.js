@@ -8,8 +8,9 @@ import Burger from "../icons/burger.svg"
 import Close from "../icons/close.svg"
 import Plus from "../icons/plus.svg"
 import Minus from "../icons/minus.svg"
-import WW from "../icons/logo.svg"
+import LogoImg from "../public/logo.webp";
 import { useScrollspy } from './hooks';
+import Image from 'next/image';
 
 const links = [
   {
@@ -37,9 +38,21 @@ const links = [
         href:"/mer/bilder",
       },
       {
+        name:"Styrelsen",
+        href:"/mer/styrelsen",
+      },
+      {
         name:"Postbeskrivningar",
         href:"/mer/postbeskrivningar",
-      }
+      },
+      {
+        name:"Stadgar",
+        href:"/mer/stadgar",
+      },
+      {
+        name:"Historia",
+        href:"/mer/historia",
+      },
     ]
   },
 ]
@@ -302,7 +315,7 @@ export default function Navbar({stickyOffset}) {
  * @example
  * <Logo containerClass={s.logo} onClick={()=>isMenuOpen ? animateMenu("/") : null}/>
  */
-function Logo({width=70, height=40, scroll, ...props}) {
+function Logo({width=64.8, height=45, scroll, ...props}) {
   return (
     <>
     <div className={s.logoShadow}/>
@@ -313,10 +326,12 @@ function Logo({width=70, height=40, scroll, ...props}) {
       scroll={scroll}
       {...props}
     >
-        <WW
-            width={width}
-            height={height}
-            className={s.logo}
+        <Image
+          src={LogoImg}
+          width={width}
+          height={height}
+          priority
+          className={s.logo}
         />
     </Link>
     </>

@@ -1,5 +1,6 @@
 .image {
     object-fit: contain;
+    border-radius: calc(var(--border-radius) * 2)
 }
 
 .title {

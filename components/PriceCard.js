@@ -27,6 +27,7 @@ export default function PriceCard(
   {
     title, 
     price, 
+    href,
     includes=[], 
     popular=false,
   }) {
@@ -34,7 +35,7 @@ export default function PriceCard(
 
   return (
     <AnimatedContainer 
-      transform={popular ? "scale(1.1)" : ""} 
+      //transform={popular ? "scale(1.1)" : ""} 
       className={s.container}
     >
       <div>
@@ -57,7 +58,7 @@ export default function PriceCard(
         </div>
       </div>
       <a 
-        href="www.skivenue.se" 
+        href={href} 
         target={"_blank"} 
         className={`${s.button} ${popular ? s.buttonPopular : ""} `}
       >
@@ -69,7 +70,8 @@ export default function PriceCard(
 
 PriceCard.propTypes = {
   title: PropTypes.string.isRequired,
-  price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  href: PropTypes.string.isRequired,
   includes: PropTypes.array, 
   delay: PropTypes.number,
   popular: PropTypes.bool,

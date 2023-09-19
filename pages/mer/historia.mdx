@@ -1,0 +1,28 @@
+import metaImage from "../../public/image/historia.jpg"
+
+export const meta = {
+  image: metaImage,
+  color:"rgba(255, 255, 255, 0.1)",
+  title:"Historia",
+  description:"Week of Winters postbeskrivingar för styrelsen",
+  keywords:"Postbeskrivning, styrelse",
+}
+
+Week of Winter har varit verksamma sedan 2014 och målet har varit 
+att arrangera de mest prisvärda skidresorna till Alperna för så 
+många deltagare som möjligt! År 2023 var Week of Winter den största 
+studentalpresan i Sverige! Detta år tog Week of Winter steget till att 
+bli en ideell förening samt utöka styrelsen till fem ledamöter från 
+tidigare tre stycken i dåvarande projektgruppen.
+
+Vi vill fortsätta att erbjuda prisvärda skidresor till Alperna för så 
+många som möjligt. Detta för att NI ska få njuta i Alperna efter tenta-p 
+i ett mörkt Sverige. Utöver självaste resan strävar vi efter att ge medlemmar 
+mervärde i form av roliga event, hemma och i Alperna, samt utlottningar av 
+produkter från sponsorer. Allt detta för att ge tillbaka till våra medlemmar 
+och ge möjlighet för nya minnen, med vänner och nya vänner.
+
+
+export default ({ children }) => (
+  <Layout meta={meta}>{children}</Layout>
+);

@@ -42,9 +42,10 @@ export default function Youtube(
           <div className={s.youtubePlay}>
             <YoutubePlay/>
           </div>
-          <Image
+          <ImageWithFallback
             className={s.img}
             src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
+            fallbackSrc={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
             alt={`Youtube thumbnail: ${title}`}
             sizes={sizes}
             fill
@@ -54,3 +55,18 @@ export default function Youtube(
       </>
   )
 }
+
+const ImageWithFallback = (props) => {
+    const { src, fallbackSrc, ...rest } = props;
+    const [imgSrc, setImgSrc] = useState(src);
+
+    return (
+        <Image
+            {...rest}
+            src={imgSrc}
+            onError={() => {
+                setImgSrc(fallbackSrc);
+            }}
+        />
+    );
+};

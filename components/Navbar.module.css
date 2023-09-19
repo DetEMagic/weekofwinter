@@ -64,7 +64,7 @@
     top: 0;
     position: absolute;
     z-index: 9998;
-    box-shadow: 35px -10px 75px 65px var(--ww-color);
+    box-shadow: 30px 22px 40px 38px var(--ww-color);
     height:1px;
     width:1px;
 }

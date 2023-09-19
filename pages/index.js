@@ -28,7 +28,7 @@ import LinkBox from '../components/LinkBox';
 import tripImage from "../public/image/trip.webp"
 import DivideContainer from '../components/DivideContainer';
 import AnimatedContainer from '../components/AnimatedContainer';
-import Sponsors from '../components/Sponsors';
+import TripDescription from '../components/TripDescription.mdx'
 
 //debounce to not change the parallax on every pixel
 /*
@@ -190,24 +190,28 @@ export default function HomePage() {
                   </header>
                 </AnimatedContainer>
                 <AnimatedContainer>
-                <p className={s.about}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium pulvinar enim non mollis. Curabitur commodo aliquam placerat. Donec ut tortor eget lectus porttitor pulvinar. Suspendisse orci velit, venenatis et augue quis, suscipit lacinia sapien. Nulla facilisi. Aenean commodo justo vel lorem sodales, et ultrices orci vehicula. Morbi vitae neque sed urna condimentum cursus sit amet ut tortor. Aenean facilisis maximus lectus, id vehicula quam porttitor vitae. Maecenas eget urna vel odio condimentum tempor nec eu metus.</p>
+                <p className={s.about}>
+                  Skidföreningen Week of Winter är en ideell förening av studenter för studenter i Uppsala. 
+                  Varje år i januari  arrangerar vi en maxad skidresa till Alperna, tillsammans med andra roliga 
+                  skid- och festrelaterade evenemang. Vårt syfte är att tillföra festligheter, kul och såklart 
+                  skidåkning till Uppsalas studentliv. Vi ser fram emot att hänga och skåla med er i Alperna. Vi ses där!
+                </p>
                 </AnimatedContainer>
               </>
-              <Youtube title="Week of Winter" videoId="tYE42Ntdp18"/>
+              <Youtube title="Week of Winter - Aftermovie" videoId="pM8BvWNd0R4"/>
             </DivideContainer>
           </section>
 
           <section id="arets-resa" className={s.section}>
             <Trip
               title="Val-d'Isère 2024"
-              date="13 JAN – 22 JAN"
-              ticket="Anmälan öppnar 23 SEPT KL. 18:00"
+              date="12 Jan – 21 Jan"
+              ticket="Anmälan öppnar 2023-09-29 kl 12:00"
               place="Val-d'Isère, Frankrike"
               placeLink="https://goo.gl/maps/ra6y4Cr82uSyJ2bM7"
               description={
                 <>
-                  <p>Val-d’Isère är byn som har de lilla extra! Lite finare, lite mysigare och lite lyxigare rent generellt. Skidåkningen i systemet Espace Killy håller absolut toppklass och här upplever du unik afterski på La Folie Douce och Cocorico. Nattklubben DouDoune är utan tvekan en av alpernas absolut bästa och mest välkända nattklubbar. Om inte detta skulle vara nog så är atmosfären i Val d’Isère något helt unikt och byn är också sprängfylld av restauranger, barer och butiker. </p>
-                  <p>Häng med på årets vinterresa 13/1 – 22/1. DIN plats på bussen ner säkrar du den 12:e Oktober. Mer info finns i evenemanget på</p>
+                <TripDescription/>
                 </>
               }
               imageSrc={tripImage}
@@ -216,20 +220,19 @@ export default function HomePage() {
 
             <div className={s.infoBoxContainer}>
               <InfoBox
-                value={12}
-                desc="Afterski Barer"
+                value={15}
+                valueAfter="+"
+                desc="Barer och klubbar"
               />
+
               <InfoBox
-                valueBefore="0"
-                value={4}
-                valueAfter=":30"
-                desc="Stängning av Nattklubb"
+                value={300}
+                desc="Kilometer pist"
               />
+
               <InfoBox
-                startValue={10}
-                value={3.5}
-                valueAfter="€"
-                desc="Bärs på Krazy Kanguruh"
+                value={3456}
+                desc="Meter över havet"
               />
             </div>
           </section>
@@ -240,43 +243,31 @@ export default function HomePage() {
             </header>
             <div className={s.priceCardContainer}>
               <PriceCard
-                title="Grund"
-                price="5795 kr"
-                includes={[
-                  "Boende i skidorten", 
-                  "6 dagars liftkort",
-                  "24/7 service- och jourtelefon", 
-                  "Resegaranti", 
-                  "Guideservice",
-                ]}
-              />
-
-              <PriceCard
                 title="Buss"
-                price="7 395 kr"
+                price="7 999 kr"
+                href="https://group.skivenue.com/WOW"
                 popular
                 delay={500}
                 includes={[
                   "Bussresa tur och retur från Uppsala", 
-                  "Boende i skidorten", 
-                  "6 dagars liftkort",
-                  "24/7 service- och jourtelefon", 
-                  "Resegaranti", 
-                  "Guideservice",
+                  "Boende (enkel lägenhet med eget kök)", 
+                  "Liftkort 6 dagar (Val D'isere + Tignes)",
+                  "Guideservice 24/7", 
+                  "Turistskatter", 
                 ]}
               />
 
               <PriceCard
                 title="Flyg"
-                price="9 999 kr"
+                price="10 995 kr"
+                href="https://group.skivenue.com/WOW"
                 delay={1000}
                 includes={[
-                  "Flygresa tur & retur från Arlanda, inkl transfer från Lyon", 
-                  "Boende i skidorten", 
-                  "6 dagars liftkort",
-                  "24/7 service- och jourtelefon", 
-                  "Resegaranti", 
-                  "Guideservice",
+                  "Flyg tur och retur från Arlanda, inkl. transfer ", 
+                  "Boende (enkel lägenhet med eget kök)", 
+                  "Liftkort 6 dagar (Val D'isere + Tignes)",
+                  "Guideservice 24/7", 
+                  "Turistskatter", 
                 ]}
               />
             </div>
@@ -329,7 +320,12 @@ export default function HomePage() {
                 },
                 {
                   q:"Vem får följa med?",
-                  a:"Week of Winter riktar sig till teknologer vid Uppsala Universitet men det är fritt vem som helst över 18 år att följa med"
+                  a:
+                    <>
+                    Studerande vid Uppsala universitet och SLU som även är medlemmar i WOW får delta på resan. 
+                    <br></br>
+                    <a style={{color:"blue"}} href='https://shorturl.at/sBH13'> Bli medlem här! </a>
+                    </>
                 },
                 {
                   q:"Kan man boka egen transaport ner?",
@@ -360,16 +356,16 @@ export default function HomePage() {
               href="/mer/styrelsen"
             />
             <LinkBox
-              name="Historia"
-              href="/mer/historia"
-            />
-            <LinkBox
               name="Postbeskrivningar"
               href="/mer/postbeskrivningar"
             />
             <LinkBox
               name="Stadgar"
               href="/mer/stadgar"
+            />
+            <LinkBox
+              name="Historia"
+              href="/mer/historia"
             />
           </section>
 
@@ -378,7 +374,7 @@ export default function HomePage() {
               <h2>Avresa Val-d'Isère</h2>
             </header>
             <Countdown 
-              date={new Date(2024, 1, 14, 18, 0, 0)}
+              date={new Date(2024, 1, 12, 15, 0, 0)}
               dateExpired={
                 <div style={{textAlign:"center"}}>Taggish</div>
               }

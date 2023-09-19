@@ -65,16 +65,12 @@
   position: absolute;
   width: 150%;
   height: 40px;
-  /*
-  background-image: linear-gradient(45deg, #ff6547 0%, #ffb144  51%, #ff7053  100%);
-  */
-  background-image: linear-gradient(45deg, #0190b4 0%, #02779a  51%, #0190b4  100%);
+  background-color: var(--ww-color);
   box-shadow: 0 5px 10px rgba(0,0,0,0.23);
   transform: rotate(45deg) translateY(-20px);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
   font-weight: 600;
   font-size: 0.75em;
   letter-spacing: 0.1em;
@@ -89,12 +85,8 @@
   right: 0;
   height: 10px;
   z-index: -1;
-  /*
-  box-shadow: -110px -110px #cc3f47;
-  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
-  */
-  box-shadow: -110px -110px #02779a;
-  background-image: linear-gradient(45deg, #0190b4 0%, #02779a  51%, #0190b4  100%);
+  box-shadow: -110px -110px var(--ww-color);
+  background-color: var(--ww-color);
 }
 
 .button {
@@ -119,9 +111,7 @@
 }
 
 .buttonPopular {
-    background-color: var(--background-color);
-    box-shadow: inset 0px 0px 100px 5px var(--ww-color);
-    color: var(--text-color);
+    background-color: var(--ww-color);
     border: none;
     font-weight: 700;
 }

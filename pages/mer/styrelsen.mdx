@@ -1,0 +1,25 @@
+import metaImage from "../../public/image/postbeskrivningar.jpg"
+
+export const meta = {
+  image:metaImage,
+  color:"rgba(58, 214, 255, 0.1)",
+  title:"Styrelsen",
+  description:"Week of Winter styrelse 2023/2024",
+  keywords:"Styrelse, 2023",
+}
+
+Ordförande - Ebba Stål
+
+Vice Ordförande - Matviy Khotyaintsev
+
+PR-ansvarig - Klara Stenerhag
+
+Tryckansvarig - Oscar Jonsson
+
+Eventansvarig - William Ernlund
+
+![Jag vill bli en profil](/image/stanton.jpeg)
+
+export default ({ children }) => (
+  <Layout meta={meta}>{children}</Layout>
+);

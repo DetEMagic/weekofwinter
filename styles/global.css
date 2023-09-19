@@ -4,7 +4,7 @@ Also every component can use the classes defined in here.
 */
 
 :root {
-  --ww-color:#00a6ce;
+  --ww-color:#ffc003;
   --background-color: #081b31;
   --text-color:#FFFFFF;
   --link-color: #85CEFF;
@@ -130,6 +130,6 @@ code {
 /*Desktop*/
 @media only screen and (min-width: 1024px) {
   .errorPageImg {
-    height: 55vh;
+    height: 45vh;
   }
 }
