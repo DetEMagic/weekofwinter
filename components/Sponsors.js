@@ -1,31 +1,25 @@
 import React from 'react';
 import s from "./Sponsors.module.css"
+import stolt from "../public/image/sponsor/stoltOfSweden.jpg"
+import skivenue from "../public/image/sponsor/skivenue.png"
+import abro from "../public/image/sponsor/abro.jpg"
 import Image from 'next/image';
 
 const images = [
   { 
-    alt: "Absolut" , 
-    src: '/sponsors/absolut.png' 
+    alt: "Stolt of ski" , 
+    href: "https://www.stoltski.com/",
+    src: stolt,
   },
   { 
-    alt: "Mercedes", 
-    src: '/sponsors/mb.png' 
+    alt: "Skivenue", 
+    href:"https://www.skivenue.se/",
+    src: skivenue,
   },
   { 
-    alt: "Nordic Wellness", 
-    src: '/sponsors/nw.png' 
-  },
-  { 
-    alt: "Skistar", 
-    src: '/sponsors/skistar.png' 
-  },
-  { 
-    alt: "Salomon",
-    src: '/sponsors/salomon.png' 
-  },
-  { 
-    alt: "Stadler",
-    src: '/sponsors/stadler.png' 
+    alt: "Åbro", 
+    href:"https://www.abro.se/",
+    src: abro,
   },
 ];
 
@@ -37,21 +31,31 @@ const images = [
  */
 export default function Sponsors() {
   return (
-    <div className={s.container}>
+    <section className={s.section}>
+      <header className={s.title}>
+        <h2>Sponsorer</h2>
+      </header>
+      <div className={s.container}>
       {images.map((image, key) => (
-        <div key={key} className={s.gridItem}>
+        <a 
+          key={key} 
+          href={image.href}
+          target='_blank'
+          className={s.gridItem}
+        >
           <Image 
             src={image.src}
             alt={image.alt + " logo"}
             style={{objectFit:"contain"}}
+            placeholder="blur"
             sizes="(max-width: 640px) 100vw,
                     (max-width: 1024px) 50vw,
-                    (max-width: 1536px) 33vw,
-                    25vw"
+                    33vw"
             fill
           />    
-        </div>
+        </a>
       ))}
-    </div>
+      </div>
+    </section>
   );
 };

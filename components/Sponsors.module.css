@@ -1,15 +1,33 @@
+.section {
+    padding-block: 72px 0;
+    padding-inline: var(--padding-inline);
+    max-width: var(--max-width);
+    margin: auto;
+}
+
 .container {
-    max-width: 1920px;
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    margin-top: 1.5em;
+}
+
+.title {
+    text-align: center;
+    border-top: 1px solid var(--text-color);
+}
+
+.title h2 {
 }
 
 .gridItem {
     position: relative;
     aspect-ratio: 16/9;
-    margin: 1em;
+    margin: 1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--text-color);
+}
+
+.gridItem:hover {
+    transform: scale(1.05);
 }
 
 /*Tablet*/
@@ -19,17 +37,11 @@
     }
 }
 
-/*Desktop */
+/*Tablet*/
 @media only screen and (min-width: 1024px) {
     .container {
         grid-template-columns: repeat(3, 1fr)
     }
 }
 
-/*Desktop */
-@media only screen and (min-width: 1536px) {
-    .container {
-        grid-template-columns: repeat(4, 1fr)
-    }
-}
 

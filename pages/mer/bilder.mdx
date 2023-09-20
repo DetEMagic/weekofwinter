@@ -1,6 +1,6 @@
-import ImageGallery from "../../components/ImageGallery"
+import ImageAlbums from "../../components/ImageAlbums"
 import CircleInformation from "../../components/CircleInformation"
-import metaImage from "../../public/image/bilder.jpg"
+import metaImage from "../../public/image/hero/bilder.jpg"
 
 
 export const meta = {
@@ -12,7 +12,24 @@ export const meta = {
   keywords:"Bilder, Skidor, Fest",
 }
 
+
+export const albums = [
+  {
+    title:"Val thorens 2023",
+    album:"Länk till albumet",
+    albumCover:"https://lh3.googleusercontent.com/pw/AJFCJaWoAz0nW-zUqYt18d9t0YneC1gtYmNOTr5T1E0tGkjjn8LwZY5b4GJJnpt6L61vAComp2w50fRTc6K366adZ4uOfA-x617W-tbc8gDkkN8Xmzlo2xRUSd3mrJFSDhlMIE6TeShHxwJt9nQlpP4W95d4=w1250-h1666-s-no?authuser=0",
+  },
+  {
+    title:"Les Arcs 2022",
+    album:"Länk till albumet",
+    albumCover:"https://lh3.googleusercontent.com/pw/AJFCJaXYwz9L06ewRG6uL1wrb6duZjKUr_NJSg_TMLwB7UkgCVRC-EZpSRd7nK1Ky-IuMX5T1_zJBJ62sqtby-T0oA8qQwtLJ8LP3qvXrvuQEKsKlL9OcH-S7Fiqd8P0Pf2ZiBhDG5Pfzs6gR9hW4K84pc5n=w710-h946-s-no?authuser=0",
+  },
+  //Använd denna komponent för att visa <ImageAlbums albums={albums}/>
+]
+
 Bilder kommer gå att hitta här efter resan :skier:
+
+
 
 export default ({ children }) => (
   <Layout meta={meta}>{children}</Layout>

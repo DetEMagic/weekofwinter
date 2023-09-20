@@ -4,7 +4,7 @@
 }
 
 .left, .right {
-    margin-bottom: 1rem;
+    margin-block: 1rem;
 }
 
 .image {
@@ -12,8 +12,14 @@
     position: relative;
 }
 
+@media only screen and (min-width: 550px) and (max-width:767px) {
+    .image {
+        margin-inline: 20%;
+    }
+}
+
 /*Desktop*/
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
     .content {
         position: relative;
         display: flex;
@@ -24,11 +30,16 @@
 
     .container {
         flex-direction: row;
-        margin-block: 2rem;
+        margin-block: 1rem;
     }
 
     .reverse {
         flex-direction: row-reverse;
+    }
+
+    .image {
+        margin-inline: 0;
+        align-self: center;
     }
 
     .right {
