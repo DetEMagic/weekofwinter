@@ -97,8 +97,8 @@
     width: 100%;
     z-index: 999;
     background: var(--menu-mobile-background-color);
-    height: 100vh;
-    overflow: scroll;
+    height: 100%;
+    overflow: auto;
 }
 
 .link {
