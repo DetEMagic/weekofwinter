@@ -119,7 +119,7 @@ export default function Navbar({stickyOffset}) {
         height:100%;
         padding-right:${scrollBarWidth}px;
       ` 
-      nav.current.style.cssText=`padding-right:${scrollBarWidth}px; height:100%;`
+      nav.current.style.cssText=`padding-right:${scrollBarWidth}px;`
       overlay.current ? overlay.current.classList.remove(s.invisible) : null
     } else {
       document.documentElement.style.cssText = ""
