@@ -238,7 +238,7 @@ export default function HomePage() {
           </section>
 
           <section id="anmal" className={s.section}>
-            <header className={s.priceCardHeader}>
+            <header className={s.header}>
               <h2>Hur vill du följa med?</h2>
             </header>
             <div className={s.priceCardContainer}>
