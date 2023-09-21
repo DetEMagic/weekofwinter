@@ -276,32 +276,40 @@ export default function HomePage() {
               <div className={s.addOnCards}>
                 <InfoCard
                   title="Eventpaket. "
-                  desc="Gillar du att gå på evenemang? Då är detta något för dig! I eventpaketet ingår lunch i backen, rabatt på La Folie Douce, gratis inträde till klubben och en extraordinär sittning."
+                  desc="Gillar du att gå på evenemang? Då är detta något för dig! 
+                        I eventpaketet ingår en välkomstfest, picnic, flera andra events och 
+                        rabatt på flera ställen, bland annat La Folie Douce. "
                   icon={<Ticket width={70} height={70}/>}
                 />
                 <InfoCard
                   title="Skidhyra. "
-                  desc="Har du inga skidor eller en snowboard? Då finns det möjlighet att hyra skidor, stavar och hjälm. Eller varför inte en snowboard?"
+                  desc="Har du inga skidor eller en snowboard? Då finns det möjlighet 
+                        att hyra skidor, stavar och hjälm. Eller varför inte en snowboard?"
                   icon={<Ski width={70} height={70}/>}
                 />
                 <InfoCard
                   title="Skidfrakt. "
-                  desc="Har du egna skidor eller en snowboard som du vill ta med dig? Då är detta ett utmärkt val för endast 199 kr om du åker buss och 699 kr om du åker flyg."
+                  desc="Har du egna skidor eller en snowboard som du vill ta med dig? 
+                        Då är detta ett utmärkt val för endast 99 kr om du åker buss 
+                        och 600-800 kr om du flyger (priset beror på flygbolaget)."
                   icon={<DeliveryTruck width={70} height={70}/>}
                 />
                 <InfoCard
                   title="Extra dag på lifkortet. "
-                  desc="Vill du maximera skidåkandet så mycket det går? Då går det att välja ett skidkort med en extra dag!"
+                  desc="Vill du maximera skidåkandet så mycket det går? Då går det att 
+                        utöka skidkortet med en extra dag!"
                   icon={<PlusAdd width={70} height={70}/>}
                 />
                 <InfoCard
-                  title="Försäkringar. "
-                  desc="Är du rädd att dina nya skidor blir stulna eller går sönder? Blablabla försäkringar försäkrar dig då till 100%!"
+                  title="Reseförsäkring."
+                  desc="Vill du känna dig trygg under resan? Då kan du boka en 
+                        reseförsäkring hos Gouda."
                   icon={<Insurance width={70} height={70}/>}
                 />
                 <InfoCard
                   title="Avbeställningsskydd. "
-                  desc="Nojig över att du verkligen kan följa med? Frukta ej. Det går att lägga till avbeställningskydd till bokningen."
+                  desc="Nojig över att en sjukdom eller olycka stoppar din resa? Frukta ej. 
+                        Det går att lägga till avbeställningskydd till bokningen."
                   icon={<CalenderCancel width={70} height={70}/>}
                 />
               </div>
