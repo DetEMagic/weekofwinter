@@ -5,6 +5,7 @@
     color: var(--background-color);
     border-radius: var(--border-radius);
     margin: 0.75rem 0;
+    min-width: 75vw;
 }
 
 .icon {
@@ -22,5 +23,6 @@
         padding: 3rem;
         display: flex;
         margin: 0.75rem;
+        min-width: auto;
     }
 }

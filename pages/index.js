@@ -272,7 +272,7 @@ export default function HomePage() {
               />
             </div>
             <div className={s.addOnContainer}>
-              <h3>Tillval</h3>
+              <h3 className={s.header}>Tillval</h3>
               <div className={s.addOnCards}>
                 <InfoCard
                   title="Eventpaket. "

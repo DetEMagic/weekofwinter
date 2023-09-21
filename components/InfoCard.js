@@ -16,7 +16,7 @@ import AnimatedContainer from './AnimatedContainer';
  */
 export default function InfoCard({title, desc, icon}) {
   return (
-    <AnimatedContainer className={s.container}>
+    <div className={s.container}>
       <div className={s.icon}>
         {icon}
       </div>
@@ -24,7 +24,7 @@ export default function InfoCard({title, desc, icon}) {
         <strong >{title}</strong>
         {desc}
       </p>
-    </AnimatedContainer>
+    </div>
   )
 }
 
