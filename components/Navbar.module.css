@@ -97,7 +97,7 @@
     width: 100%;
     z-index: 999;
     background: var(--menu-mobile-background-color);
-    height: 100%;
+    height: 100vh;
     overflow: auto;
 }
 
