@@ -330,6 +330,7 @@ function Logo({width=64.8, height=45, scroll, ...props}) {
           src={LogoImg}
           width={width}
           height={height}
+          alt="Week of Winter logga"
           priority
           className={s.logo}
         />
