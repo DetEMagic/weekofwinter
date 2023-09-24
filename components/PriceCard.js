@@ -35,7 +35,7 @@ export default function PriceCard(
 
   return (
     <AnimatedContainer 
-      //transform={popular ? "scale(1.1)" : ""} 
+      transform={popular ? "scale(1.1)" : ""} 
       className={s.container}
     >
       <div>
@@ -73,7 +73,6 @@ PriceCard.propTypes = {
   price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   href: PropTypes.string.isRequired,
   includes: PropTypes.array, 
-  delay: PropTypes.number,
   popular: PropTypes.bool,
   once: PropTypes.bool,
 }

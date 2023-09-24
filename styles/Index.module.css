@@ -78,10 +78,10 @@
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
-    /*
-    background-color: var(--text-color);
-    color: var(--background-color);
-    */
+}
+
+.priceCardHeader {
+    margin-bottom: -0.75em;
 }
 
 .addOnContainer {
@@ -154,6 +154,10 @@
 
     .splitHeader h2 {
         max-width: none;
+    }
+
+   .priceCardHeader {
+        margin-bottom: 1rem;
     }
 
     .addOnCards {

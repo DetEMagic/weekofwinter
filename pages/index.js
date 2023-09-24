@@ -129,9 +129,9 @@ const ParallaxEffect = () => {
             1000, 
             "Vi ses i Valdi!", 
             1000, 
-            "#WW2024", 
-            1000,
             "För studenter av studenter.", 
+            1000,
+            "@weekofwinter",
             1000,
           ]}
           speed={60}
@@ -238,16 +238,28 @@ export default function HomePage() {
           </section>
 
           <section id="anmal" className={s.section}>
-            <header className={s.header}>
+            <header className={`${s.header} ${s.priceCardHeader}`}>
               <h2>Hur vill du följa med?</h2>
             </header>
             <div className={s.priceCardContainer}>
               <PriceCard
+                title="Flyg"
+                price="10 995:-"
+                href="https://group.skivenue.com/WOW"
+                includes={[
+                  "Flyg tur och retur från Arlanda, inkl. transfer ", 
+                  "Boende (enkel lägenhet med eget kök)", 
+                  "Liftkort 6 dagar (Val D'isere + Tignes)",
+                  "Guideservice 24/7", 
+                  "Turistskatter", 
+                ]}
+              />
+
+              <PriceCard
                 title="Buss"
-                price="7 999 kr"
+                price="7 999:-"
                 href="https://group.skivenue.com/WOW"
                 popular
-                delay={500}
                 includes={[
                   "Bussresa tur och retur från Uppsala", 
                   "Boende (enkel lägenhet med eget kök)", 
@@ -258,12 +270,10 @@ export default function HomePage() {
               />
 
               <PriceCard
-                title="Flyg"
-                price="10 995 kr"
+                title="Basic"
+                price="6 499:-"
                 href="https://group.skivenue.com/WOW"
-                delay={1000}
                 includes={[
-                  "Flyg tur och retur från Arlanda, inkl. transfer ", 
                   "Boende (enkel lägenhet med eget kök)", 
                   "Liftkort 6 dagar (Val D'isere + Tignes)",
                   "Guideservice 24/7", 
